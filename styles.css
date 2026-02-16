@@ -414,4 +414,39 @@ label{
     gap: .85rem;
   }
 
-  /* Imágenes: un toque más*
+  /* Imágenes: un toque más bajas para que no ocupen media pantalla */
+  .perfume-card img{
+    height: 190px;
+    padding: 12px;
+  }
+
+  .perfume-body{
+    padding: .85rem;
+  }
+
+  .perfume-body h3{
+    font-size: .95rem;
+  }
+
+  .perfume-body p{
+    font-size: .9rem;
+  }
+
+  /* Footer: que no se rompa */
+  .footer-content{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Para pantallas MUY chicas (iPhone SE etc) */
+@media (max-width: 420px){
+  .catalog-grid,
+  .services-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .perfume-card img{
+    height: 210px;
+  }
+}
