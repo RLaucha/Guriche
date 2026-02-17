@@ -11,7 +11,7 @@ const catalogo = [
       { nombre: "Ombre Leather", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/7.png" },
       { nombre: "Dior Homme Intense", descripcion: "Iris empolvado con cacao y madera, elegante y sofisticado.", imagen: "img/8.png" },
       { nombre: "Saint Laurent y EDP", descripcion: "Fresco aromático con manzana y salvia sobre fondo amaderado moderno.", imagen: "img/ysl.png" },
-      { nombre: "The scent EDP", descripcion: "Dulce especiado con cacao y cuero suave, sensual y cálido.", imagen: "img/bss.png" },
+      { nombre: "The scent elixir men parfum", descripcion: "Dulce especiado con cacao y cuero suave, sensual y cálido.", imagen: "img/bss.png" },
       { nombre: "The Most Wanted", descripcion: "Vainilla caramelizada con especias cálidas, intenso y nocturno.", imagen: "img/azz.png" },
     ]
   },
@@ -133,3 +133,4 @@ const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 10);
 });
+
