@@ -65,15 +65,13 @@ catalogo.forEach((bloque) => {
   bloque.perfumes.forEach((perfume) => {
     const card = document.createElement("article");
     card.className = "perfume-card";
-    const WHATSAPP_NUMBER = "5491139007985"; // <-- CAMBIÁ ESTO
-    const mensaje = `Hola! 👋 Quería consultar el precio y disponibilidad de: ${perfume.nombre}.`;
-    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+    const igLink = "https://ig.me/m/gurichearg";
     card.innerHTML = `
       <img src="${perfume.imagen}" alt="${perfume.nombre}" loading="lazy" />
       <div class="perfume-body">
         <h3>${perfume.nombre}</h3>
         <p>${perfume.descripcion}</p>
-        <a class="btn-quote" href="${waLink}" target="_blank" rel="noopener">
+        <a class="btn-quote" href="${igLink}" target="_blank" rel="noopener">
           Pedir cotización
         </a>
       </div>
@@ -145,5 +143,7 @@ const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 10);
 });
+
+
 
 
