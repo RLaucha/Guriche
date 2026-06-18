@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guriche — Perfumes de diseñador y nicho en Argentina. Fragancias auténticas, asesoramiento personalizado y entrega coordinada.">
+  <title>Guriche | Perfumes que dejan huella</title>
+
+  <link rel="icon" type="image/png" href="img/favicong2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header" id="inicio">
+    <nav class="navbar container" aria-label="Principal">
+      <a href="#inicio" class="logo">Guriche</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-particles" aria-hidden="true"></div>
+
+    <section class="hero container">
+      <div class="hero-content">
+        <p class="hero-tag reveal" data-delay="1">diseñador y nicho</p>
+        <h1 class="reveal" data-delay="2">Perfumes elegantes, frescos y con identidad propia</h1>
+        <p class="hero-subtitle reveal" data-delay="3">
+          En Guriche buscamos fragancias que se sientan limpias, modernas y memorables para cada estilo.
+        </p>
+        <div class="hero-buttons reveal" data-delay="4">
+          <a href="#tab/disenador" class="btn-outline">Ver diseñador</a>
+          <a href="#tab/nicho" class="btn-outline">Ver nicho</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="quiz reveal" id="quiz" style="margin-top: 2rem;">
+      <div class="container">
+        <div class="kicker">El match olfativo</div>
+        <h2>4 preguntas. <em style="font-style:italic">Tu</em> perfume.</h2>
+        <div class="progress" id="prog"><span class="on"></span><span></span><span></span><span></span></div>
+
+        <div class="qstep" id="qbox"></div>
+
+        <div class="results" id="results">
+          <div class="kicker" style="margin-bottom:10px">Resultado</div>
+          <h3 style="font-size:clamp(1.6rem,4vw,2.6rem);font-weight:500; font-family:'Playfair Display',serif;">Estos son para vos:</h3>
+          <div class="match-list" id="matches"></div>
+          <button class="redo" onclick="restartQuiz()">↺ HACER EL TEST DE NUEVO</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo" class="section container">
+      <h2 class="reveal">Nuestro catálogo</h2>
+      <p class="section-description reveal">Explorá nuestras líneas de diseñador y nicho. Cada marca con sus fragancias disponibles.</p>
+      <div id="catalogContainer"></div>
+    </section>
+
+    <section class="section consulta-extra">
+      <div class="container consulta-box">
+        <div class="section-divider" aria-hidden="true"></div>
+        <h2 class="reveal">¿Buscás otro perfume?</h2>
+        <p class="reveal">
+          Si no encontrás la fragancia que estás buscando, escribinos sin compromiso.
+          Podemos ayudarte a conseguir perfumes de diseñador o nicho según el aroma,
+          estilo o sensación que quieras lograr.
+        </p>
+
+        <a
+          href="https://ig.me/m/gurichearg"
+          target="_blank"
+          rel="noopener"
+          class="btn-consulta-general reveal"
+        >
+          Consultar por otra fragancia
+        </a>
+      </div>
+    </section>
+
+    <section id="servicios" class="section section-soft">
+      <div class="container">
+        <h2 class="reveal">Servicios</h2>
+        <div class="services-grid">
+          <article class="card reveal" data-delay="1">
+            <span class="card-icon" aria-hidden="true">🔍</span>
+            <h3>Asesoría personalizada</h3>
+            <p>Te recomendamos fragancias según tu estilo, ocasión y estación del año.</p>
+          </article>
+          <article class="card reveal" data-delay="2">
+            <span class="card-icon" aria-hidden="true">📦</span>
+            <h3>Stock por encargo</h3>
+            <p>¿Buscás una versión específica? La gestionamos para vos con seguimiento directo.</p>
+          </article>
+          <article class="card reveal" data-delay="3">
+            <span class="card-icon" aria-hidden="true">🚀</span>
+            <h3>Entrega coordinada</h3>
+            <p>Retiro o envío acordado para que recibas tus perfumes de forma segura y rápida.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-nosotros" class="section container">
+      <div class="about-content">
+        <div class="about-text reveal">
+          <h2>Sobre nosotros</h2>
+          <p>Somos emprendedores jóvenes y apasionados por la perfumería. Nacimos con el objetivo de facilitar el acceso a perfumes de nicho y diseñador que en Argentina suelen ser difíciles de encontrar o tienen precios muy elevados.</p>
+          <p>Te acompañamos en cada paso con atención personalizada, asesoramiento honesto y un trato cercano, para que descubras fragancias auténticas y elijas con seguridad.</p>
+        </div>
+        <div class="about-decorative reveal" data-delay="2" aria-hidden="true">
+          <span class="about-quote">&#8220;</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3 class="footer-logo">Guriche</h3>
+          <p class="footer-tagline">Perfumes que dejan huella</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Seguinos</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/gurichearg/" target="_blank" rel="noopener" aria-label="Instagram de Guriche">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/5491139007985" target="_blank" rel="noopener" aria-label="WhatsApp de Guriche">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Guriche. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=6"></script>
+</body>
+</html>
