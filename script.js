@@ -155,7 +155,7 @@ const catalogo = [
           { nombre: "ACQUA DI GIO", descripcion: "", imagen: "img/Armani/Armani_Acqua_di_Gio.png" },
 
           { nombre: "ACQUA DI GIO PROFONDO", descripcion: "", imagen: "img/Armani/Armani_Acqua_di_Gio_Profondo.png" },
-          { nombre: "ACQUA DI GIÒ PARFUM", descripcion: "", imagen: "img/Armani/Armani_Acqua_di_Giò_Parfum.png" },
+          { nombre: "ACQUA DI GIÒ PARFUM", descripcion: "", imagen: "img/Armani/Armani_Acqua_di_Gio_Parfum.png" },
 
           { nombre: "CODE FEMME", descripcion: "", imagen: "img/Armani/Armani_Code_Femme.png" },
           { nombre: "CODE MASCULINO", descripcion: "", imagen: "img/Armani/Armani_Code_Masculino.png" },
@@ -163,7 +163,7 @@ const catalogo = [
           { nombre: "POWER OF YOU", descripcion: "", imagen: "img/Armani/Armani_Power_of_You.png" },
           { nombre: "STRONGER WITH YOU ABSOLUTELY PARFUM", descripcion: "", imagen: "img/Armani/Armani_Stronger_With_You_Absolutely_Parfum.png" },
           { nombre: "STRONGER WITH YOU INTENSELY", descripcion: "", imagen: "img/Armani/Armani_Stronger_With_You_Intensely.png" },
-          { nombre: "SÍ", descripcion: "", imagen: "img/Armani/Armani_Sì.png" },
+          { nombre: "SÍ", descripcion: "", imagen: "img/Armani/Armani_Si.png" },
         ]
       },
       {
@@ -930,7 +930,7 @@ const PERFUMES_QUIZ = [
   {n:"Parfums de Marly Layton 75ml", f:["dulce","especiado","amaderado"], o:["noche","cita"], i:["huella"], p:420000, g:"u", nicho:true, img:""},
   {n:"Initio Oud for Greatness 90ml", f:["amaderado","especiado"], o:["noche"], i:["huella"], p:465000, g:"u", nicho:true, img:""},
   {n:"Miss Dior EDP 100ml", f:["frutal","dulce"], o:["cita","diario"], i:["presente"], p:227000, g:"f", img:""},
-  {n:"Armani Sì EDP 100ml", f:["dulce","frutal"], o:["oficina","cita"], i:["presente","sutil"], p:207000, g:"f", img:"img/Armani/Armani_Sì.png"},
+  {n:"Armani Sì EDP 100ml", f:["dulce","frutal"], o:["oficina","cita"], i:["presente","sutil"], p:207000, g:"f", img:"img/Armani/Armani_Si.png"},
   {n:"Armani My Way EDP 90ml", f:["fresco","frutal"], o:["diario","oficina"], i:["sutil"], p:202000, g:"f", img:"img/Armani/Armani_My_Way.png"},
 ];
 
