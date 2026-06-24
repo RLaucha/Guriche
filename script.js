@@ -531,10 +531,10 @@ const catalogo = [
           { nombre: "ERBA GOLD 100ML", descripcion: "Frutal jugoso con fondo cremoso y sensación opulenta.", imagen: "img/Xerjoff/14 - Xerjoff - Erba Gold.png" },
           { nombre: "ERBA PURA EDP 100ML", descripcion: "Frutal vibrante y almizclado con dulzura luminosa y elegante.", imagen: "img/Xerjoff/15 - Xerjoff - Erba Pura.png" },
           { nombre: "ERBA PURA EDP 50ML", descripcion: "Frutal vibrante y almizclado con dulzura luminosa y elegante.", imagen: "img/Xerjoff/15 - Xerjoff - Erba Pura.png" },
-          { nombre: "ERBA PURA DEODORANT SPRAY 100ML", descripcion: "Frutal vibrante y almizclado con dulzura luminosa y elegante.", imagen: "img/Xerjoff/15 - Xerjoff - Erba Pura.png" },
+
           { nombre: "LA CAPITALE PARFUM 50ML", descripcion: "", imagen: "img/Xerjoff/02 - Xerjoff - La Capitale.png" },
           { nombre: "LAYLATI EDP 100ML", descripcion: "", imagen: "img/Xerjoff/05 - Xerjoff - Laylati.png" },
-          { nombre: "JABIR \K\ KEMI COLLECTION EDP 50ML", descripcion: "", imagen: "" },
+
           { nombre: "SHOOTING STARS STARLIGHT PARFUM 50ML", descripcion: "", imagen: "img/Xerjoff/07 - Xerjoff - Starlight.png" },
           { nombre: "TORINO 23 (NITTO ATP FINALS) PARFUM 50ML", descripcion: "", imagen: "img/Xerjoff/10 - Xerjoff - Torino 23.png" },
           { nombre: "NAXOS 1861 EDP 100ML", descripcion: "Tabaco dulce con miel y vainilla, cálido y sofisticado.", imagen: "img/Xerjoff/01 - Xerjoff - Naxos.png" },
