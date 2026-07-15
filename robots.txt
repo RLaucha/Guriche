@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guriche.com.ar/sitemap.xml

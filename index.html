@@ -3,14 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Guriche — Perfumes de diseñador y nicho en Argentina. Fragancias auténticas, asesoramiento personalizado y entrega coordinada.">
-  <title>Guriche | Perfumes que dejan huella</title>
+  <meta name="description" content="Guriche — Perfumes de diseñador y nicho en Argentina. Fragancias auténticas 100% originales, asesoramiento personalizado y entrega coordinada.">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Guriche">
+  <link rel="canonical" href="https://guriche.com.ar/">
+  <title>Guriche | Perfumes de diseñador y nicho en Argentina</title>
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Guriche">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://guriche.com.ar/">
+  <meta property="og:title" content="Guriche | Perfumes que dejan huella">
+  <meta property="og:description" content="Perfumes de diseñador y nicho en Argentina. Fragancias auténticas 100% originales, asesoramiento personalizado y entrega coordinada.">
+  <meta property="og:image" content="https://guriche.com.ar/img/favicong2.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Guriche — Perfumes de diseñador y nicho">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Guriche | Perfumes que dejan huella">
+  <meta name="twitter:description" content="Perfumes de diseñador y nicho en Argentina. Fragancias auténticas 100% originales, con asesoramiento personalizado.">
+  <meta name="twitter:image" content="https://guriche.com.ar/img/favicong2.png">
 
   <link rel="icon" type="image/png" href="img/favicong2.png">
+  <link rel="apple-touch-icon" href="img/favicong2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+
+  <!-- Datos estructurados para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Guriche",
+    "description": "Perfumes de diseñador y nicho en Argentina. Fragancias auténticas 100% originales, asesoramiento personalizado y entrega coordinada.",
+    "url": "https://guriche.com.ar/",
+    "image": "https://guriche.com.ar/img/favicong2.png",
+    "logo": "https://guriche.com.ar/img/favicong2.png",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "sameAs": [
+      "https://www.instagram.com/gurichearg/",
+      "https://wa.me/5491139007985"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "url": "https://wa.me/5491139007985",
+      "availableLanguage": ["Spanish"]
+    }
+  }
+  </script>
 </head>
 <body>
   <header class="header" id="inicio">
@@ -35,8 +86,7 @@
           En Guriche buscamos fragancias que se sientan limpias, modernas y memorables para cada estilo.
         </p>
         <div class="hero-buttons reveal" data-delay="4">
-          <a href="#tab/disenador" class="btn-outline">Ver diseñador</a>
-          <a href="#tab/nicho" class="btn-outline">Ver nicho</a>
+          <a href="#catalogo" class="btn-outline">Ver catálogo</a>
         </div>
       </div>
     </section>
@@ -63,6 +113,16 @@
     <section id="catalogo" class="section container">
       <h2 class="reveal">Nuestro catálogo</h2>
       <p class="section-description reveal">Explorá nuestras líneas de diseñador y nicho. Cada marca con sus fragancias disponibles.</p>
+
+      <div class="catalog-search reveal">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" id="perfumeSearch" placeholder="Buscar perfume, marca o aroma…" aria-label="Buscar perfumes" autocomplete="off" />
+        <button type="button" class="search-clear" id="searchClear" aria-label="Limpiar búsqueda" hidden>&times;</button>
+      </div>
+
       <div id="catalogContainer"></div>
     </section>
 
@@ -159,6 +219,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>

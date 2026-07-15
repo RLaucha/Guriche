@@ -13,8 +13,7 @@ const catalogo = [
           { nombre: "POLO BLUE EDT 125ML", descripcion: "Fresco acuático con melón y verbena sobre fondo almizclado y amaderado.", imagen: "img/RALPH LAUREN/01 - Ralph Lauren - Polo Blue Eau de Parfum.png" },
           { nombre: "1 MEN EDT 100ML", descripcion: "Amaderado aromático con notas verdes frescas y fondo de almizcle cálido.", imagen: "img/RALPH LAUREN/05 - Ralph Lauren - Big Pony 1.png" },
           { nombre: "POLO RED EDT 125ML", descripcion: "Energético y especiado con pomelo rojo, azafrán y madera de cedro.", imagen: "img/RALPH LAUREN/02 - Ralph Lauren - Polo Red Parfum.png" },
-          { nombre: "RALPH LAUREN POLO RED EDP 200ML", descripcion: "Intenso y sensual con sangre de dragón, café y ámbar profundo.", imagen: "img/RALPH LAUREN/02 - Ralph Lauren - Polo Red Parfum.png" },
-          { nombre: "RALPH LAURED POLO RED EDP 200ML", descripcion: "Intenso y sensual con sangre de dragón, café y ámbar profundo.", imagen: "img/RALPH LAUREN/02 - Ralph Lauren - Polo Red Parfum.png" },
+          { nombre: "POLO RED EDP 200ML", descripcion: "Intenso y sensual con sangre de dragón, café y ámbar profundo.", imagen: "img/RALPH LAUREN/02 - Ralph Lauren - Polo Red Parfum.png" },
         ]
       },
       {
@@ -40,22 +39,19 @@ const catalogo = [
           { nombre: "WANTED EDP 100ML", descripcion: "Amaderado especiado con jengibre, canela y tabaco dulce envolvente.", imagen: "img/Azzaro/Azzaro_Wanted.png" },
           { nombre: "WANTED EDT 100ML", descripcion: "Cítrico especiado con cardamomo, limón y madera de cedro vibrante.", imagen: "img/Azzaro/Azzaro_Wanted.png" },
           { nombre: "THE MOST WANTED INTENSE EDP 100ML", descripcion: "Vainilla caramelizada con especias cálidas, intenso y nocturno.", imagen: "img/Azzaro/Azzaro_The_Most_Wanted_Intense.png" },
-          { nombre: "AZZARO WANTED EDT 100ML", descripcion: "Cítrico especiado con cardamomo, limón y madera de cedro vibrante.", imagen: "img/Azzaro/Azzaro_Wanted.png" },
           { nombre: "THE MOST WANTED INTENSE EDT 100ML", descripcion: "Vainilla caramelizada con especias cálidas, intenso y nocturno.", imagen: "img/Azzaro/Azzaro_The_Most_Wanted_Intense.png" },
           { nombre: "THE MOST WANTED INTENSE PARFUM 100ML", descripcion: "Vainilla caramelizada con especias cálidas, intenso y nocturno.", imagen: "img/Azzaro/Azzaro_The_Most_Wanted_Intense.png" },
-          { nombre: "AZZARO WANTED EDT 100ML", descripcion: "Cítrico especiado con cardamomo, limón y madera de cedro vibrante.", imagen: "img/Azzaro/Azzaro_Wanted.png" },
           { nombre: "AZZARO WANTED TONIC EDT 100ML", descripcion: "Fresco vigorizante con lima, vetiver y almizcle deportivo.", imagen: "img/Azzaro/Azzaro_Wanted_Tonic.png" },
-          { nombre: "AZZARO THE MOST WANTED PARFUM 100ML", descripcion: "Vainilla caramelizada con especias cálidas, intenso y nocturno.", imagen: "img/Azzaro/Azzaro_The_Most_Wanted_Parfum.png" },
-          { nombre: "AZZARO FOREVER WANTED ELIXIR PARFUM 100ML", descripcion: "Oriental intenso con ron, vainilla oscura y ámbar profundo.", imagen: "img/Azzaro/Azzaro_Wanted_Forever_Elixir.png" },
-          { nombre: "WANTED BY NIGHT EDP 100ML", descripcion: "Grafito, líquido ámbar", imagen: "img/Azzaro/Azzaro_Wanted_Night.png" },
-          { nombre: "WANTED EDP 100ML", descripcion: "Amaderado especiado con jengibre, canela y tabaco dulce envolvente.", imagen: "img/Azzaro/Azzaro_Wanted.png" },
+          { nombre: "THE MOST WANTED PARFUM 100ML", descripcion: "Cuero especiado con cardamomo, ámbar y vainilla tostada, elegante y nocturno.", imagen: "img/Azzaro/Azzaro_The_Most_Wanted_Parfum.png" },
+          { nombre: "FOREVER WANTED ELIXIR PARFUM 100ML", descripcion: "Oriental intenso con ron, vainilla oscura y ámbar profundo.", imagen: "img/Azzaro/Azzaro_Wanted_Forever_Elixir.png" },
+          { nombre: "WANTED BY NIGHT EDP 100ML", descripcion: "Oriental especiado con cardamomo, canela y tabaco sobre cuero ahumado, magnético y nocturno.", imagen: "img/Azzaro/Azzaro_Wanted_Night.png" },
         ]
       },
       {
         nombre: "GIVENCHY",
         perfumes: [
-          { nombre: "L'INTERDIT EDP 80ML", descripcion: "Floral oscuro con azahar, tuberosa y pachulí ahumado, magnético y audaz.", imagen: "" },
-          { nombre: "ANGE OU DEMON EDP 100ML", descripcion: "Misterioso floral con lirio, mandarina y vainilla sobre fondo amaderado.", imagen: "" },
+          { nombre: "L'INTERDIT EDP 80ML", descripcion: "Floral oscuro con azahar, tuberosa y pachulí ahumado, magnético y audaz.", imagen: "img/Givenchy/Givenchy_LInterdit.webp" },
+          { nombre: "ANGE OU DEMON EDP 100ML", descripcion: "Misterioso floral con lirio, mandarina y vainilla sobre fondo amaderado.", imagen: "img/Givenchy/Givenchy_Ange_ou_Demon.png" },
         ]
       },
       {
@@ -99,9 +95,9 @@ const catalogo = [
       {
         nombre: "HUGO BOSS",
         perfumes: [
-          { nombre: "BOSS WOMAN EDP 90ML", descripcion: "Floral frutal con durazno, lirio y sándalo cremoso, femenino y luminoso.", imagen: "" },
-          { nombre: "HUGO DEEP RED WOMAN EDP 90ML", descripcion: "Frutal especiado con grosella negra, jengibre y vainilla sensual.", imagen: "" },
-          { nombre: "BOSS ORANGE MAN EDT 100ML", descripcion: "Cálido especiado con manzana, canela y vainilla reconfortante.", imagen: "" },
+          { nombre: "BOSS WOMAN EDP 90ML", descripcion: "Floral frutal con durazno, lirio y sándalo cremoso, femenino y luminoso.", imagen: "img/Hugo Boss/Hugo_Boss_Woman.png" },
+          { nombre: "HUGO DEEP RED WOMAN EDP 90ML", descripcion: "Frutal especiado con grosella negra, jengibre y vainilla sensual.", imagen: "img/Hugo Boss/Hugo_Boss_Deep_Red.png" },
+          { nombre: "BOSS ORANGE MAN EDT 100ML", descripcion: "Cálido especiado con manzana, canela y vainilla reconfortante.", imagen: "img/Hugo Boss/Hugo_Boss_Orange_Man.png" },
         ]
       },
       {
@@ -144,9 +140,9 @@ const catalogo = [
       {
         nombre: "ISSEY MIYAKE",
         perfumes: [
-          { nombre: "FUSION D'ISSEY EDT 100ML", descripcion: "Acuático solar con coco, almizcle marino y madera flotante luminosa.", imagen: "" },
-          { nombre: "L'EAU D'ISSEY SPORT EDT 100ML", descripcion: "Fresco deportivo con bergamota, pomelo y vetiver limpio y vibrante.", imagen: "" },
-          { nombre: "LE SEL D'ISSEY EDT 100ML", descripcion: "Marina mineral con sal marina, sándalo y almizcle oceánico envolvente.", imagen: "" },
+          { nombre: "FUSION D'ISSEY EDT 100ML", descripcion: "Acuático solar con coco, almizcle marino y madera flotante luminosa.", imagen: "img/Issey Miyake/Issey_Miyake_Fusion.png" },
+          { nombre: "L'EAU D'ISSEY SPORT EDT 100ML", descripcion: "Fresco deportivo con bergamota, pomelo y vetiver limpio y vibrante.", imagen: "img/Issey Miyake/Issey_Miyake_Sport.png" },
+          { nombre: "LE SEL D'ISSEY EDT 100ML", descripcion: "Marina mineral con sal marina, sándalo y almizcle oceánico envolvente.", imagen: "img/Issey Miyake/Issey_Miyake_Le_Sel.png" },
         ]
       },
       {
@@ -182,7 +178,6 @@ const catalogo = [
           { nombre: "BLACK ORCHID EDP 30ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "BLACK ORCHID EDP 50ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "BLACK ORCHID PARFUM 100ML", descripcion: "Orquídea negra concentrada con trufa, ron y resinas oscuras, hipnótico.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
-          { nombre: "TOM FORD", descripcion: "Colección exclusiva de fragancias de lujo con ingredientes nobles.", imagen: "" },
           { nombre: "FOUGERE PLATINE EDP 50ML", descripcion: "Fougère moderno con lavanda, salvia y ámbar gris platinado.", imagen: "img/TOM FORD/11 - Tom Ford - Oud Wood Platine.png" },
           { nombre: "GREY VETIVER EDP 100ML", descripcion: "Vetiver elegante con pomelo, salvia y notas amaderadas sofisticadas.", imagen: "img/TOM FORD/10 - Tom Ford - Grey Vetiver.png" },
           { nombre: "LOST CHERRY EDP 50ML", descripcion: "Cereza negra con almendra, licor de cereza y vainilla pecaminosa.", imagen: "img/TOM FORD/12 - Tom Ford - Lost Cherry.png" },
@@ -213,13 +208,13 @@ const catalogo = [
           { nombre: "LAYTON EDP 125ML", descripcion: "Especiado dulce con manzana, jazmín y vainilla sobre cardamomo cálido.", imagen: "img/Parfums de Marly/23 - Parfums de Marly - Layton.png" },
           { nombre: "LAYTON EXCLUSIF PARFUM 125ML", descripcion: "Oriental profundo con manzana especiada, oud y ámbar concentrado.", imagen: "img/Parfums de Marly/26 - Parfums de Marly - Layton Exclusif.png" },
           { nombre: "ALTHAIR EDP 125ML", descripcion: "Gourmand aromático con lavanda, almizcle y vainilla cremosa envolvente.", imagen: "img/Parfums de Marly/11 - Parfums de Marly - Althair.png" },
-          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML CARIOS", descripcion: "Extracto concentrado con notas nobles y fondo amaderado profundo.", imagen: "" },
-          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML ERAGON", descripcion: "Extracto intenso con especias cálidas y maderas preciosas.", imagen: "" },
-          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML VALERO", descripcion: "Extracto opulento con ámbar, cuero y notas orientales suntuosas.", imagen: "" },
+          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML CARIOS", descripcion: "Extracto concentrado con notas nobles y fondo amaderado profundo.", imagen: "img/Parfums de Marly/PdM_Carios.webp" },
+          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML ERAGON", descripcion: "Extracto intenso con especias cálidas y maderas preciosas.", imagen: "img/Parfums de Marly/PdM_Eragon.png" },
+          { nombre: "PARFUMS DE MARLY EXTRAIT 100ML VALERO", descripcion: "Extracto opulento con ámbar, cuero y notas orientales suntuosas.", imagen: "img/Parfums de Marly/PdM_Valero.png" },
           { nombre: "AKASTER EDP 125ML", descripcion: "Oud ahumado con canela, cuero y sándalo oscuro, poderoso y noble.", imagen: "img/Parfums de Marly/14 - Parfums de Marly - Akaster.png" },
           { nombre: "CARLISLE EDP 125ML", descripcion: "Amaderado especiado con vainilla, pachulí, nuez moscada y oud elegante.", imagen: "img/Parfums de Marly/12 - Parfums de Marly - Carlisle.png" },
-          { nombre: "CASSILLI EDP 75ML", descripcion: "Floral frutal con durazno, mandarina y almizcle rosado, luminoso y alegre.", imagen: "" },
-          { nombre: "DARLEY EDP 125ML", descripcion: "Amaderado aromático con naranja, jengibre y cedro masculino y refinado.", imagen: "" },
+          { nombre: "CASSILLI EDP 75ML", descripcion: "Floral frutal con durazno, mandarina y almizcle rosado, luminoso y alegre.", imagen: "img/Parfums de Marly/PdM_Cassili.png" },
+          { nombre: "DARLEY EDP 125ML", descripcion: "Amaderado aromático con naranja, jengibre y cedro masculino y refinado.", imagen: "img/Parfums de Marly/PdM_Darley.webp" },
           { nombre: "DELINA EDP 75ML", descripcion: "Floral rosado con lichi, peonía, rosa turca y vainilla elegante.", imagen: "img/Parfums de Marly/15 - Parfums de Marly - Delina.png" },
           { nombre: "GALLOWAY EDP 125ML", descripcion: "Cítrico fresco con limón, naranja y vetiver verde, limpio y distinguido.", imagen: "img/Parfums de Marly/02 - Parfums de Marly - Galloway.png" },
           { nombre: "GODOLPHIN EDP 125ML", descripcion: "Cuero dulce con iris, rosa y oud, opulento y aristocrático.", imagen: "img/Parfums de Marly/17 - Parfums de Marly - Godolphin.png" },
@@ -243,14 +238,14 @@ const catalogo = [
       {
         nombre: "MONTBLANC",
         perfumes: [
-          { nombre: "VETIVER GLACIER FROZEN SANTAL EDP 125ML", descripcion: "Vetiver helado con sándalo cristalino y notas minerales refrescantes.", imagen: "" },
-          { nombre: "PATCHOULI INK DARK WOODS EDP 125ML", descripcion: "Pachulí oscuro con tinta, maderas ahumadas y cuero profundo.", imagen: "" },
+          { nombre: "VETIVER GLACIER FROZEN SANTAL EDP 125ML", descripcion: "Vetiver helado con sándalo cristalino y notas minerales refrescantes.", imagen: "img/Montblanc/Montblanc_Vetiver_Glacier.png" },
+          { nombre: "PATCHOULI INK DARK WOODS EDP 125ML", descripcion: "Pachulí oscuro con tinta, maderas ahumadas y cuero profundo.", imagen: "img/Montblanc/Montblanc_Patchouli_Ink.png" },
         ]
       },
       {
         nombre: "MOSCHINO",
         perfumes: [
-          { nombre: "ΤΟΥ 2 PEARL EDP 100ML", descripcion: "Floral almizclado con peonía, jazmín y almizcle nacarado, luminoso.", imagen: "" },
+          { nombre: "TOY 2 PEARL EDP 100ML", descripcion: "Floral almizclado con peonía, jazmín y almizcle nacarado, luminoso.", imagen: "img/Moschino/Moschino_Toy2_Pearl.png" },
         ]
       },
       {
@@ -330,8 +325,8 @@ const catalogo = [
       {
         nombre: "LOUIS VUITTON",
         perfumes: [
-          { nombre: "OMBRE NOMADE EDP 100ML", descripcion: "Oud majestuoso con rosa, frambuesa y benzoína, nómade y lujoso.", imagen: "" },
-          { nombre: "PACIFIC CHILL EDP 100ML", descripcion: "Cítrico refrescante con lima, mango y notas acuáticas vibrantes.", imagen: "" },
+          { nombre: "OMBRE NOMADE EDP 100ML", descripcion: "Oud majestuoso con rosa, frambuesa y benzoína, nómade y lujoso.", imagen: "img/Louis Vuitton/LV_Ombre_Nomade.png" },
+          { nombre: "PACIFIC CHILL EDP 100ML", descripcion: "Cítrico refrescante con lima, mango y notas acuáticas vibrantes.", imagen: "img/Louis Vuitton/LV_Pacific_Chill.png" },
         ]
       },
       {
@@ -394,8 +389,8 @@ const catalogo = [
       {
         nombre: "NISHANE",
         perfumes: [
-          { nombre: "HACIVAT X EDP 100ML", descripcion: "Frutal amaderado con piña, pomelo, pachulí y musgo de roble intenso.", imagen: "" },
-          { nombre: "ANI EXTRAIT 100ML", descripcion: "Floral oriental con cardamomo, vainilla, bergamota y almizcle cálido.", imagen: "" },
+          { nombre: "HACIVAT X EDP 100ML", descripcion: "Frutal amaderado con piña, pomelo, pachulí y musgo de roble intenso.", imagen: "img/Nishane/Nishane_Hacivat.webp" },
+          { nombre: "ANI EXTRAIT 100ML", descripcion: "Floral oriental con cardamomo, vainilla, bergamota y almizcle cálido.", imagen: "img/Nishane/Nishane_Ani.webp" },
         ]
       },
       {
@@ -448,8 +443,8 @@ const catalogo = [
       {
         nombre: "MAISON FRANCIS KURKDJIAN",
         perfumes: [
-          { nombre: "OUD SATIN MOOD EXTRAIT 70ML", descripcion: "Oud aterciopelado con rosa damascena, violeta y vainilla satinada opulenta.", imagen: "" },
-          { nombre: "BACCARAT ROUGE 540 EDP 35ML", descripcion: "Ambarino cristalino con azafrán, cedro y almizcle, luminoso y adictivo.", imagen: "" },
+          { nombre: "OUD SATIN MOOD EXTRAIT 70ML", descripcion: "Oud aterciopelado con rosa damascena, violeta y vainilla satinada opulenta.", imagen: "img/MFK/MFK_Oud_Satin_Mood.png" },
+          { nombre: "BACCARAT ROUGE 540 EDP 35ML", descripcion: "Ambarino cristalino con azafrán, cedro y almizcle, luminoso y adictivo.", imagen: "img/MFK/MFK_Baccarat_Rouge_540.webp" },
         ]
       },
       {
@@ -546,16 +541,16 @@ const catalogo = [
       {
         nombre: "ATELIER COLOGNE",
         perfumes: [
-          { nombre: "AMBRE NUE COLOGNE EDP 100ML", descripcion: "Ámbar desnudo con notas cítricas frescas y almizcle puro translúcido.", imagen: "" },
-          { nombre: "BLANCHE INMORTELLE COLOGNE EDP 100ML", descripcion: "Floral blanco con siempreviva, notas solares y almizcle luminoso.", imagen: "" },
-          { nombre: "ENCENS JINHAE COLOGNE EDP 100ML", descripcion: "Incienso ceremonial con notas florales de cerezo y ámbar sagrado.", imagen: "" },
-          { nombre: "POIVRE ELECTRIQUE COLOGNE EDP 100ML", descripcion: "Pimienta eléctrica con notas cítricas vibrantes y vetiver chispeante.", imagen: "" },
+          { nombre: "AMBRE NUE COLOGNE EDP 100ML", descripcion: "Ámbar desnudo con notas cítricas frescas y almizcle puro translúcido.", imagen: "img/Atelier Cologne/AC_Ambre_Nue.png" },
+          { nombre: "BLANCHE INMORTELLE COLOGNE EDP 100ML", descripcion: "Floral blanco con siempreviva, notas solares y almizcle luminoso.", imagen: "img/Atelier Cologne/AC_Blanche_Immortelle.png" },
+          { nombre: "ENCENS JINHAE COLOGNE EDP 100ML", descripcion: "Incienso ceremonial con notas florales de cerezo y ámbar sagrado.", imagen: "img/Atelier Cologne/AC_Encens_Jinhae.png" },
+          { nombre: "POIVRE ELECTRIQUE COLOGNE EDP 100ML", descripcion: "Pimienta eléctrica con notas cítricas vibrantes y vetiver chispeante.", imagen: "img/Atelier Cologne/AC_Poivre_Electrique.png" },
         ]
       },
       {
         nombre: "ATELIER DES ORS",
         perfumes: [
-          { nombre: "ROSE OMEYYADE EDP 100ML", descripcion: "Rosa omeya con oud, especias y ámbar, ancestral y majestuoso.", imagen: "" },
+          { nombre: "ROSE OMEYYADE EDP 100ML", descripcion: "Rosa omeya con oud, especias y ámbar, ancestral y majestuoso.", imagen: "img/Atelier des Ors/AdO_Rose_Omeyyade.png" },
         ]
       },
       {
@@ -582,13 +577,13 @@ const catalogo = [
       {
         nombre: "JO MALONE",
         perfumes: [
-          { nombre: "ENGLISH PEAR & FREESIA EDC 100ML (SIN CAJA)", descripcion: "Frutal floral con pera madura, fresia y pachulí, otoñal y elegante.", imagen: "" },
-          { nombre: "ENGLISH PEAR & FREESIA EDC 30ML", descripcion: "Frutal floral con pera madura, fresia y pachulí, otoñal y elegante.", imagen: "" },
-          { nombre: "FIG & LOTUS FLOWER EDC 30ML", descripcion: "Frutal verde con higo fresco, flor de loto y cedro luminoso.", imagen: "" },
-          { nombre: "LIME BASIL & MANDARIN EDC 100ML", descripcion: "Cítrico aromático con lima, albahaca y almizcle blanco chispeante.", imagen: "" },
-          { nombre: "LIME BASIL & MANDARIN 165ML", descripcion: "Cítrico aromático con lima, albahaca y almizcle blanco chispeante.", imagen: "" },
-          { nombre: "WILD BLUE EDC 100ML (SIN CAJA)", descripcion: "Acuático fresco con notas marinas, lavanda y almizcle oceánico libre.", imagen: "" },
-          { nombre: "WOOD SAGE EDC 100ML (SIN CAJA)", descripcion: "Amaderado terroso con salvia, sal marina y cedro costero natural.", imagen: "" },
+          { nombre: "ENGLISH PEAR & FREESIA EDC 100ML (SIN CAJA)", descripcion: "Frutal floral con pera madura, fresia y pachulí, otoñal y elegante.", imagen: "img/Jo Malone/JM_English_Pear_Freesia.png" },
+          { nombre: "ENGLISH PEAR & FREESIA EDC 30ML", descripcion: "Frutal floral con pera madura, fresia y pachulí, otoñal y elegante.", imagen: "img/Jo Malone/JM_English_Pear_Freesia.png" },
+          { nombre: "FIG & LOTUS FLOWER EDC 30ML", descripcion: "Frutal verde con higo fresco, flor de loto y cedro luminoso.", imagen: "img/Jo Malone/JM_Fig_Lotus.png" },
+          { nombre: "LIME BASIL & MANDARIN EDC 100ML", descripcion: "Cítrico aromático con lima, albahaca y almizcle blanco chispeante.", imagen: "img/Jo Malone/JM_Lime_Basil_Mandarin.png" },
+          { nombre: "LIME BASIL & MANDARIN 165ML", descripcion: "Cítrico aromático con lima, albahaca y almizcle blanco chispeante.", imagen: "img/Jo Malone/JM_Lime_Basil_Mandarin.png" },
+          { nombre: "WILD BLUEBELL EDC 100ML (SIN CAJA)", descripcion: "Floral fresco con campanilla azul, jazmín y almizcle blanco, primaveral y luminoso.", imagen: "img/Jo Malone/JM_Wild_Bluebell.png" },
+          { nombre: "WOOD SAGE EDC 100ML (SIN CAJA)", descripcion: "Amaderado terroso con salvia, sal marina y cedro costero natural.", imagen: "img/Jo Malone/JM_Wood_Sage.png" },
         ]
       },
       {
@@ -608,9 +603,9 @@ const catalogo = [
       {
         nombre: "NASOMATTO",
         perfumes: [
-          { nombre: "FANTOMAS EDP 30ML", descripcion: "Misterioso etéreo con notas fugaces, almizcle y maderas abstractas.", imagen: "" },
-          { nombre: "NARCOTIC V. EDP 30ML", descripcion: "Floral narcótico con tuberosa, jazmín y notas blancas hipnóticas.", imagen: "" },
-          { nombre: "NUDIFLORUM EDP 30ML", descripcion: "Floral desnudo con notas transparentes, almizcle y maderas sutiles.", imagen: "" },
+          { nombre: "FANTOMAS EDP 30ML", descripcion: "Misterioso etéreo con notas fugaces, almizcle y maderas abstractas.", imagen: "img/Nasomatto/Nasomatto_Fantomas.png" },
+          { nombre: "NARCOTIC V. EDP 30ML", descripcion: "Floral narcótico con tuberosa, jazmín y notas blancas hipnóticas.", imagen: "img/Nasomatto/Nasomatto_Narcotic_V.png" },
+          { nombre: "NUDIFLORUM EDP 30ML", descripcion: "Floral desnudo con notas transparentes, almizcle y maderas sutiles.", imagen: "img/Nasomatto/Nasomatto_Nudiflorum.png" },
         ]
       },
     ]
@@ -623,6 +618,19 @@ const igLink = "https://ig.me/m/gurichearg";
 
 // Estado actual
 let activeTab = "Diseñador";
+
+// ── Placeholder elegante para perfumes sin foto ──
+const NO_PHOTO_SVG =
+  '<svg viewBox="0 0 32 32" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true">' +
+  '<rect x="13" y="2.5" width="6" height="4" rx="1"/>' +
+  '<path d="M12 6.5h8v3.1c2 .9 3.3 2.9 3.3 5.2v9.7c0 1.9-1.5 3.5-3.4 3.5h-7.8c-1.9 0-3.4-1.6-3.4-3.5v-9.7c0-2.3 1.3-4.3 3.3-5.2V6.5Z"/>' +
+  '<path d="M9.5 17h13"/></svg>';
+function noPhotoHTML() {
+  return `<div class="no-photo">${NO_PHOTO_SVG}<small>Foto próximamente</small></div>`;
+}
+window.__photoFallback = function (img) {
+  img.outerHTML = noPhotoHTML();
+};
 
 // ── Función para crear la vista principal (tabs + grilla de marcas) ──
 function renderCatalogMain(scrollToTop = false) {
@@ -739,8 +747,8 @@ function renderBrandDetail(brandName) {
       card.className = "perfume-card reveal";
 
       const imgHtml = perfume.imagen
-        ? `<img src="${perfume.imagen}" alt="${perfume.nombre}" loading="lazy" />`
-        : ``;
+        ? `<img src="${perfume.imagen}" alt="${perfume.nombre}" loading="lazy" onerror="__photoFallback(this)" />`
+        : noPhotoHTML();
 
       const descHtml = perfume.descripcion
         ? `<p>${perfume.descripcion}</p>`
@@ -824,6 +832,97 @@ function reObserveReveals() {
 
 // ── Render inicial ──
 handleHashChange();
+
+// ── Buscador de perfumes ────────────────────
+(function initPerfumeSearch() {
+  const input = document.getElementById("perfumeSearch");
+  const clearBtn = document.getElementById("searchClear");
+  if (!input) return;
+
+  function norm(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+
+  // Índice plano de todos los perfumes con su marca y categoría
+  const flat = [];
+  catalogo.forEach((bloque) => {
+    bloque.marcas.forEach((marca) => {
+      marca.perfumes.forEach((p) => {
+        flat.push({
+          nombre: p.nombre,
+          descripcion: p.descripcion || "",
+          imagen: p.imagen || "",
+          marca: marca.nombre,
+          _buscar: norm(p.nombre + " " + marca.nombre + " " + (p.descripcion || "")),
+        });
+      });
+    });
+  });
+
+  function renderResults(query) {
+    const nq = norm(query).trim();
+    if (!nq) {
+      handleHashChange(); // restaurar vista normal (marcas o marca activa)
+      return;
+    }
+    const terms = nq.split(/\s+/);
+    const matches = flat.filter((p) => terms.every((t) => p._buscar.includes(t)));
+
+    catalogContainer.innerHTML = "";
+    const wrap = document.createElement("div");
+    wrap.className = "brand-detail-view";
+
+    if (matches.length === 0) {
+      const none = document.createElement("div");
+      none.className = "search-no-results";
+      none.innerHTML =
+        `No encontramos “${query.trim()}”.<br>Probá con otro nombre, marca o aroma.` +
+        `<br><a class="btn-consulta-general" style="margin-top:1.5rem;display:inline-block;" href="${igLink}" target="_blank" rel="noopener">Consultanos directamente</a>`;
+      wrap.appendChild(none);
+    } else {
+      const info = document.createElement("p");
+      info.className = "search-results-info";
+      info.innerHTML = `<strong>${matches.length}</strong> resultado${matches.length !== 1 ? "s" : ""} para “${query.trim()}”`;
+      wrap.appendChild(info);
+
+      const grid = document.createElement("div");
+      grid.className = "catalog-grid";
+      matches.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "perfume-card";
+        const imgHtml = p.imagen
+          ? `<img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="__photoFallback(this)" />`
+          : noPhotoHTML();
+        const descHtml = p.descripcion ? `<p>${p.descripcion}</p>` : "";
+        card.innerHTML = `
+          ${imgHtml}
+          <div class="perfume-body">
+            <span class="card-brand">${p.marca}</span>
+            <h3>${p.nombre}</h3>
+            ${descHtml}
+            <a class="btn-quote" href="${igLink}" target="_blank" rel="noopener">Pedir cotización</a>
+          </div>`;
+        grid.appendChild(card);
+      });
+      wrap.appendChild(grid);
+    }
+    catalogContainer.appendChild(wrap);
+  }
+
+  let debounce;
+  input.addEventListener("input", () => {
+    clearBtn.hidden = input.value.length === 0;
+    clearTimeout(debounce);
+    debounce = setTimeout(() => renderResults(input.value), 120);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    clearBtn.hidden = true;
+    renderResults("");
+    input.focus();
+  });
+})();
 
 // ── Menú Móvil ──────────────────────────────
 const menuToggle = document.getElementById("menuToggle");

@@ -1,3 +1,11 @@
 node_modules/
 package-lock.json
+.claude/
 download_images.js
+download_final.js
+extract_pasted.js
+place_images.js
+generate_review.js
+review.html
+img/_review/
+img/_nuevas/
