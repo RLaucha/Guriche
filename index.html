@@ -114,14 +114,14 @@
       <h2 class="reveal">Nuestro catálogo</h2>
       <p class="section-description reveal">Explorá nuestras líneas de diseñador y nicho. Cada marca con sus fragancias disponibles.</p>
 
-      <div class="catalog-search reveal">
+      <form class="catalog-search reveal" onsubmit="return false" action="" role="search">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
         <input type="search" id="perfumeSearch" placeholder="Buscar perfume, marca o aroma…" aria-label="Buscar perfumes" autocomplete="off" />
         <button type="button" class="search-clear" id="searchClear" aria-label="Limpiar búsqueda" hidden>&times;</button>
-      </div>
+      </form>
 
       <div id="catalogContainer"></div>
     </section>

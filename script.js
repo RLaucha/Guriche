@@ -922,6 +922,24 @@ handleHashChange();
     renderResults("");
     input.focus();
   });
+
+  // Prevenir submit del formulario (recarga de página en móvil)
+  const searchForm = input.closest("form");
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+  }
+
+  // Al presionar Enter, cerrar teclado en móvil y ejecutar búsqueda
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      clearTimeout(debounce);
+      renderResults(input.value);
+      input.blur(); // cierra teclado en móvil
+    }
+  });
 })();
 
 // ── Menú Móvil ──────────────────────────────
