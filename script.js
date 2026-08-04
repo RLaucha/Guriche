@@ -615,9 +615,346 @@ const catalogo = [
 // ── Renderizado del Catálogo — Sistema de Navegación por Marca ──
 const catalogContainer = document.getElementById("catalogContainer");
 const igLink = "https://ig.me/m/gurichearg";
+const WHATSAPP_NUMBER = "5491139007985";
+const catalogSource = window.GURICHE_CATALOG_SOURCE || {
+  csvUrl: "",
+  fallbackUrl: "data/catalogo-web.json",
+  timeoutMs: 7000,
+};
 
 // Estado actual
 let activeTab = "Diseñador";
+
+// ── Sincronización segura con la fuente pública de precios ──
+function normalizeCatalogText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function catalogProductKey(category, brand, product) {
+  return [
+    normalizeCatalogText(category),
+    normalizeCatalogText(brand),
+    normalizeCatalogText(product),
+  ].join("|");
+}
+
+function assignWebIds() {
+  let index = 1;
+  catalogo.forEach((category) => {
+    category.marcas.forEach((brand) => {
+      brand.perfumes.forEach((perfume) => {
+        perfume.webId = perfume.webId || `WEB-${String(index).padStart(4, "0")}`;
+        perfume.publicar = perfume.publicar !== false;
+        index += 1;
+      });
+    });
+  });
+}
+
+function isYes(value) {
+  return ["si", "sí", "true", "1", "yes"].includes(
+    normalizeCatalogText(value),
+  );
+}
+
+function parseCatalogPrice(value) {
+  if (typeof value === "number") return Number.isFinite(value) && value > 0 ? value : null;
+  const cleaned = String(value || "")
+    .replace(/\$/g, "")
+    .replace(/\s/g, "")
+    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+    .replace(/,(?=\d{1,2}$)/, ".");
+  const price = Number(cleaned);
+  return Number.isFinite(price) && price > 0 ? price : null;
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function safeImageSource(value) {
+  const source = String(value || "").trim();
+  if (
+    source.startsWith("img/") ||
+    source.startsWith("/img/") ||
+    source.startsWith("https://")
+  ) {
+    return source;
+  }
+  return "";
+}
+
+function formatCatalogPrice(value) {
+  return `$ ${Math.round(value).toLocaleString("es-AR")}`;
+}
+
+function productContactLink(perfume, brandName) {
+  const priceText = perfume.precio
+    ? ` Vi el precio de referencia de ${formatCatalogPrice(perfume.precio)}.`
+    : "";
+  const message =
+    `Hola Guriche, quiero consultar disponibilidad de ${brandName} ${perfume.nombre}.` +
+    priceText;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function productPriceHtml(perfume) {
+  if (!perfume.precio) return "";
+  return `
+    <div class="perfume-price">
+      <strong>${formatCatalogPrice(perfume.precio)}</strong>
+      <span>${escapeHtml(perfume.disponibilidad || "Sujeto a disponibilidad")}</span>
+    </div>
+  `;
+}
+
+function productCardHtml(perfume, brandName, showBrand = false) {
+  const image = safeImageSource(perfume.imagen);
+  const imgHtml = image
+    ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(perfume.nombre)}" loading="lazy" onerror="__photoFallback(this)" />`
+    : noPhotoHTML();
+  const descHtml = perfume.descripcion
+    ? `<p>${escapeHtml(perfume.descripcion)}</p>`
+    : "";
+  const brandHtml = showBrand
+    ? `<span class="card-brand">${escapeHtml(brandName)}</span>`
+    : "";
+  const actionLabel = perfume.precio
+    ? "Consultar disponibilidad"
+    : "Pedir cotización";
+
+  return `
+    ${imgHtml}
+    <div class="perfume-body">
+      ${brandHtml}
+      <h3>${escapeHtml(perfume.nombre)}</h3>
+      ${descHtml}
+      ${productPriceHtml(perfume)}
+      <a class="btn-quote" href="${productContactLink(perfume, brandName)}" target="_blank" rel="noopener">
+        ${actionLabel}
+      </a>
+    </div>
+  `;
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let quoted = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    const next = text[index + 1];
+    if (character === '"' && quoted && next === '"') {
+      cell += '"';
+      index += 1;
+    } else if (character === '"') {
+      quoted = !quoted;
+    } else if (character === "," && !quoted) {
+      row.push(cell);
+      cell = "";
+    } else if ((character === "\n" || character === "\r") && !quoted) {
+      if (character === "\r" && next === "\n") index += 1;
+      row.push(cell);
+      if (row.some((value) => String(value).trim())) rows.push(row);
+      row = [];
+      cell = "";
+    } else {
+      cell += character;
+    }
+  }
+  row.push(cell);
+  if (row.some((value) => String(value).trim())) rows.push(row);
+  return rows;
+}
+
+function rowsToCatalogObjects(rows) {
+  const headerIndex = rows.findIndex((row) => {
+    const normalized = row.map(normalizeCatalogText);
+    return normalized.includes("web id") && normalized.includes("producto");
+  });
+  if (headerIndex < 0) return [];
+
+  const headers = rows[headerIndex].map((header) => String(header || "").trim());
+  return rows.slice(headerIndex + 1).map((row) =>
+    Object.fromEntries(headers.map((header, index) => [header, row[index] ?? ""])),
+  );
+}
+
+function getCatalogField(row, ...names) {
+  const entries = Object.entries(row || {});
+  for (const name of names) {
+    const normalizedName = normalizeCatalogText(name);
+    const match = entries.find(
+      ([key]) => normalizeCatalogText(key) === normalizedName,
+    );
+    if (match) return match[1];
+  }
+  return "";
+}
+
+function applyCatalogRows(rows) {
+  if (!Array.isArray(rows) || rows.length === 0) return false;
+
+  const byId = new Map();
+  const byKey = new Map();
+  catalogo.forEach((category) => {
+    category.marcas.forEach((brand) => {
+      brand.perfumes.forEach((perfume) => {
+        byId.set(perfume.webId, { category, brand, perfume });
+        byKey.set(
+          catalogProductKey(category.categoria, brand.nombre, perfume.nombre),
+          { category, brand, perfume },
+        );
+      });
+    });
+  });
+
+  let changes = 0;
+  rows.forEach((row) => {
+    const webId = String(getCatalogField(row, "Web ID", "webId") || "").trim();
+    const categoryName = String(getCatalogField(row, "Categoría", "Categoria") || "").trim();
+    const brandName = String(getCatalogField(row, "Marca") || "").trim();
+    const productName = String(getCatalogField(row, "Producto") || "").trim();
+    if (!categoryName || !brandName || !productName) return;
+
+    const key = catalogProductKey(categoryName, brandName, productName);
+    let match = (webId && byId.get(webId)) || byKey.get(key);
+    const publishValue = getCatalogField(row, "Publicar", "Mostrar producto");
+    const shouldPublish = publishValue === "" ? true : isYes(publishValue);
+    const price = parseCatalogPrice(getCatalogField(row, "Precio ARS", "Precio web", "Precio"));
+    const description = String(getCatalogField(row, "Descripción", "Descripcion") || "").trim();
+    const image = safeImageSource(getCatalogField(row, "Imagen", "Imagen / URL"));
+    const availability = String(
+      getCatalogField(row, "Disponibilidad") || "Sujeto a disponibilidad",
+    ).trim();
+    const updated = String(getCatalogField(row, "Actualizado") || "").trim();
+
+    if (!match && shouldPublish) {
+      let category = catalogo.find(
+        (item) => normalizeCatalogText(item.categoria) === normalizeCatalogText(categoryName),
+      );
+      if (!category) {
+        category = { categoria: categoryName, marcas: [] };
+        catalogo.push(category);
+      }
+      let brand = category.marcas.find(
+        (item) => normalizeCatalogText(item.nombre) === normalizeCatalogText(brandName),
+      );
+      if (!brand) {
+        brand = { nombre: brandName, perfumes: [] };
+        category.marcas.push(brand);
+      }
+      const perfume = {
+        webId: webId || `WEB-REMOTE-${Date.now()}-${changes}`,
+        nombre: productName,
+        descripcion: description,
+        imagen: image,
+        publicar: true,
+      };
+      brand.perfumes.push(perfume);
+      match = { category, brand, perfume };
+    }
+
+    if (!match) return;
+    const categoryChanged =
+      normalizeCatalogText(match.category.categoria) !==
+      normalizeCatalogText(categoryName);
+    const brandChanged =
+      normalizeCatalogText(match.brand.nombre) !==
+      normalizeCatalogText(brandName);
+    if (categoryChanged || brandChanged) {
+      match.brand.perfumes = match.brand.perfumes.filter(
+        (perfume) => perfume !== match.perfume,
+      );
+      let targetCategory = catalogo.find(
+        (item) =>
+          normalizeCatalogText(item.categoria) ===
+          normalizeCatalogText(categoryName),
+      );
+      if (!targetCategory) {
+        targetCategory = { categoria: categoryName, marcas: [] };
+        catalogo.push(targetCategory);
+      }
+      let targetBrand = targetCategory.marcas.find(
+        (item) =>
+          normalizeCatalogText(item.nombre) ===
+          normalizeCatalogText(brandName),
+      );
+      if (!targetBrand) {
+        targetBrand = { nombre: brandName, perfumes: [] };
+        targetCategory.marcas.push(targetBrand);
+      }
+      targetBrand.perfumes.push(match.perfume);
+      match.category = targetCategory;
+      match.brand = targetBrand;
+    }
+
+    match.perfume.nombre = productName;
+    match.perfume.publicar = shouldPublish;
+    match.perfume.precio = price;
+    match.perfume.disponibilidad = availability;
+    match.perfume.actualizado = updated;
+    if (description) match.perfume.descripcion = description;
+    if (image) match.perfume.imagen = image;
+    changes += 1;
+  });
+
+  return changes > 0;
+}
+
+async function fetchWithTimeout(url, responseType) {
+  const controller = new AbortController();
+  const timer = setTimeout(
+    () => controller.abort(),
+    Number(catalogSource.timeoutMs) || 7000,
+  );
+  try {
+    const response = await fetch(url, {
+      signal: controller.signal,
+      cache: "no-store",
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return responseType === "json" ? response.json() : response.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function loadExternalCatalog() {
+  const sources = [];
+  if (catalogSource.csvUrl) sources.push({ url: catalogSource.csvUrl, type: "csv" });
+  if (catalogSource.fallbackUrl) {
+    sources.push({ url: catalogSource.fallbackUrl, type: "json" });
+  }
+
+  for (const source of sources) {
+    try {
+      const payload = await fetchWithTimeout(source.url, source.type === "json" ? "json" : "text");
+      const rows = source.type === "json"
+        ? payload
+        : rowsToCatalogObjects(parseCsv(payload));
+      if (applyCatalogRows(rows)) return true;
+    } catch (error) {
+      console.warn(`No se pudo cargar el catálogo desde ${source.url}`, error);
+    }
+  }
+  return false;
+}
+
+assignWebIds();
 
 // ── Placeholder elegante para perfumes sin foto ──
 const NO_PHOTO_SVG =
@@ -640,7 +977,13 @@ function renderCatalogMain(scrollToTop = false) {
   const tabsContainer = document.createElement("div");
   tabsContainer.className = "catalog-tabs";
 
-  catalogo.forEach((bloque) => {
+  const visibleCatalog = catalogo.filter((bloque) =>
+    bloque.marcas.some((marca) =>
+      marca.perfumes.some((perfume) => perfume.publicar !== false),
+    ),
+  );
+
+  visibleCatalog.forEach((bloque) => {
     const tab = document.createElement("button");
     tab.className = "catalog-tab" + (bloque.categoria === activeTab ? " active" : "");
     tab.textContent = bloque.categoria;
@@ -654,7 +997,11 @@ function renderCatalogMain(scrollToTop = false) {
   catalogContainer.appendChild(tabsContainer);
 
   // Encontrar el bloque activo
-  const bloqueActivo = catalogo.find(b => b.categoria === activeTab);
+  let bloqueActivo = visibleCatalog.find(b => b.categoria === activeTab);
+  if (!bloqueActivo && visibleCatalog.length > 0) {
+    bloqueActivo = visibleCatalog[0];
+    activeTab = bloqueActivo.categoria;
+  }
   if (!bloqueActivo) return;
 
   // Grilla de marcas
@@ -662,10 +1009,14 @@ function renderCatalogMain(scrollToTop = false) {
   brandsContainer.className = "brands-grid catalog-view-fade";
 
   bloqueActivo.marcas.forEach((marca) => {
+    const count = marca.perfumes.filter(
+      (perfume) => perfume.publicar !== false,
+    ).length;
+    if (count === 0) return;
+
     const card = document.createElement("div");
     card.className = "brand-entry-card";
 
-    const count = marca.perfumes.length;
     const countText = count > 0 ? `${count} fragancia${count > 1 ? "s" : ""}` : "Consultanos";
 
     card.innerHTML = `
@@ -734,36 +1085,21 @@ function renderBrandDetail(brandName) {
   // Subtítulo con categoría
   const subtitle = document.createElement("p");
   subtitle.className = "brand-detail-subtitle";
-  subtitle.textContent = `${categoria} · ${marca.perfumes.length} fragancia${marca.perfumes.length !== 1 ? "s" : ""} disponible${marca.perfumes.length !== 1 ? "s" : ""}`;
+  const visiblePerfumes = marca.perfumes.filter(
+    (perfume) => perfume.publicar !== false,
+  );
+  subtitle.textContent = `${categoria} · ${visiblePerfumes.length} fragancia${visiblePerfumes.length !== 1 ? "s" : ""} disponible${visiblePerfumes.length !== 1 ? "s" : ""}`;
   detailView.appendChild(subtitle);
 
-  if (marca.perfumes.length > 0) {
+  if (visiblePerfumes.length > 0) {
     // Grilla de perfumes
     const grid = document.createElement("div");
     grid.className = "catalog-grid";
 
-    marca.perfumes.forEach((perfume) => {
+    visiblePerfumes.forEach((perfume) => {
       const card = document.createElement("article");
       card.className = "perfume-card reveal";
-
-      const imgHtml = perfume.imagen
-        ? `<img src="${perfume.imagen}" alt="${perfume.nombre}" loading="lazy" onerror="__photoFallback(this)" />`
-        : noPhotoHTML();
-
-      const descHtml = perfume.descripcion
-        ? `<p>${perfume.descripcion}</p>`
-        : ``;
-
-      card.innerHTML = `
-        ${imgHtml}
-        <div class="perfume-body">
-          <h3>${perfume.nombre}</h3>
-          ${descHtml}
-          <a class="btn-quote" href="${igLink}" target="_blank" rel="noopener">
-            Pedir cotización
-          </a>
-        </div>
-      `;
+      card.innerHTML = productCardHtml(perfume, marca.nombre);
       grid.appendChild(card);
     });
 
@@ -843,20 +1179,29 @@ handleHashChange();
     return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   }
 
-  // Índice plano de todos los perfumes con su marca y categoría
-  const flat = [];
-  catalogo.forEach((bloque) => {
-    bloque.marcas.forEach((marca) => {
-      marca.perfumes.forEach((p) => {
-        flat.push({
-          nombre: p.nombre,
-          descripcion: p.descripcion || "",
-          imagen: p.imagen || "",
-          marca: marca.nombre,
-          _buscar: norm(p.nombre + " " + marca.nombre + " " + (p.descripcion || "")),
-        });
+  function buildSearchIndex() {
+    const products = [];
+    catalogo.forEach((bloque) => {
+      bloque.marcas.forEach((marca) => {
+        marca.perfumes
+          .filter((p) => p.publicar !== false)
+          .forEach((p) => {
+            products.push({
+              ...p,
+              marca: marca.nombre,
+              _buscar: norm(p.nombre + " " + marca.nombre + " " + (p.descripcion || "")),
+            });
+          });
       });
     });
+    return products;
+  }
+
+  let flat = buildSearchIndex();
+
+  window.addEventListener("guriche:catalog-updated", () => {
+    flat = buildSearchIndex();
+    renderResults(input.value);
   });
 
   function renderResults(query) {
@@ -876,13 +1221,13 @@ handleHashChange();
       const none = document.createElement("div");
       none.className = "search-no-results";
       none.innerHTML =
-        `No encontramos “${query.trim()}”.<br>Probá con otro nombre, marca o aroma.` +
+        `No encontramos “${escapeHtml(query.trim())}”.<br>Probá con otro nombre, marca o aroma.` +
         `<br><a class="btn-consulta-general" style="margin-top:1.5rem;display:inline-block;" href="${igLink}" target="_blank" rel="noopener">Consultanos directamente</a>`;
       wrap.appendChild(none);
     } else {
       const info = document.createElement("p");
       info.className = "search-results-info";
-      info.innerHTML = `<strong>${matches.length}</strong> resultado${matches.length !== 1 ? "s" : ""} para “${query.trim()}”`;
+      info.innerHTML = `<strong>${matches.length}</strong> resultado${matches.length !== 1 ? "s" : ""} para “${escapeHtml(query.trim())}”`;
       wrap.appendChild(info);
 
       const grid = document.createElement("div");
@@ -890,18 +1235,7 @@ handleHashChange();
       matches.forEach((p) => {
         const card = document.createElement("article");
         card.className = "perfume-card";
-        const imgHtml = p.imagen
-          ? `<img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="__photoFallback(this)" />`
-          : noPhotoHTML();
-        const descHtml = p.descripcion ? `<p>${p.descripcion}</p>` : "";
-        card.innerHTML = `
-          ${imgHtml}
-          <div class="perfume-body">
-            <span class="card-brand">${p.marca}</span>
-            <h3>${p.nombre}</h3>
-            ${descHtml}
-            <a class="btn-quote" href="${igLink}" target="_blank" rel="noopener">Pedir cotización</a>
-          </div>`;
+        card.innerHTML = productCardHtml(p, p.marca, true);
         grid.appendChild(card);
       });
       wrap.appendChild(grid);
@@ -941,6 +1275,12 @@ handleHashChange();
     }
   });
 })();
+
+// La vista está disponible de inmediato con el respaldo local. Si la fuente
+// pública responde, precios y disponibilidad se actualizan sin recargar.
+loadExternalCatalog().then((updated) => {
+  if (updated) window.dispatchEvent(new Event("guriche:catalog-updated"));
+});
 
 // ── Menú Móvil ──────────────────────────────
 const menuToggle = document.getElementById("menuToggle");
@@ -1034,7 +1374,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 // QUIZ LOGIC
 // ============================================
-const WHATSAPP_QUIZ = "5491139007985"; // WhatsApp de Guriche
+const WHATSAPP_QUIZ = WHATSAPP_NUMBER;
 
 const PERFUMES_QUIZ = [
   {n:"Dior Sauvage EDP 100ml", f:["fresco","especiado"], o:["diario","noche"], i:["presente","huella"], p:203000, g:"m", img:"img/sauvage.png"},

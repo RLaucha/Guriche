@@ -422,6 +422,8 @@ a {
 
 /* ── Perfume Card ─────────────────────────────────────────── */
 .perfume-card {
+  display: flex;
+  flex-direction: column;
   background: var(--surface-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -470,6 +472,9 @@ a {
 }
 
 .perfume-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1.2rem;
 }
 
@@ -483,6 +488,37 @@ a {
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.perfume-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(228, 214, 188, 0.12);
+}
+
+.perfume-price strong {
+  color: var(--primary-light);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.perfume-price span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.perfume-body > .btn-quote {
+  margin-top: auto;
+}
+
+.perfume-price + .btn-quote {
+  margin-top: 1rem;
 }
 
 /* ── Brand Card (New Catalog) ────────────────────────────── */
