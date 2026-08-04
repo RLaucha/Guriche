@@ -1376,20 +1376,97 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 const WHATSAPP_QUIZ = WHATSAPP_NUMBER;
 
-const PERFUMES_QUIZ = [
-  {n:"Dior Sauvage EDP 100ml", f:["fresco","especiado"], o:["diario","noche"], i:["presente","huella"], p:203000, g:"m", img:"img/sauvage.png"},
-  {n:"Acqua di Giò Profondo 100ml", f:["fresco"], o:["oficina","diario"], i:["sutil","presente"], p:182000, g:"m", img:"img/Armani/Armani_Acqua_di_Gio_Profondo.png"},
-  {n:"JPG Le Male Elixir 125ml", f:["dulce","especiado"], o:["noche","cita"], i:["huella"], p:178000, g:"m", img:"img/6.png"},
-  {n:"Armani Stronger With You Intensely", f:["dulce"], o:["cita","noche"], i:["huella"], p:182000, g:"m", img:"img/Armani/Armani_Stronger_With_You_Intensely.png"},
-  {n:"Rabanne One Million EDT 100ml", f:["dulce","especiado"], o:["noche","cita"], i:["presente"], p:160000, g:"m", img:""},
-  {n:"Rabanne Phantom EDT 100ml", f:["fresco","dulce"], o:["diario","oficina"], i:["presente"], p:155000, g:"m", img:""},
-  {n:"Xerjoff Erba Pura 100ml", f:["dulce","frutal"], o:["cita","noche"], i:["huella"], p:285000, g:"u", nicho:true, img:"img/ep.png"},
-  {n:"Parfums de Marly Layton 75ml", f:["dulce","especiado","amaderado"], o:["noche","cita"], i:["huella"], p:420000, g:"u", nicho:true, img:""},
-  {n:"Initio Oud for Greatness 90ml", f:["amaderado","especiado"], o:["noche"], i:["huella"], p:465000, g:"u", nicho:true, img:""},
-  {n:"Miss Dior EDP 100ml", f:["frutal","dulce"], o:["cita","diario"], i:["presente"], p:227000, g:"f", img:""},
-  {n:"Armani Sì EDP 100ml", f:["dulce","frutal"], o:["oficina","cita"], i:["presente","sutil"], p:207000, g:"f", img:"img/Armani/Armani_Si.png"},
-  {n:"Armani My Way EDP 90ml", f:["fresco","frutal"], o:["diario","oficina"], i:["sutil"], p:202000, g:"f", img:"img/Armani/Armani_My_Way.png"},
-];
+// El test recomienda perfumes REALES del catálogo (con precio en vivo de la
+// planilla). El perfil olfativo de cada uno se deriva automáticamente de su
+// descripción y su concentración (EDT/EDP/Parfum), sin cargar nada a mano.
+
+function qnorm(s) {
+  return String(s || "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase();
+}
+
+// Palabras clave por familia olfativa (coinciden como subcadena en la descripción).
+const QUIZ_FAMILIES = {
+  fresco: ["fresc", "citr", "acuat", "marin", "verde", "aromat", "limpi", "cristalin", "herbal", "menta", "lavanda", "bergamot", "neroli", "hesperid", "salvia", "vibrante"],
+  dulce: ["dulce", "vainilla", "ambar", "gourmand", "golos", "caramel", "miel", "azucar", "chocolate", "pralin", "tonka", "toffee", "cacao"],
+  especiado: ["especiad", "especia", "pimient", "canela", "azafran", "cardamomo", "clavo", "jengibre", "incienso", "oriental", "comino", "nuez moscada"],
+  amaderado: ["amaderad", "mader", "cedro", "sandalo", "vetiver", "oud", "cuero", "tabaco", "pachul", "musgo", "ebano", "guayaco", "agar"],
+  frutal: ["frutal", "fruta", "manzana", "durazno", "pera ", "cereza", "frambuesa", "mango", "pomelo", "cassis", "ciruela", "coco", "pina", "fruto", "litchi", "grosella"],
+  floral: ["floral", "flor", "rosa", "jazmin", "azahar", "peonia", "iris", "violeta", "muguete", "tuberosa", "lirio", "gardenia", "ylang", "magnolia"],
+};
+
+function deriveFamilies(desc) {
+  const t = qnorm(desc);
+  const fams = [];
+  for (const fam in QUIZ_FAMILIES) {
+    if (QUIZ_FAMILIES[fam].some((k) => t.includes(k))) fams.push(fam);
+  }
+  return fams;
+}
+
+function deriveIntensity(name, desc) {
+  const t = qnorm(name + " " + desc);
+  const fuerte = /(extrait|elixir|absolu|intens|profund|opulent|potente|estela|nocturn|oud|extreme)/.test(t) || (/\bparfum\b/.test(t) && !/eau de parfum/.test(t));
+  const suave = /\bedt\b|eau de toilette|cologne|colon|fraiche|sutil|liger|livian|discret|suave|delicad/.test(t);
+  if (fuerte && !suave) return ["presente", "huella"];
+  if (suave && !fuerte) return ["sutil", "presente"];
+  return ["sutil", "presente", "huella"]; // EDP / caso medio: flexible
+}
+
+function deriveOccasions(fams, inten) {
+  const s = new Set();
+  fams.forEach((f) => {
+    if (f === "fresco") { s.add("diario"); s.add("oficina"); }
+    if (f === "floral") { s.add("diario"); s.add("cita"); s.add("oficina"); }
+    if (f === "frutal") { s.add("diario"); s.add("cita"); }
+    if (f === "dulce") { s.add("cita"); s.add("noche"); }
+    if (f === "especiado") { s.add("noche"); s.add("cita"); }
+    if (f === "amaderado") { s.add("noche"); s.add("oficina"); }
+  });
+  if (inten.includes("huella")) { s.add("noche"); s.add("cita"); }
+  if (inten.includes("sutil")) { s.add("diario"); s.add("oficina"); }
+  if (s.size === 0) s.add("diario");
+  return [...s];
+}
+
+// Aplana el catálogo real y lo convierte en candidatos del test.
+function buildQuizPool() {
+  const pool = [];
+  catalogo.forEach((bloque) => {
+    const esNicho = /nicho/i.test(bloque.categoria || "");
+    bloque.marcas.forEach((marca) => {
+      marca.perfumes
+        .filter((p) => p.publicar !== false)
+        .forEach((p) => {
+          const desc = p.descripcion || "";
+          const fams = deriveFamilies(desc);
+          const inten = deriveIntensity(p.nombre, desc);
+          pool.push({
+            n: `${marca.nombre} ${p.nombre}`,
+            marca: marca.nombre,
+            nombre: p.nombre,
+            f: fams,
+            o: deriveOccasions(fams, inten),
+            i: inten,
+            p: typeof p.precio === "number" && p.precio > 0 ? p.precio : null,
+            img: p.imagen || "",
+            nicho: esNicho,
+          });
+        });
+    });
+  });
+  return pool;
+}
+
+// Familias relacionadas: dan crédito parcial cuando no hay match exacto.
+const QUIZ_REL = {
+  fresco: ["floral", "frutal"],
+  dulce: ["frutal", "floral"],
+  especiado: ["amaderado"],
+  amaderado: ["especiado"],
+};
 
 const QUESTIONS = [
   {k:"o", t:"¿Para qué momento lo querés?", opts:[
@@ -1432,27 +1509,46 @@ function pickQuiz(k,v){
 
 function scorePerfume(pf){
   let s = 0;
+  // Aroma (lo que más pesa) con crédito parcial para familias relacionadas.
+  if(pf.f.includes(quizAnswers.f)) s+=5;
+  else if((QUIZ_REL[quizAnswers.f]||[]).some(r=>pf.f.includes(r))) s+=2;
+  // Ocasión e intensidad.
   if(pf.o.includes(quizAnswers.o)) s+=3;
-  if(pf.f.includes(quizAnswers.f)) s+=4;
   if(pf.i.includes(quizAnswers.i)) s+=2;
+  // Presupuesto: solo influye si el perfume tiene precio cargado.
   const budget = Number(quizAnswers.p);
-  if(pf.p<=budget) s+=3; else s-=5;
+  if(pf.p!=null){
+    if(pf.p<=budget) s+=3; else s-=4;
+    s+=0.5; // leve preferencia por productos con precio confirmado
+  }
   if(budget===999999 && pf.nicho) s+=3;
   return s;
 }
 
 function showResults(){
   qbox.style.display='none';
-  const top = PERFUMES_QUIZ.map(p=>({...p,s:scorePerfume(p)})).sort((a,b)=>b.s-a.s).slice(0,3);
-  document.getElementById('matches').innerHTML = top.map((p,idx)=>`
+  const pool = buildQuizPool();
+  const top = pool.map(p=>({...p,s:scorePerfume(p)}))
+                  .sort((a,b)=>b.s-a.s || (b.p!=null)-(a.p!=null))
+                  .slice(0,3);
+  document.getElementById('matches').innerHTML = top.map((p,idx)=>{
+    const precio = p.p!=null
+      ? `$ ${p.p.toLocaleString('es-AR')}<small>precio de referencia — confirmá stock</small>`
+      : `Consultar disponibilidad<small>sujeto a disponibilidad</small>`;
+    const img = p.img
+      ? `<img src="${p.img}" alt="${escapeHtml(p.nombre)}" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
+      : '';
+    const msg = `Hola! Hice el test olfativo en la web y me dio: ${p.n}. ¿Tenés stock?`;
+    return `
     <div class="match">
       <div class="tag">${idx===0?'TU MATCH':'TAMBIÉN VA CON VOS'}</div>
-      ${p.img ? `<img src="${p.img}" alt="${p.n}" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">` : ''}
-      <h4>${p.n}</h4>
-      <div class="meta">${p.nicho?'Nicho · ':''}100% original · caja cerrada</div>
-      <div class="price">$ ${p.p.toLocaleString('es-AR')}<small>precio de referencia — confirmá stock</small></div>
-      <a href="https://wa.me/${WHATSAPP_QUIZ}?text=${encodeURIComponent('Hola! Hice el match en la web y me dio: '+p.n+'. ¿Tenés stock?')}">Lo quiero → WhatsApp</a>
-    </div>`).join('');
+      ${img}
+      <h4>${escapeHtml(p.nombre)}</h4>
+      <div class="meta">${p.nicho?'Nicho · ':''}${escapeHtml(p.marca)}</div>
+      <div class="price">${precio}</div>
+      <a href="https://wa.me/${WHATSAPP_QUIZ}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Lo quiero → WhatsApp</a>
+    </div>`;
+  }).join('');
   document.getElementById('results').classList.add('visible');
   tiltCards();
 }

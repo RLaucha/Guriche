@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 
   <!-- Datos estructurados para Google -->
   <script type="application/ld+json">
@@ -70,6 +70,7 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#quiz">Test olfativo</a></li>
         <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
@@ -86,6 +87,7 @@
           En Guriche buscamos fragancias que se sientan limpias, modernas y memorables para cada estilo.
         </p>
         <div class="hero-buttons reveal" data-delay="4">
+          <a href="#quiz" class="btn-primary">Descubrí tu perfume →</a>
           <a href="#catalogo" class="btn-outline">Ver catálogo</a>
         </div>
       </div>
@@ -93,9 +95,9 @@
   </header>
 
   <main>
-    <section class="quiz reveal" id="quiz" style="display: none; margin-top: 2rem;">
+    <section class="quiz reveal" id="quiz" style="margin-top: 2rem;">
       <div class="container">
-        <div class="kicker">El match olfativo</div>
+        <div class="kicker">El test olfativo</div>
         <h2>4 preguntas. <em style="font-style:italic">Tu</em> perfume.</h2>
         <div class="progress" id="prog"><span class="on"></span><span></span><span></span><span></span></div>
 
@@ -220,6 +222,6 @@
   </footer>
 
   <script src="catalog-source.js?v=2"></script>
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>
