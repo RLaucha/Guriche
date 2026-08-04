@@ -169,7 +169,7 @@ const catalogo = [
           { nombre: "BITTER PEACH EDP 50ML", descripcion: "Gourmand sensual con durazno maduro, ron y vainilla aterciopelada.", imagen: "img/TOM FORD/05 - Tom Ford - Bitter Peach.png" },
           { nombre: "TOM FORD TOBACCO VANILLE EDP 100ML", descripcion: "Tabaco dulce con vainilla, cacao y especias orientales, suntuoso y adictivo.", imagen: "img/TOM FORD/24 - Tom Ford - Tobacco Vanille.png" },
           { nombre: "OMBRE LEATHER EDP 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/17 - Tom Ford - Ombre Leather.png" },
-          { nombre: "TOM FORD EAU D'OMBRE LEATHER EDT 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/17 - Tom Ford - Ombre Leather.png" },
+          { nombre: "TOM FORD EAU D'OMBRE LEATHER EDT 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/16 - Tom Ford - Eau d Ombre Leather.png" },
           { nombre: "TOM FORD BLACK ORCHID EDP 100ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "TOM FORD NOIR EDP 100ML", descripcion: "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.", imagen: "img/TOM FORD/26 - Tom Ford - Noir.png" },
           { nombre: "TOM FORD CAFÉ ROSE EDP 100ML", descripcion: "Rosa turca con café, incienso y azafrán, opulento y bohemio.", imagen: "img/TOM FORD/20 - Tom Ford - Cafe Rose.png" },
