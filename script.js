@@ -731,9 +731,8 @@ function productCardHtml(perfume, brandName, showBrand = false) {
   const brandHtml = showBrand
     ? `<span class="card-brand">${escapeHtml(brandName)}</span>`
     : "";
-  const actionLabel = perfume.precio
-    ? "Consultar disponibilidad"
-    : "Pedir cotización";
+  const cartKey = perfume.webId || `${brandName}|${perfume.nombre}`;
+  const precioAttr = perfume.precio ? ` data-precio="${perfume.precio}"` : "";
 
   return `
     ${imgHtml}
@@ -742,9 +741,12 @@ function productCardHtml(perfume, brandName, showBrand = false) {
       <h3>${escapeHtml(perfume.nombre)}</h3>
       ${descHtml}
       ${productPriceHtml(perfume)}
-      <a class="btn-quote" href="${productContactLink(perfume, brandName)}" target="_blank" rel="noopener">
-        ${actionLabel}
-      </a>
+      <button type="button" class="btn-quote btn-add-cart"
+        data-key="${escapeHtml(cartKey)}"
+        data-nombre="${escapeHtml(perfume.nombre)}"
+        data-marca="${escapeHtml(brandName)}"${precioAttr}>
+        + Agregar a la consulta
+      </button>
     </div>
   `;
 }
@@ -1578,3 +1580,126 @@ function tiltCards(){
 if(qbox && prog) {
   renderStep();
 }
+
+// ============================================
+// CARRITO DE CONSULTA
+// Junta varios perfumes y arma una sola consulta por WhatsApp.
+// ============================================
+const CART_KEY = "guriche_consulta";
+
+function cartLoad() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch (e) { return []; }
+}
+function cartSave(items) {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch (e) {}
+}
+function cartAdd(item) {
+  const items = cartLoad();
+  if (items.some((i) => i.key === item.key)) return false;
+  items.push(item);
+  cartSave(items);
+  cartRender();
+  return true;
+}
+function cartRemove(key) {
+  cartSave(cartLoad().filter((i) => i.key !== key));
+  cartRender();
+}
+function cartClear() {
+  cartSave([]);
+  cartRender();
+}
+function cartTotal(items) {
+  return items.reduce((a, i) => a + (i.precio ? Math.round(i.precio) : 0), 0);
+}
+function cartWhatsappUrl() {
+  const items = cartLoad();
+  if (!items.length) return "#";
+  const lines = items.map(
+    (i, idx) => `${idx + 1}. ${i.marca} ${i.nombre}${i.precio ? ` — USD ${Math.round(i.precio)}` : ""}`,
+  );
+  let msg = `Hola Guriche! Quiero consultar disponibilidad de estos perfumes:\n${lines.join("\n")}`;
+  const total = cartTotal(items);
+  if (total > 0) {
+    msg += `\n\nReferencia: USD ${total.toLocaleString("es-AR")} (si pago en pesos, al cambio del día de la entrega).`;
+  }
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+function cartRender() {
+  const items = cartLoad();
+  const countEl = document.getElementById("cartCount");
+  const fab = document.getElementById("cartFab");
+  if (countEl) countEl.textContent = items.length;
+  if (fab) fab.classList.toggle("has-items", items.length > 0);
+
+  const list = document.getElementById("cartItems");
+  if (list) {
+    list.innerHTML = items.length
+      ? items
+          .map(
+            (i) => `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <strong>${escapeHtml(i.nombre)}</strong>
+            <span>${escapeHtml(i.marca)}${i.precio ? ` · USD ${Math.round(i.precio)}` : ""}</span>
+          </div>
+          <button type="button" class="cart-item-remove" data-remove="${escapeHtml(i.key)}" aria-label="Quitar">✕</button>
+        </div>`,
+          )
+          .join("")
+      : `<p class="cart-empty">Todavía no agregaste perfumes.<br>Tocá “+ Agregar a la consulta” en los que te interesen.</p>`;
+  }
+
+  const totalEl = document.getElementById("cartTotal");
+  if (totalEl) {
+    const total = cartTotal(items);
+    totalEl.innerHTML = total > 0
+      ? `Referencia total: <strong>USD ${total.toLocaleString("es-AR")}</strong><small>pago en pesos al cambio del día de la entrega</small>`
+      : "";
+  }
+
+  const wa = document.getElementById("cartWhatsapp");
+  if (wa) {
+    wa.href = cartWhatsappUrl();
+    wa.classList.toggle("disabled", items.length === 0);
+  }
+}
+function cartOpen() {
+  const d = document.getElementById("cartDrawer");
+  if (d) { d.classList.add("open"); d.setAttribute("aria-hidden", "false"); }
+}
+function cartCloseDrawer() {
+  const d = document.getElementById("cartDrawer");
+  if (d) { d.classList.remove("open"); d.setAttribute("aria-hidden", "true"); }
+}
+
+document.addEventListener("click", (e) => {
+  const add = e.target.closest(".btn-add-cart");
+  if (add) {
+    e.preventDefault();
+    const nuevo = cartAdd({
+      key: add.dataset.key,
+      nombre: add.dataset.nombre,
+      marca: add.dataset.marca,
+      precio: add.dataset.precio ? Number(add.dataset.precio) : null,
+    });
+    add.classList.add("added");
+    add.textContent = nuevo ? "✓ Agregado a la consulta" : "Ya está en tu consulta";
+    setTimeout(() => {
+      add.classList.remove("added");
+      add.textContent = "+ Agregar a la consulta";
+    }, 1500);
+    if (nuevo && cartLoad().length === 1) cartOpen(); // al primer agregado, mostramos el carrito
+    return;
+  }
+  const rm = e.target.closest("[data-remove]");
+  if (rm) { cartRemove(rm.dataset.remove); return; }
+  if (e.target.closest("#cartFab")) { cartOpen(); return; }
+  if (e.target.closest("#cartClose") || e.target.closest("#cartOverlay")) { cartCloseDrawer(); return; }
+  if (e.target.closest("#cartClear")) { cartClear(); return; }
+  const wa = e.target.closest("#cartWhatsapp");
+  if (wa && (cartLoad().length === 0)) { e.preventDefault(); }
+});
+
+cartRender();
