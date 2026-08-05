@@ -696,12 +696,12 @@ function safeImageSource(value) {
 }
 
 function formatCatalogPrice(value) {
-  return `$ ${Math.round(value).toLocaleString("es-AR")}`;
+  return `USD ${Math.round(value).toLocaleString("es-AR")}`;
 }
 
 function productContactLink(perfume, brandName) {
   const priceText = perfume.precio
-    ? ` Vi el precio de referencia de ${formatCatalogPrice(perfume.precio)}.`
+    ? ` Vi el precio de referencia de ${formatCatalogPrice(perfume.precio)} (si pago en pesos, al cambio del día de la entrega).`
     : "";
   const message =
     `Hola Guriche, quiero consultar disponibilidad de ${brandName} ${perfume.nombre}.` +
@@ -715,6 +715,7 @@ function productPriceHtml(perfume) {
     <div class="perfume-price">
       <strong>${formatCatalogPrice(perfume.precio)}</strong>
       <span>${escapeHtml(perfume.disponibilidad || "Sujeto a disponibilidad")}</span>
+      <small class="price-note">Pago en pesos al cambio del día de la entrega</small>
     </div>
   `;
 }
@@ -834,7 +835,11 @@ function applyCatalogRows(rows) {
     let match = (webId && byId.get(webId)) || byKey.get(key);
     const publishValue = getCatalogField(row, "Publicar", "Mostrar producto");
     const shouldPublish = publishValue === "" ? true : isYes(publishValue);
-    const price = parseCatalogPrice(getCatalogField(row, "Precio ARS", "Precio web", "Precio"));
+    // El precio que muestra la web es en DÓLARES (columna "Precio USD").
+    // No se usa "Precio ARS" para no mostrar un valor en pesos como si fuera USD.
+    const price = parseCatalogPrice(
+      getCatalogField(row, "Precio USD", "Precio U$D", "Precio USD ", "Precio (USD)", "Precio dólar", "Precio dolar", "USD"),
+    );
     const description = String(getCatalogField(row, "Descripción", "Descripcion") || "").trim();
     const image = safeImageSource(getCatalogField(row, "Imagen", "Imagen / URL"));
     const availability = String(
@@ -1484,8 +1489,8 @@ const QUESTIONS = [
     ["presente","Presente","Se nota, sin gritar"],
     ["huella","Que deje huella","Entro yo y después el perfume"]]},
   {k:"p", t:"¿Presupuesto?", opts:[
-    [180000,"Hasta $180.000","Diseñador, entrada"],
-    [250000,"Hasta $250.000","Diseñador top"],
+    [120,"Hasta USD 120","Diseñador, entrada"],
+    [250,"Hasta USD 250","Diseñador top"],
     [999999,"Sin límite","Mostrame el nicho 👑"]]},
 ];
 
@@ -1533,7 +1538,7 @@ function showResults(){
                   .slice(0,3);
   document.getElementById('matches').innerHTML = top.map((p,idx)=>{
     const precio = p.p!=null
-      ? `$ ${p.p.toLocaleString('es-AR')}<small>precio de referencia — confirmá stock</small>`
+      ? `USD ${Math.round(p.p).toLocaleString('es-AR')}<small>pago en pesos al cambio del día de la entrega</small>`
       : `Consultar disponibilidad<small>sujeto a disponibilidad</small>`;
     const img = p.img
       ? `<img src="${p.img}" alt="${escapeHtml(p.nombre)}" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
