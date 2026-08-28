@@ -3,20 +3,25 @@
 _Actualizado: 2026-08-28. Estos perfumes muestran hoy la foto de OTRA fragancia porque la correcta no existe en el repo._
 _Pasame la foto (nombrándola con el perfume o el Web ID) y yo la nombro, la guardo en la carpeta correcta y la conecto en `catalogo-web.json` + `script.js`._
 
-## 🔴 Prioridad alta — muestra la foto de otro perfume distinto
+## ✅ Prioridad alta — RESUELTO (2026-08-28)
 
-| # | Web ID | Marca | Perfume | Hoy muestra la foto de |
-|---|---|---|---|---|
-| 1 | WEB-0012 | Paco Rabanne | **Olympea Blossom** | Olympea (normal) |
-| 2 | WEB-0058 | Dolce & Gabbana | **Light Blue Capri in Love (mujer)** | la versión de hombre |
-| 3 | WEB-0118 | Tom Ford | **White Patchouli** | White Suede |
-| 4 | WEB-0080 | Yves Saint Laurent | **Libre L'Eau Nue** | Libre EDP Intense |
-| 5 | WEB-0189 | Jean Paul Gaultier | **Divine Couture** | Divine Elixir |
-| 6 | WEB-0176 | Jean Paul Gaultier | **Scandal Pour Homme Elixir** (hombre) | Scandal Intense (frasco de mujer) |
-| 7 | WEB-0204 | Valentino | **Uomo (clásico)** | Uomo Born in Roma Intense |
-| 8 | WEB-0209 | Valentino | **Donna Born in Roma The Gold** | Donna Born in Roma (normal) |
-| 9 | WEB-0212 | Valentino | **Donna Born in Roma Green Stravaganza** | Donna Born in Roma (normal) |
-| 10 | WEB-0340 | Xerjoff | **Accento Overdose** | Accento |
+Las 10 se cargaron (carpeta `imgc/`), se verificaron una por una, se optimizaron (máx 700px, webp) y se conectaron en `catalogo-web.json` + `script.js`:
+
+| # | Web ID | Perfume | Archivo colocado |
+|---|---|---|---|
+| 1 | WEB-0012 | Paco Rabanne Olympea Blossom | `img/Paco Rabanne/Rabanne - Olympea Blossom.webp` |
+| 2 | WEB-0058 | D&G Light Blue Capri in Love (mujer) | `img/DolceYG/Light_Blue_Capri_In_Love_Fem.webp` |
+| 3 | WEB-0118 | Tom Ford White Patchouli | `img/TOM FORD/Tom Ford - White Patchouli.webp` |
+| 4 | WEB-0080 | YSL Libre L'Eau Nue | `img/YSL/Yves Saint Laurent - Libre L'Eau Nue.webp` |
+| 5 | WEB-0189 | JPG Divine Couture | `img/.../Divine Couture.webp` ⚠️ baja resolución (160px) |
+| 6 | WEB-0176 | JPG Scandal Pour Homme Elixir | `img/.../Scandal Pour Homme Elixir.webp` |
+| 7 | WEB-0204 | Valentino Uomo (clásico) | `img/Valentino/Valentino - Uomo Clasico.webp` |
+| 8 | WEB-0209 | Valentino Donna The Gold | `img/Valentino/...The Gold.webp` |
+| 9 | WEB-0212 | Valentino Donna Green Stravaganza | `img/Valentino/...Green Stravaganza.webp` |
+| 10 | WEB-0340 | Xerjoff Accento Overdose | `img/Xerjoff/Xerjoff - Accento Overdose.webp` |
+
+> ⚠️ **Divine Couture (WEB-0189)** quedó conectada pero la foto es de 160×160px (se ve algo borrosa). Si conseguís una más grande, la reemplazo.
+> ✅ Se resolvió también la duda de **Green Stravaganza**: la foto enviada es la versión **mujer**, así que el producto estaba bien clasificado.
 
 ## 🟡 Secundaria — flankers con frasco parecido (mejorable, no urgente)
 
