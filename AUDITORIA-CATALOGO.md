@@ -29,22 +29,30 @@ _Scripts reproducibles: `scripts/audit-catalog.mjs` y `scripts/audit-images.mjs`
 
 Mismo producto, **misma imagen y misma descripción**: es una fila repetida, no una variante de tamaño. Un cliente ve el perfume dos veces → daña credibilidad. **Propongo eliminar la 2ª fila de cada par. No borro nada sin tu OK.**
 
+Verificado con análisis profundo (`scripts/audit-deep.mjs`): en los 14 casos coinciden **marca + nombre base + género + concentración (EDP/EDT) + mililitros + imagen + descripción**. Es el mismo SKU listado dos veces. **Propongo eliminar la 2ª fila. No borro nada sin tu OK.**
+
 | # | Mantener | Eliminar | Marca | Producto | Motivo de la 2ª fila |
 |---|---|---|---|---|---|
 | 1 | WEB-0028 | **WEB-0034** | Calvin Klein | Eternity Men EDT 100ml | prefijo de marca redundante |
 | 2 | WEB-0036 | **WEB-0040** | Versace | Eros Azul EDT 100ml | prefijo de marca redundante |
 | 3 | WEB-0097 | **WEB-0114** | Tom Ford | Ombre Leather EDP 100ml | fila idéntica |
-| 4 | WEB-0128 | **WEB-0131** | Parfums de Marly | Althair EDP 125ml | fila idéntica |
-| 5 | WEB-0129 | **WEB-0145** | Parfums de Marly | Layton EDP 125ml | fila idéntica |
-| 6 | WEB-0170 | **WEB-0174** | Mugler | Angel Refillable EDP 100ml | mismo SKU, palabras reordenadas |
-| 7 | WEB-0249 | **WEB-0252** | Bond No.9 | Madison Avenue EDP 100ml | fila idéntica |
-| 8 | WEB-0264 | **WEB-0270** | Mancera | Xplicit Vanilla EDP 120ml | prefijo de marca redundante |
-| 9 | WEB-0266 | **WEB-0280** | Mancera | Instant Crush EDP 120ml | fila idéntica |
-| 10 | WEB-0303 | **WEB-0316** | Initio | Psychedelic Love EDP 90ml | **la 2ª está mal escrita: "PSYCHODELIC"** |
-| 11 | WEB-0304 | **WEB-0309** | Initio | High Frequency EDP 90ml | fila idéntica |
-| 12 | WEB-0305 | **WEB-0318** | Initio | Side Effect EDP 90ml | fila idéntica |
+| 4 🆕 | WEB-0099 | **WEB-0103** | Tom Ford | Black Orchid EDP 100ml | prefijo de marca redundante |
+| 5 🆕 | WEB-0100 | **WEB-0112** | Tom Ford | Noir EDP 100ml | prefijo de marca redundante |
+| 6 | WEB-0128 | **WEB-0131** | Parfums de Marly | Althair EDP 125ml | fila idéntica |
+| 7 | WEB-0129 | **WEB-0145** | Parfums de Marly | Layton EDP 125ml | fila idéntica |
+| 8 | WEB-0170 | **WEB-0174** | Mugler | Angel Refillable EDP 100ml | mismo SKU, palabras reordenadas |
+| 9 | WEB-0249 | **WEB-0252** | Bond No.9 | Madison Avenue EDP 100ml | fila idéntica |
+| 10 | WEB-0264 | **WEB-0270** | Mancera | Xplicit Vanilla EDP 120ml | prefijo de marca redundante |
+| 11 | WEB-0266 | **WEB-0280** | Mancera | Instant Crush EDP 120ml | fila idéntica |
+| 12 | WEB-0303 | **WEB-0316** | Initio | Psychedelic Love EDP 90ml | **la 2ª está mal escrita: "PSYCHODELIC"** |
+| 13 | WEB-0304 | **WEB-0309** | Initio | High Frequency EDP 90ml | fila idéntica |
+| 14 | WEB-0305 | **WEB-0318** | Initio | Side Effect EDP 90ml | fila idéntica |
 
-**Acción:** pendiente de tu OK. Cuando confirmes, elimino las 12 filas de `catalogo-web.json` y de `script.js`, y te dejo la misma lista para borrar en el Sheet.
+🆕 = detectados en el análisis profundo (no estaban en la lista inicial de 12).
+
+**Falsos positivos descartados (NO son duplicados — son productos distintos):** "Q EDP" vs "Q EDP Intense"; "The Most Wanted" vs "The Most Wanted Intense"; "Cedrat Boise" vs "Intense Cedrat Boise"; "Donna Born in Roma" vs "…Intense"; "Scandal Elixir" vs "Scandal Absolu"; "Uomo Extradose" (♂) vs "Donna Extradose" (♀); "Alien" vs "Alien Refillable". Estos comparten base pero difieren en flanker/concentración/género → se mantienen.
+
+**Acción:** pendiente de tu OK. Cuando confirmes, elimino las 14 filas de `catalogo-web.json` y de `script.js`, y te dejo la misma lista para borrar en el Sheet.
 
 ---
 
@@ -64,24 +72,43 @@ _No los toco todavía porque son datos y además hay que replicarlos en el Sheet
 
 ---
 
-## P1 — Imagen incoherente con el producto (perfumes distintos, misma foto)
+## P1 — Coherencia imagen ↔ producto (análisis profundo)
 
-19 grupos donde una **misma imagen** la comparten fragancias **realmente distintas** (no son tamaños de lo mismo). Acá el frasco que se muestra no es el del producto. En varios casos **ya existe la imagen correcta sin usar** (de las 87 huérfanas) y el arreglo es solo re-apuntar la ruta.
+Análisis completo en `scripts/audit-deep.mjs`: por cada producto se compara el nombre contra el nombre de archivo de su imagen (que es descriptivo) y se busca en la carpeta de la marca la mejor foto disponible.
 
-| Producto que muestra foto equivocada | Foto que usa hoy | ¿Hay imagen correcta disponible? | Estado |
+### ✅ Ya corregido (9 reasignaciones — la foto correcta ya existía en `/img`)
+
+Aplicadas en JSON + `script.js` (además de las 3 previas: Eau d'Ombre Leather, Aoud Ambre, Aoud Greddy):
+
+| Web ID | Producto | Antes mostraba | Ahora usa |
 |---|---|---|---|
-| WEB-0012 Olympea **Blossom** | `14 - Rabanne - Olympea.png` (es la Olympea normal) | No exacta (hay "Olympea Flora", que es otra) → **falta** | Marcar faltante |
-| WEB-0098 Tom Ford **Eau d'Ombre Leather** | `17 - Ombre Leather.png` (es la Ombre Leather normal) | **Sí:** `16`/`21 - Eau d Ombre Leather.png` (huérfanas) | Puedo re-apuntar con tu OK |
-| WEB-0118 **White Patchouli** | `02 - White Suede.png` (es White Suede) | No hay White Patchouli → **falta** | Marcar faltante |
-| WEB-0322 Montale **Aoud Ambre** | `12 - Aoud Leather.png` | **Sí:** `13 - Aoud Amber.png` (huérfana) | Puedo re-apuntar con tu OK |
-| WEB-0323 Montale **Aoud Greddy** | `12 - Aoud Leather.png` | **Sí:** `11 - Aoud Greedy.png` (huérfana) | Puedo re-apuntar con tu OK |
-| WEB-0204 Valentino **Uomo Clásico** | `02 - Uomo Born In Roma Intense.png` | Revisar (hay `04 - Uomo Born In Roma.png`) | Revisar manual |
-| WEB-0189 JPG **Divine Couture** | `12 - Divine Elixir.png` | Revisar | Revisar manual |
-| Grupo JPG **Scandal** (8 variantes fem/masc) comparten `09 - Scandal Intense.png` | ídem | Hay varias huérfanas (So Scandal, Scandal Pour Homme…) | Revisar manual (requiere emparejar) |
+| WEB-0184 / 0185 | Le Male EDT 125/75ml | Le Male **Elixir** | Le Male Eau de Toilette |
+| WEB-0194 / 0200 | Le Beau EDT 125/75ml | Le Beau **Narcisse** | Le Beau Eau de Toilette |
+| WEB-0193 | La Belle EDP 125ml | La Belle **Rosea** | La Belle Eau de Parfum |
+| WEB-0195 | Scandal Men EDT | Scandal **Intense** (♀) | Scandal Pour Homme EDT |
+| WEB-0276 | Intense Cedrat Boise | Cedrat Boise (normal) | Intense Cedrat Boise |
+| WEB-0206 | Uomo Born in Roma EDT | Uomo Born in Roma **Intense** | Uomo Born in Roma |
+| WEB-0213 | Donna Born in Roma **Intense** | Donna Born in Roma (normal) | Donna Born in Roma Intense |
 
-> El resto de imágenes compartidas (Sauvage EDT/EDP/Parfum, Layton 125/75ml, Black Orchid 30/50/100ml, etc.) son **el mismo perfume en distinto tamaño/concentración** → reusar el frasco es correcto, **no es un error**.
+### ⚠️ Falta la foto correcta (perfume distinto compartiendo imagen, sin archivo disponible)
 
-**Nota sobre hash perceptual:** corrí dHash (Hamming ≤ 5) sobre las 393 imágenes. Dio 264 pares, pero es **poco concluyente para este catálogo**: los frascos sobre fondo blanco hashean casi igual (p. ej. todos los Montale dan distancia 0 entre sí siendo perfumes distintos). Por eso **no actúo sobre coincidencias entre marcas** del pHash — son falsos positivos por silueta parecida. El detector confiable de imagen repetida es el SHA-256 (abajo).
+Necesito que me pases estas fotos (no las invento):
+
+| Web ID | Producto | Muestra hoy la foto de | 
+|---|---|---|
+| WEB-0012 | Olympea **Blossom** | Olympea (normal) |
+| WEB-0118 | Tom Ford **White Patchouli** | White Suede |
+| WEB-0189 | JPG **Divine Couture** | Divine Elixir |
+| WEB-0204 | Valentino **Uomo Clásico** | Uomo Born in Roma Intense |
+| WEB-0209 | Valentino Donna **The Gold** | Donna Born in Roma |
+| WEB-0212 | Valentino Donna **Green Stravaganza** | Donna Born in Roma |
+| WEB-0340 | Xerjoff **Accento Overdose** | Accento |
+| WEB-0176 / 0177 / 0179 | JPG **Scandal** (versión ♂: Elixir / Intense / Le Parfum) | Scandal Intense (♀) — el frasco masculino es distinto |
+
+### Aceptable (mismo perfume, distinta concentración/tamaño → reusar la foto es correcto)
+Sauvage EDT/EDP/Parfum, Layton 125/75ml, Black Orchid 30/50/100ml, 1 Million Elixir 100/200, Allure Homme Sport EDT/Extreme/Cologne, etc. **No son errores.**
+
+**Nota sobre hash perceptual:** dHash (Hamming ≤ 5) sobre las 393 imágenes dio 264 pares pero es poco concluyente acá (los frascos sobre fondo blanco hashean casi igual — todos los Montale dan distancia 0 siendo distintos). El detector confiable de archivo repetido es el SHA-256.
 
 ---
 
