@@ -396,18 +396,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0034",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "CALVIN KLEIN",
-    "Producto": "CALVIN KLEIN ETERNITY FOR MEN EDT 100ML",
-    "Descripción": "Aromático fresco con lavanda, salvia y sándalo clásico y atemporal.",
-    "Imagen": "img/CalvinC/Calvin_Klein_Eternity_Men.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0035",
     "Publicar": "Sí",
     "Categoría": "Diseñador",
@@ -463,18 +451,6 @@
     "Producto": "EROS FLAME EDP 200ML",
     "Descripción": "Oriental especiado con pimienta negra, naranja y madera de cedro ardiente.",
     "Imagen": "img/Versace/03 - Versace - Eros Flame.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0040",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "VERSACE",
-    "Producto": "VERSACE EROS AZUL EDT 100ML",
-    "Descripción": "Fresco sensual con menta, manzana verde y vainilla sobre fondo amaderado.",
-    "Imagen": "img/Versace/02 - Versace - Eros.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null
@@ -1224,18 +1200,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0103",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "TOM FORD",
-    "Producto": "BLACK ORCHID EDP 100ML",
-    "Descripción": "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.",
-    "Imagen": "img/TOM FORD/04 - Tom Ford - Black Orchid.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0104",
     "Publicar": "Sí",
     "Categoría": "Diseñador",
@@ -1332,18 +1296,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0112",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "TOM FORD",
-    "Producto": "NOIR EDP 100ML",
-    "Descripción": "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.",
-    "Imagen": "img/TOM FORD/26 - Tom Ford - Noir.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0113",
     "Publicar": "Sí",
     "Categoría": "Diseñador",
@@ -1351,18 +1303,6 @@
     "Producto": "NOIR EDP 50ML",
     "Descripción": "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.",
     "Imagen": "img/TOM FORD/26 - Tom Ford - Noir.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0114",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "TOM FORD",
-    "Producto": "OMBRE LEATHER EDP 100ML",
-    "Descripción": "Cuero suave y oscuro con matiz floral elegante y refinado.",
-    "Imagen": "img/TOM FORD/17 - Tom Ford - Ombre Leather.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null
@@ -1560,18 +1500,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0131",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "PARFUMS DE MARLY",
-    "Producto": "ALTHAIR EDP 125ML",
-    "Descripción": "Gourmand aromático con lavanda, almizcle y vainilla cremosa envolvente.",
-    "Imagen": "img/Parfums de Marly/11 - Parfums de Marly - Althair.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0132",
     "Publicar": "Sí",
     "Categoría": "Diseñador",
@@ -1723,18 +1651,6 @@
     "Producto": "HEROD EDP 75ML",
     "Descripción": "Tabaco dulce con canela, ciprés y vainilla oscura, regio y adictivo.",
     "Imagen": "img/Parfums de Marly/21 - Parfums de Marly - Herod.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0145",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "PARFUMS DE MARLY",
-    "Producto": "LAYTON EDP 125ML",
-    "Descripción": "Especiado dulce con manzana, jazmín y vainilla sobre cardamomo cálido.",
-    "Imagen": "img/Parfums de Marly/23 - Parfums de Marly - Layton.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null
@@ -2071,18 +1987,6 @@
     "Producto": "ANGEL NOVA EDP FRUITEE 100ML",
     "Descripción": "Frutal gourmand con frambuesa, lichi y rosa sobre fondo goloso.",
     "Imagen": "img/Mugler/01 - Mugler - Angel Nova.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0174",
-    "Publicar": "Sí",
-    "Categoría": "Diseñador",
-    "Marca": "MUGLER",
-    "Producto": "MUGLER ANGEL EDP 100ML REFILLABLE",
-    "Descripción": "Gourmand celestial con chocolate, caramelo, pachulí y vainilla estelar.",
-    "Imagen": "img/Mugler/04 - Mugler - Angel.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null
@@ -3012,18 +2916,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0252",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "BOND NO.9",
-    "Producto": "MADISON AVENUE EDP 100ML",
-    "Descripción": "Floral chypre con lirio, jazmín y pachulí, sofisticado y neoyorquino.",
-    "Imagen": "img/BondNo.9/Bond_No__9_Madison_Avenue.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0253",
     "Publicar": "Sí",
     "Categoría": "Nicho",
@@ -3228,18 +3120,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0270",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "MANCERA",
-    "Producto": "MANCERA XPLICIT VANILLA EDP 120ML",
-    "Descripción": "Vainilla explícita con ámbar, almizcle blanco y notas cremosas adictivas.",
-    "Imagen": "img/Mancera/11 - Mancera - Xplicit Vanilla.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0271",
     "Publicar": "Sí",
     "Categoría": "Nicho",
@@ -3343,18 +3223,6 @@
     "Producto": "AOUD BLUE NOTES EDP 120ML",
     "Descripción": "Oud fresco con notas marinas, cítricas y almizcle azulado moderno.",
     "Imagen": "img/Mancera/17 - Mancera - Aoud Blue Notes.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0280",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "MANCERA",
-    "Producto": "INSTANT CRUSH EDP 120ML",
-    "Descripción": "Ámbar dulce con azafrán y vainilla cremosa, envolvente y muy adictivo.",
-    "Imagen": "img/Mancera/09 - Mancera - Instant Crush.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null
@@ -3696,18 +3564,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0309",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "INITIO",
-    "Producto": "HIGH FREQUENCY EDP 90ML",
-    "Descripción": "Cítrico vibrante con mandarina, azafrán y ámbar de alta frecuencia.",
-    "Imagen": "img/Initio/HIGH_FREQUENCY_EDP_90ML_BY_INITIO.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0310",
     "Publicar": "Sí",
     "Categoría": "Nicho",
@@ -3780,18 +3636,6 @@
     "Actualizado": null
   },
   {
-    "Web ID": "WEB-0316",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "INITIO",
-    "Producto": "PSYCHODELIC LOVE EDP 90ML",
-    "Descripción": "Floral psicodélico con rosa, heliotropo y almizcle cósmico envolvente.",
-    "Imagen": "img/Initio/PSYCHODELIC_LOVE_BY_INITIO_EDP_90ML.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
     "Web ID": "WEB-0317",
     "Publicar": "Sí",
     "Categoría": "Nicho",
@@ -3799,18 +3643,6 @@
     "Producto": "REHAB EDP 90ML",
     "Descripción": "Almizclado limpio con lavanda, sándalo y notas frescas purificantes.",
     "Imagen": "img/Initio/REHAB_BY_INITIO_EDP_90ML.png",
-    "Precio ARS": null,
-    "Disponibilidad": "Sujeto a disponibilidad",
-    "Actualizado": null
-  },
-  {
-    "Web ID": "WEB-0318",
-    "Publicar": "Sí",
-    "Categoría": "Nicho",
-    "Marca": "INITIO",
-    "Producto": "SIDE EFFECT EDP 90ML",
-    "Descripción": "Gourmand adictivo con ron, vainilla, tabaco y canela embriagadora.",
-    "Imagen": "img/Initio/SIDE_EFFECT_BY_INITIO_EDP_90ML.png",
     "Precio ARS": null,
     "Disponibilidad": "Sujeto a disponibilidad",
     "Actualizado": null

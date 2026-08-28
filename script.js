@@ -63,7 +63,6 @@ const catalogo = [
           { nombre: "ONE EDT 200ML", descripcion: "Cítrico unisex con bergamota, cardamomo y almizcle limpio y transparente.", imagen: "img/CalvinC/Calvin_Klein_CK_One.png" },
           { nombre: "CK IN 2 U EDT 150ML", descripcion: "Fresco y juguetón con pomelo rosado, cacao y almizcle blanco vibrante.", imagen: "img/CalvinC/Calvin_Klein_CK_In2U.png" },
           { nombre: "ETERNITY FEM EDP 100ML", descripcion: "Floral blanco con lirio, violeta y sándalo suave, romántico y eterno.", imagen: "img/CalvinC/Calvin_Klein_Eternity_Femme.png" },
-          { nombre: "CALVIN KLEIN ETERNITY FOR MEN EDT 100ML", descripcion: "Aromático fresco con lavanda, salvia y sándalo clásico y atemporal.", imagen: "img/CalvinC/Calvin_Klein_Eternity_Men.png" },
           { nombre: "CALVIN KLEIN CK BE EDT 100ML", descripcion: "Unisex minimalista con bergamota, menta y almizcle cálido envolvente.", imagen: "img/CalvinC/Calvin_Klein_CK_Be.png" },
         ]
       },
@@ -74,7 +73,6 @@ const catalogo = [
           { nombre: "EROS ENERGY POUR HOMME EDP 100ML", descripcion: "Cítrico energizante con mandarina, jengibre y cedro vibrante.", imagen: "img/Versace/04 - Versace - Eros Energy.png" },
           { nombre: "EROS FLAME EDP 100ML", descripcion: "Oriental especiado con pimienta negra, naranja y madera de cedro ardiente.", imagen: "img/Versace/03 - Versace - Eros Flame.png" },
           { nombre: "EROS FLAME EDP 200ML", descripcion: "Oriental especiado con pimienta negra, naranja y madera de cedro ardiente.", imagen: "img/Versace/03 - Versace - Eros Flame.png" },
-          { nombre: "VERSACE EROS AZUL EDT 100ML", descripcion: "Fresco sensual con menta, manzana verde y vainilla sobre fondo amaderado.", imagen: "img/Versace/02 - Versace - Eros.png" },
         ]
       },
       {
@@ -168,13 +166,11 @@ const catalogo = [
           { nombre: "JASMIN ROUGE EDP 100ML", descripcion: "Jazmín intenso con especias, durazno y almizcle sensual y opulento.", imagen: "img/TOM FORD/14 - Tom Ford - Jasmin Rouge.png" },
           { nombre: "BITTER PEACH EDP 50ML", descripcion: "Gourmand sensual con durazno maduro, ron y vainilla aterciopelada.", imagen: "img/TOM FORD/05 - Tom Ford - Bitter Peach.png" },
           { nombre: "TOM FORD TOBACCO VANILLE EDP 100ML", descripcion: "Tabaco dulce con vainilla, cacao y especias orientales, suntuoso y adictivo.", imagen: "img/TOM FORD/24 - Tom Ford - Tobacco Vanille.png" },
-          { nombre: "OMBRE LEATHER EDP 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/17 - Tom Ford - Ombre Leather.png" },
           { nombre: "TOM FORD EAU D'OMBRE LEATHER EDT 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/16 - Tom Ford - Eau d Ombre Leather.png" },
           { nombre: "TOM FORD BLACK ORCHID EDP 100ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "TOM FORD NOIR EDP 100ML", descripcion: "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.", imagen: "img/TOM FORD/26 - Tom Ford - Noir.png" },
           { nombre: "TOM FORD CAFÉ ROSE EDP 100ML", descripcion: "Rosa turca con café, incienso y azafrán, opulento y bohemio.", imagen: "img/TOM FORD/20 - Tom Ford - Cafe Rose.png" },
           { nombre: "TOM FORD OUD WOOD EDP 100ML", descripcion: "Oud ahumado con sándalo, vetiver y cardamomo, refinado y exótico.", imagen: "img/TOM FORD/23 - Tom Ford - Oud Wood.png" },
-          { nombre: "BLACK ORCHID EDP 100ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "BLACK ORCHID EDP 30ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "BLACK ORCHID EDP 50ML", descripcion: "Orquídea negra con trufa, pachulí oscuro y chocolate amargo, misterioso.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
           { nombre: "BLACK ORCHID PARFUM 100ML", descripcion: "Orquídea negra concentrada con trufa, ron y resinas oscuras, hipnótico.", imagen: "img/TOM FORD/04 - Tom Ford - Black Orchid.png" },
@@ -183,7 +179,6 @@ const catalogo = [
           { nombre: "LOST CHERRY EDP 50ML", descripcion: "Cereza negra con almendra, licor de cereza y vainilla pecaminosa.", imagen: "img/TOM FORD/12 - Tom Ford - Lost Cherry.png" },
           { nombre: "NEROLI PORTOFINO EDP 100ML", descripcion: "Cítrico mediterráneo con neroli, azahar y ámbar luminoso veraniego.", imagen: "img/TOM FORD/18 - Tom Ford - Neroli Portofino.png" },
           { nombre: "NEROLI PORTOFINO EDP 50ML", descripcion: "Cítrico mediterráneo con neroli, azahar y ámbar luminoso veraniego.", imagen: "img/TOM FORD/18 - Tom Ford - Neroli Portofino.png" },
-          { nombre: "NOIR EDP 100ML", descripcion: "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.", imagen: "img/TOM FORD/26 - Tom Ford - Noir.png" },
           { nombre: "NOIR EDP 50ML", descripcion: "Oriental especiado con pimienta negra, nuez moscada y ámbar profundo.", imagen: "img/TOM FORD/26 - Tom Ford - Noir.png" },
           { nombre: "OMBRE LEATHER EDP 100ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/17 - Tom Ford - Ombre Leather.png" },
           { nombre: "OMBRE LEATHER EDP 50ML", descripcion: "Cuero suave y oscuro con matiz floral elegante y refinado.", imagen: "img/TOM FORD/17 - Tom Ford - Ombre Leather.png" },
@@ -204,8 +199,6 @@ const catalogo = [
           { nombre: "PERSEUS EDP 125ML", descripcion: "Fresco amaderado con manzana, lavanda y almizcle blanco deportivo.", imagen: "img/Parfums de Marly/10 - Parfums de Marly - Perseus.png" },
           { nombre: "GREENLEY EDP 125ML", descripcion: "Verde frutal con manzana, higo y vetiver fresco, natural y vibrante.", imagen: "img/Parfums de Marly/22 - Parfums de Marly - Greenley.png" },
           { nombre: "LAYTON EDP 200ML", descripcion: "Especiado dulce con manzana, jazmín y vainilla sobre cardamomo cálido.", imagen: "img/Parfums de Marly/23 - Parfums de Marly - Layton.png" },
-          { nombre: "ALTHAIR EDP 125ML", descripcion: "Gourmand aromático con lavanda, almizcle y vainilla cremosa envolvente.", imagen: "img/Parfums de Marly/11 - Parfums de Marly - Althair.png" },
-          { nombre: "LAYTON EDP 125ML", descripcion: "Especiado dulce con manzana, jazmín y vainilla sobre cardamomo cálido.", imagen: "img/Parfums de Marly/23 - Parfums de Marly - Layton.png" },
           { nombre: "LAYTON EXCLUSIF PARFUM 125ML", descripcion: "Oriental profundo con manzana especiada, oud y ámbar concentrado.", imagen: "img/Parfums de Marly/26 - Parfums de Marly - Layton Exclusif.png" },
           { nombre: "ALTHAIR EDP 125ML", descripcion: "Gourmand aromático con lavanda, almizcle y vainilla cremosa envolvente.", imagen: "img/Parfums de Marly/11 - Parfums de Marly - Althair.png" },
           { nombre: "PARFUMS DE MARLY EXTRAIT 100ML CARIOS", descripcion: "Extracto concentrado con notas nobles y fondo amaderado profundo.", imagen: "img/Parfums de Marly/PdM_Carios.webp" },
@@ -270,7 +263,6 @@ const catalogo = [
           { nombre: "ALIEN REFILLABLE EDP 90ML", descripcion: "Floral amaderado con jazmín sambac, cashmeran y ámbar blanco cósmico.", imagen: "img/Mugler/03 - Mugler - Alien.png" },
           { nombre: "ALIEN EDP 90ML", descripcion: "Floral amaderado con jazmín sambac, cashmeran y ámbar blanco cósmico.", imagen: "img/Mugler/03 - Mugler - Alien.png" },
           { nombre: "ANGEL NOVA EDP FRUITEE 100ML", descripcion: "Frutal gourmand con frambuesa, lichi y rosa sobre fondo goloso.", imagen: "img/Mugler/01 - Mugler - Angel Nova.png" },
-          { nombre: "MUGLER ANGEL EDP 100ML REFILLABLE", descripcion: "Gourmand celestial con chocolate, caramelo, pachulí y vainilla estelar.", imagen: "img/Mugler/04 - Mugler - Angel.png" },
         ]
       },
       {
@@ -396,7 +388,6 @@ const catalogo = [
       {
         nombre: "BOND NO.9",
         perfumes: [
-          { nombre: "MADISON AVENUE EDP 100ML", descripcion: "Floral chypre con lirio, jazmín y pachulí, sofisticado y neoyorquino.", imagen: "img/BondNo.9/Bond_No__9_Madison_Avenue.png" },
           { nombre: "CHEZ BOND EDP 100ML", descripcion: "Amaderado aromático con lavanda, sándalo y almizcle elegante masculino.", imagen: "img/BondNo.9/Bond_No__9_Chez_Bond.png" },
           { nombre: "HAMPTONS EDP 100ML", descripcion: "Marino fresco con brisa costera, jazmín y almizcle blanco veraniego.", imagen: "img/BondNo.9/Bond_No__9_Hamptons.png" },
           { nombre: "MADISON AVENUE EDP 100ML", descripcion: "Floral chypre con lirio, jazmín y pachulí, sofisticado y neoyorquino.", imagen: "img/BondNo.9/Bond_No__9_Madison_Avenue.png" },
@@ -423,11 +414,9 @@ const catalogo = [
         perfumes: [
           { nombre: "XPLICIT VANILLA EDP 120ML", descripcion: "Vainilla explícita con ámbar, almizcle blanco y notas cremosas adictivas.", imagen: "img/Mancera/11 - Mancera - Xplicit Vanilla.png" },
           { nombre: "WILD PHYTON EDP 120ML", descripcion: "Amaderado salvaje con notas animalísticas, cuero y especias oscuras.", imagen: "img/Mancera/10 - Mancera - Wild Python.png" },
-          { nombre: "INSTANT CRUSH EDP 120ML", descripcion: "Ámbar dulce con azafrán y vainilla cremosa, envolvente y muy adictivo.", imagen: "img/Mancera/09 - Mancera - Instant Crush.png" },
           { nombre: "FRENCH RIVIERA EDP 120ML", descripcion: "Cítrico costero con mandarina, notas acuáticas y almizcle mediterráneo.", imagen: "img/Mancera/03 - Mancera - French Riviera.png" },
           { nombre: "MANCERA SOLEIL D'ITALIE EDP 120ML", descripcion: "Cítrico solar con limón italiano, jazmín y almizcle luminoso dorado.", imagen: "img/Mancera/13 - Mancera - Soleil d'Italie.png" },
           { nombre: "MANCERA LEMON LINE EDP 120ML", descripcion: "Cítrico vibrante con limón siciliano, menta y almizcle blanco fresco.", imagen: "img/Mancera/07 - Mancera - Lemon Line.png" },
-          { nombre: "MANCERA XPLICIT VANILLA EDP 120ML", descripcion: "Vainilla explícita con ámbar, almizcle blanco y notas cremosas adictivas.", imagen: "img/Mancera/11 - Mancera - Xplicit Vanilla.png" },
           { nombre: "DEEP FOREST EDP 120ML", descripcion: "Verde boscoso con pino, musgo de roble y cedro profundo natural.", imagen: "img/Mancera/02 - Mancera - Deep Forest.png" },
           { nombre: "AOUD CAFÉ EDP 120ML", descripcion: "Oud aromático con café tostado, vainilla y notas especiadas oscuras.", imagen: "img/Mancera/14 - Mancera - Aoud Café.png" },
           { nombre: "BLACK VANILLA EDP 120ML", descripcion: "Vainilla oscura con especias, ámbar negro y almizcle profundo nocturno.", imagen: "img/Mancera/01 - Mancera - Black Vanilla.png" },
@@ -476,8 +465,6 @@ const catalogo = [
         nombre: "INITIO",
         perfumes: [
           { nombre: "PSYCHEDELIC LOVE EDP 90ML", descripcion: "Floral psicodélico con rosa, heliotropo y almizcle cósmico envolvente.", imagen: "img/Initio/PSYCHEDELIC_LOVE_EDP_90ML_BY_INITIO.png" },
-          { nombre: "HIGH FREQUENCY EDP 90ML", descripcion: "Cítrico vibrante con mandarina, azafrán y ámbar de alta frecuencia.", imagen: "img/Initio/HIGH_FREQUENCY_EDP_90ML_BY_INITIO.png" },
-          { nombre: "SIDE EFFECT EDP 90ML", descripcion: "Gourmand adictivo con ron, vainilla, tabaco y canela embriagadora.", imagen: "img/Initio/SIDE_EFFECT_BY_INITIO_EDP_90ML.png" },
           { nombre: "ABSOLUT APHRODISIAC EDP 90ML", descripcion: "Oriental afrodisíaco con vainilla, sándalo y almizcle sensual profundo.", imagen: "img/Initio/ABSOLUT_APHRODISIAC_BY_INITIO_EDP_90ML.png" },
           { nombre: "ADDICTIVE VIBRATIONS EDP 90ML", descripcion: "Tropical vibrante con coco, vainilla y notas frutales adictivas.", imagen: "img/Initio/ADDICTIVE_VIBRATIONS_BY_INITIO_EDP_90ML.png" },
           { nombre: "BLESSED BARAKA EDP 90ML", descripcion: "Amaderado sagrado con oud, sándalo y ámbar bendito y espiritual.", imagen: "img/Initio/BLESSED_BARAKA_BY_INITIO_EDP_90ML.png" },
@@ -488,7 +475,6 @@ const catalogo = [
           { nombre: "OUD FOR GREATNESS EDP 90ML", descripcion: "Oud majestuoso con lavanda, azafrán y almizcle noble, grandioso.", imagen: "img/Initio/Oud_for_Greatness_EDP_90ml.png" },
           { nombre: "OUD FOR HAPPINESS EDP 90ML", descripcion: "Oud luminoso con notas frutales, sándalo y vainilla alegre y cálido.", imagen: "img/Initio/OUD_FOR_HAPPINESS_BY_INITIO_EDP_90ML.png" },
           { nombre: "PARAGON EDP 90ML", descripcion: "Amaderado especiado con lavanda, ámbar y almizcle ejemplar y noble.", imagen: "img/Initio/PARAGON_BY_INITIO_EDP_90ML.png" },
-          { nombre: "PSYCHODELIC LOVE EDP 90ML", descripcion: "Floral psicodélico con rosa, heliotropo y almizcle cósmico envolvente.", imagen: "img/Initio/PSYCHODELIC_LOVE_BY_INITIO_EDP_90ML.png" },
           { nombre: "REHAB EDP 90ML", descripcion: "Almizclado limpio con lavanda, sándalo y notas frescas purificantes.", imagen: "img/Initio/REHAB_BY_INITIO_EDP_90ML.png" },
           { nombre: "SIDE EFFECT EDP 90ML", descripcion: "Gourmand adictivo con ron, vainilla, tabaco y canela embriagadora.", imagen: "img/Initio/SIDE_EFFECT_BY_INITIO_EDP_90ML.png" },
           { nombre: "ATOMIC ROSE EDP 90ML", descripcion: "Rosa nuclear con oud, ámbar y notas especiadas explosivas e intensas.", imagen: "img/Initio/ATOMIC_ROSE_BY_INITIO_EDP_90ML.png" },

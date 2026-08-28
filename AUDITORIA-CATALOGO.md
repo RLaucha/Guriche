@@ -50,6 +50,8 @@ Verificado con análisis profundo (`scripts/audit-deep.mjs`): en los 14 casos co
 
 🆕 = detectados en el análisis profundo (no estaban en la lista inicial de 12).
 
+> ✅ **HECHO (2026-08-28):** las 14 filas se eliminaron de `catalogo-web.json` (386 → **372**) y de `script.js` (verificado: gemelos correctos intactos). **Falta replicarlo en el Google Sheet** — borrá estos Web ID ahí: `WEB-0034, 0040, 0103, 0112, 0114, 0131, 0145, 0174, 0252, 0270, 0280, 0309, 0316, 0318`. Regla: en el Sheet quedate con la fila que tenga el **precio correcto** (podría estar en la que yo marqué "eliminar").
+
 **Falsos positivos descartados (NO son duplicados — son productos distintos):** "Q EDP" vs "Q EDP Intense"; "The Most Wanted" vs "The Most Wanted Intense"; "Cedrat Boise" vs "Intense Cedrat Boise"; "Donna Born in Roma" vs "…Intense"; "Scandal Elixir" vs "Scandal Absolu"; "Uomo Extradose" (♂) vs "Donna Extradose" (♀); "Alien" vs "Alien Refillable". Estos comparten base pero difieren en flanker/concentración/género → se mantienen.
 
 **Acción:** pendiente de tu OK. Cuando confirmes, elimino las 14 filas de `catalogo-web.json` y de `script.js`, y te dejo la misma lista para borrar en el Sheet.
