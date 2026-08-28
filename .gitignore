@@ -10,3 +10,7 @@ review.html
 img/_review/
 img/_nuevas/
 export/
+
+# Auditoría (artefactos generados)
+scripts/_out-*.md
+scripts/_tmp-*.mjs
