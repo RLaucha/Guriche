@@ -708,8 +708,9 @@ function productPriceHtml(perfume) {
 
 function productCardHtml(perfume, brandName, showBrand = false) {
   const image = safeImageSource(perfume.imagen);
+  const altText = `${brandName} ${perfume.nombre} — perfume original importado`;
   const imgHtml = image
-    ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(perfume.nombre)}" loading="lazy" onerror="__photoFallback(this)" />`
+    ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(altText)}" loading="lazy" onerror="__photoFallback(this)" />`
     : noPhotoHTML();
   const descHtml = perfume.descripcion
     ? `<p>${escapeHtml(perfume.descripcion)}</p>`
@@ -1536,7 +1537,7 @@ function showResults(){
       ? `USD ${Math.round(p.p).toLocaleString('es-AR')}<small>pago en pesos al cambio del día de la entrega</small>`
       : `Consultar disponibilidad<small>sujeto a disponibilidad</small>`;
     const img = p.img
-      ? `<img src="${p.img}" alt="${escapeHtml(p.nombre)}" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
+      ? `<img src="${p.img}" alt="${escapeHtml(p.marca + ' ' + p.nombre)} — perfume original importado" loading="lazy" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
       : '';
     const msg = `Hola! Hice el test olfativo en la web y me dio: ${p.n}. ¿Tenés stock?`;
     return `
