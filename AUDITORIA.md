@@ -116,6 +116,14 @@ La ficha hoy: imagen + marca + nombre + descripción libre + precio + botón. Fa
 - Servicios "🚀 Entrega coordinada", "📦 Stock por encargo" → reescribir en voz Guriche, enfocado en autenticidad y asesoría.
 - "Perfumes que dejan huella" (footer/OG) es lindo pero intercambiable; el ancla debería ser original + a pedido + asesoría.
 
-**Estado Fase 3:** diagnóstico completo. Los cambios de copy/estructura que **no dependen de datos nuevos** (hero, sello de autenticidad, bloque "cómo funciona", estado vacío, CTA doble) los puedo implementar ya. Los que dependen de datos (familia, duración, estela, filtros, medios de pago/envío) necesito que me los pases. **Espero tu OK para implementar la tanda que no depende de datos.**
+**Estado Fase 3:**
+- ✅ **Implementado** (tanda sin datos nuevos, verificado en navegador sin errores de consola):
+  - Hero reescrito (original + a pedido + asesoría).
+  - Franja de autenticidad bajo el hero.
+  - Sección "Cómo funciona" (3 pasos del pedido a medida) + ítem en el menú.
+  - Sello "✓ Original importado · a pedido" en cada ficha.
+  - CTA doble en ficha: "Agregar a la consulta" + "Consultar ahora" (WhatsApp directo).
+  - Estado vacío del buscador reescrito con ángulo "lo traemos a pedido".
+- ⏳ **Pendiente de datos tuyos** (no los invento): familia olfativa, género estructurado, duración, estela, ocasión → habilitan también los **filtros** y el **ordenamiento**. Medios de pago, zona de envío y política de cambios para la sección de confianza.
 
 ## Fase 4 — Coherencia de marca _(pendiente)_

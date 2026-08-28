@@ -733,20 +733,27 @@ function productCardHtml(perfume, brandName, showBrand = false) {
     : "";
   const cartKey = perfume.webId || `${brandName}|${perfume.nombre}`;
   const precioAttr = perfume.precio ? ` data-precio="${perfume.precio}"` : "";
+  const contactLink = productContactLink(perfume, brandName);
 
   return `
     ${imgHtml}
     <div class="perfume-body">
       ${brandHtml}
       <h3>${escapeHtml(perfume.nombre)}</h3>
+      <span class="card-authentic" title="Original importado, traído a pedido">✓ Original importado · a pedido</span>
       ${descHtml}
       ${productPriceHtml(perfume)}
-      <button type="button" class="btn-quote btn-add-cart"
-        data-key="${escapeHtml(cartKey)}"
-        data-nombre="${escapeHtml(perfume.nombre)}"
-        data-marca="${escapeHtml(brandName)}"${precioAttr}>
-        + Agregar a la consulta
-      </button>
+      <div class="perfume-actions">
+        <button type="button" class="btn-quote btn-add-cart"
+          data-key="${escapeHtml(cartKey)}"
+          data-nombre="${escapeHtml(perfume.nombre)}"
+          data-marca="${escapeHtml(brandName)}"${precioAttr}>
+          + Agregar a la consulta
+        </button>
+        <a class="btn-quote-direct" href="${contactLink}" target="_blank" rel="noopener">
+          Consultar ahora
+        </a>
+      </div>
     </div>
   `;
 }
@@ -1228,8 +1235,8 @@ handleHashChange();
       const none = document.createElement("div");
       none.className = "search-no-results";
       none.innerHTML =
-        `No encontramos “${escapeHtml(query.trim())}”.<br>Probá con otro nombre, marca o aroma.` +
-        `<br><a class="btn-consulta-general" style="margin-top:1.5rem;display:inline-block;" href="${igLink}" target="_blank" rel="noopener">Consultanos directamente</a>`;
+        `No lo tenemos en el catálogo… <strong>pero lo conseguimos.</strong><br>Trabajamos a pedido: decinos qué buscás (“${escapeHtml(query.trim())}”) y lo traemos original.` +
+        `<br><a class="btn-consulta-general" style="margin-top:1.5rem;display:inline-block;" href="${igLink}" target="_blank" rel="noopener">Pedilo a Guriche</a>`;
       wrap.appendChild(none);
     } else {
       const info = document.createElement("p");
