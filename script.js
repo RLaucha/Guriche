@@ -270,7 +270,6 @@ const catalogo = [
         perfumes: [
           { nombre: "LE MALE PRIDE EDITION GET USED TO IT! EDT 125ML", descripcion: "Aromático fresco con menta, lavanda y vainilla icónica, viril y sensual.", imagen: "img/JEAN PAUL GAULTIER/04 - Jean Paul Gaultier - Le Male Pride Edition Get Used To It.png" },
           { nombre: "JEAN PAUL GAULTIER SCANDAL ELIXIR MASC PARFUM 100ML", descripcion: "Oriental gourmand con vainilla intensa, tonka y ámbar oscuro magnético.", imagen: "img/JEAN PAUL GAULTIER/Jean Paul Gaultier - Scandal Pour Homme Elixir.webp" },
-          { nombre: "JEAN PAUL GAULTIER SCANDAL INTENSE MASC EDP INTENSE 100ML", descripcion: "Especiado oriental con cardamomo, tonka y ámbar concentrado seductor.", imagen: "img/JEAN PAUL GAULTIER/09 - Jean Paul Gaultier - Scandal Intense.png" },
           { nombre: "JEAN PAUL GAULTIER SCANDAL ABSOLU MASC PARFUM CONCENTRE 100ML", descripcion: "Oriental absoluto con especias, vetiver y ámbar profundo hipnótico.", imagen: "img/JEAN PAUL GAULTIER/16 - Jean Paul Gaultier - Scandal Pour Homme Absolu.png" },
           { nombre: "JEAN PAUL GAULTIER SCANDAL LE PARFUM MASC EDP INTENSE 50ML", descripcion: "Oriental intenso con vetiver, ámbar y especias concentradas nocturnas.", imagen: "img/JEAN PAUL GAULTIER/19 - Jean Paul Gaultier - Scandal Pour Homme Le Parfum.png" },
           { nombre: "JEAN PAUL GAULTIER SCANDAL INTENSE FEM EDP INTENSE 80ML", descripcion: "Floral oriental con gardenia, miel y caramelo intenso seductor.", imagen: "img/JEAN PAUL GAULTIER/09 - Jean Paul Gaultier - Scandal Intense.png" },
