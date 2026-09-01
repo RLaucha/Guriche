@@ -828,7 +828,10 @@ function applyCatalogRows(rows) {
     if (!categoryName || !brandName || !productName) return;
 
     const key = catalogProductKey(categoryName, brandName, productName);
-    let match = (webId && byId.get(webId)) || byKey.get(key);
+    // Se matchea SOLO por marca+producto (estable). No se usa el Web ID porque en el
+    // catálogo local se asigna por posición y al eliminar duplicados se corrió, lo que
+    // emparejaba productos equivocados.
+    const match = byKey.get(key);
     const publishValue = getCatalogField(row, "Publicar", "Mostrar producto");
     const shouldPublish = publishValue === "" ? true : isYes(publishValue);
     // El precio que muestra la web es en DÓLARES (columna "Precio USD").
@@ -843,73 +846,15 @@ function applyCatalogRows(rows) {
     ).trim();
     const updated = String(getCatalogField(row, "Actualizado") || "").trim();
 
-    if (!match && shouldPublish) {
-      let category = catalogo.find(
-        (item) => normalizeCatalogText(item.categoria) === normalizeCatalogText(categoryName),
-      );
-      if (!category) {
-        category = { categoria: categoryName, marcas: [] };
-        catalogo.push(category);
-      }
-      let brand = category.marcas.find(
-        (item) => normalizeCatalogText(item.nombre) === normalizeCatalogText(brandName),
-      );
-      if (!brand) {
-        brand = { nombre: brandName, perfumes: [] };
-        category.marcas.push(brand);
-      }
-      const perfume = {
-        webId: webId || `WEB-REMOTE-${Date.now()}-${changes}`,
-        nombre: productName,
-        descripcion: description,
-        imagen: image,
-        publicar: true,
-      };
-      brand.perfumes.push(perfume);
-      match = { category, brand, perfume };
-    }
-
+    // Repo autoritativo: si el producto no está en el catálogo local, NO se crea desde
+    // el Sheet (evita reintroducir duplicados viejos o filas desactualizadas).
     if (!match) return;
-    const categoryChanged =
-      normalizeCatalogText(match.category.categoria) !==
-      normalizeCatalogText(categoryName);
-    const brandChanged =
-      normalizeCatalogText(match.brand.nombre) !==
-      normalizeCatalogText(brandName);
-    if (categoryChanged || brandChanged) {
-      match.brand.perfumes = match.brand.perfumes.filter(
-        (perfume) => perfume !== match.perfume,
-      );
-      let targetCategory = catalogo.find(
-        (item) =>
-          normalizeCatalogText(item.categoria) ===
-          normalizeCatalogText(categoryName),
-      );
-      if (!targetCategory) {
-        targetCategory = { categoria: categoryName, marcas: [] };
-        catalogo.push(targetCategory);
-      }
-      let targetBrand = targetCategory.marcas.find(
-        (item) =>
-          normalizeCatalogText(item.nombre) ===
-          normalizeCatalogText(brandName),
-      );
-      if (!targetBrand) {
-        targetBrand = { nombre: brandName, perfumes: [] };
-        targetCategory.marcas.push(targetBrand);
-      }
-      targetBrand.perfumes.push(match.perfume);
-      match.category = targetCategory;
-      match.brand = targetBrand;
-    }
-
-    match.perfume.nombre = productName;
+    // El Sheet es feed de PRECIO / DISPONIBILIDAD en vivo. Nombre, imagen, categoría y
+    // marca quedan como en el repo (curados en la auditoría de catálogo e imágenes).
     match.perfume.publicar = shouldPublish;
     match.perfume.precio = price;
     match.perfume.disponibilidad = availability;
     match.perfume.actualizado = updated;
-    if (description) match.perfume.descripcion = description;
-    if (image) match.perfume.imagen = image;
     changes += 1;
   });
 
