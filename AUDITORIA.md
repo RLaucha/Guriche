@@ -84,11 +84,27 @@ Los precios NO están en el JSON (`Precio ARS: null` en las 386 filas); vienen d
 - **Consola:** sin errores al cargar.
 - **`loading="lazy"`** ya presente en imágenes de catálogo; el hero es texto (no hay imagen LCP que priorizar).
 
-### 🔴 Pendiente de tu OK — peso de imágenes (mayor ganancia de performance)
-- **`img/` pesa 73 MB.** Los PNG son el grueso (~40 MB). Hay archivos de **500–615 KB** por frasco.
-- **Propuesta:** convertir los PNG/JPG de producto a **WebP** (máx 700px, calidad 82). Reducción estimada **~60–70%** (73 MB → ~25 MB), sin pérdida visible. Mejora directa de LCP y del tiempo de carga del catálogo.
-- **Por qué necesito tu OK:** implica **reemplazar/borrar** los archivos `.png` originales (tu regla: no borrar imágenes sin confirmación). Los favicons y la `og-image` **no** se tocan.
-- Lo hago con un script reproducible y verifico 0 imágenes rotas al terminar.
+### ✅ Peso de imágenes → WebP (hecho, con tu OK)
+- **`img/`: 73 MB → 9 MB.** 382 PNG/JPG de producto convertidos a WebP (máx 700px, q82): 68.8 MB → 5.1 MB. Favicons y og-image intactos. 0 imágenes rotas.
+- `safeImageSource` normaliza rutas `.png/.jpg` → `.webp`, así que aunque el Google Sheet siga apuntando a `.png`, el sitio sirve la WebP (no hay que editar el Sheet para esto).
+
+### 🔴→✅ Bug crítico encontrado y corregido al testear
+- **Síntoma:** tras eliminar los 14 duplicados del catálogo hardcodeado, el merge con el Sheet/JSON emparejaba productos equivocados (un perfume mostraba el nombre de uno y la imagen/precio de otro), y las fotos corregidas no se reflejaban.
+- **Causa:** los Web ID del catálogo local se asignan por **posición**; al borrar filas se corrieron y dejaron de alinear con el Sheet.
+- **Fix:** el repo pasó a ser **autoritativo** (nombre, imagen, categoría, marca curados en el repo). El Sheet ahora solo superpone **precio/disponibilidad**, matcheando por marca+producto. No crea productos (no reaparecen duplicados) ni pisa identidad.
+- **Verificado en vivo:** 371 productos, **0 imágenes cruzadas**, 0 duplicados, precios OK en 353/371 (los 18 restantes son nombres que el Sheet aún tiene con la grafía vieja —GABANNA, etc.—; se resuelven al sincronizar el Sheet).
+
+### ✅ Testeo responsive (mobile + desktop)
+| Viewport | Resultado |
+|---|---|
+| 1440 (desktop) | Nav horizontal, hero OK, catálogo en grilla de 4 columnas, sin overflow |
+| 768 (tablet) | Grilla 3 columnas, sin overflow |
+| 390 / 375 (mobile) | Menú hamburguesa abre/cierra (aria-expanded OK), sin overflow |
+| 360 | Sin overflow horizontal real |
+| Ficha de producto | Imagen WebP nítida y correcta, sello de autenticidad, precio, CTA doble |
+| Carrito | Agregar → contador → drawer → link de WhatsApp con producto y número correctos |
+| Buscador | Resultados + estado vacío con CTA "lo traemos a pedido" |
+| Consola | Sin errores |
 
 ### 🟡 Recomendaciones menores
 - Token de color `--nogal` definido pero **sin uso** (limpieza).
