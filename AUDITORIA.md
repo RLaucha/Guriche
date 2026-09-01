@@ -68,7 +68,32 @@ Los precios NO están en el JSON (`Precio ARS: null` en las 386 filas); vienen d
 
 ---
 
-## Fase 2 — Técnica _(pendiente)_
+## Fase 2 — Técnica
+
+### ✅ Aplicado
+- **Fuentes duplicadas:** se quitó el `@import` de Google Fonts del CSS (bloqueaba el render). Quedan cargadas una sola vez desde `index.html` con `preconnect` + `display=swap`.
+- **`alt` descriptivo** en todas las imágenes de producto (Fase 3): "Marca Nombre — perfume original importado".
+- **Accesibilidad del menú móvil:** `aria-expanded` sincronizado + `aria-controls`.
+- **Twitter Card** → `summary_large_image` (preview grande al compartir).
+
+### ✅ Verificado OK (sin cambios necesarios)
+- **Contraste WCAG AA:** texto (12.09), muted (5.88), primary-light (5.22) sobre el fondo → todos pasan AA. Los colores de bajo contraste (`--primary` 2.99) **no se usan como texto**, solo fondos/bordes. Sin fallas reales.
+- **Imágenes rotas:** 0 (los 371 productos tienen su archivo).
+- **Navegación:** los 6 anchors del menú resuelven a un `id` existente.
+- **Jerarquía de headings:** 1×h1, 6×h2, 9×h3, 2×h4 — correcta, sin saltos.
+- **Consola:** sin errores al cargar.
+- **`loading="lazy"`** ya presente en imágenes de catálogo; el hero es texto (no hay imagen LCP que priorizar).
+
+### 🔴 Pendiente de tu OK — peso de imágenes (mayor ganancia de performance)
+- **`img/` pesa 73 MB.** Los PNG son el grueso (~40 MB). Hay archivos de **500–615 KB** por frasco.
+- **Propuesta:** convertir los PNG/JPG de producto a **WebP** (máx 700px, calidad 82). Reducción estimada **~60–70%** (73 MB → ~25 MB), sin pérdida visible. Mejora directa de LCP y del tiempo de carga del catálogo.
+- **Por qué necesito tu OK:** implica **reemplazar/borrar** los archivos `.png` originales (tu regla: no borrar imágenes sin confirmación). Los favicons y la `og-image` **no** se tocan.
+- Lo hago con un script reproducible y verifico 0 imágenes rotas al terminar.
+
+### 🟡 Recomendaciones menores
+- Token de color `--nogal` definido pero **sin uso** (limpieza).
+- **Schema.org `Product`:** hoy hay `Store` (bien). Para SEO de productos se podría inyectar un `ItemList` dinámico de fragancias; ROI medio, suma peso. Opcional.
+- `sitemap.xml` tiene 1 URL (correcto para one-page); `robots.txt` y `canonical` OK.
 
 ## Fase 3 — UX y conversión
 
