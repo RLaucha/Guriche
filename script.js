@@ -669,14 +669,15 @@ function escapeHtml(value) {
 }
 
 function safeImageSource(value) {
-  const source = String(value || "").trim();
-  if (
-    source.startsWith("img/") ||
-    source.startsWith("/img/") ||
-    source.startsWith("https://")
-  ) {
+  let source = String(value || "").trim();
+  const isLocal = source.startsWith("img/") || source.startsWith("/img/");
+  if (isLocal) {
+    // Las fotos de producto se sirven en WebP. La fuente (Google Sheet) puede
+    // seguir apuntando a .png/.jpg; normalizamos a .webp para no romper imágenes.
+    source = source.replace(/\.(png|jpe?g)(\?.*)?$/i, ".webp$2");
     return source;
   }
+  if (source.startsWith("https://")) return source;
   return "";
 }
 
