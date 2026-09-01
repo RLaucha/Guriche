@@ -1287,14 +1287,16 @@ const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
+  const open = navLinks.classList.toggle("open");
   menuToggle.classList.toggle("active");
+  menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
 });
 
 document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.classList.remove("open");
     menuToggle.classList.remove("active");
+    menuToggle.setAttribute("aria-expanded", "false");
   });
 });
 
