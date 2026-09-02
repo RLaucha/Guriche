@@ -1,11 +1,11 @@
 /* ============================================================
    GURICHE — Premium Luxury Perfume Website
    ============================================================
-   Design System:
-     Background  #08090d / Surface #10131a
-     Gold accent  #a45c40 → #c98a68
-     Violet accent #5F3D32
-     Typography   Playfair Display (headings) + Inter (body)
+   Sistema de diseño (marca Guriche):
+     Fondo (tinta cálida)  #2B2620 · Surface #362A20
+     Terracota  #874B35 / #a45c40 → #c98a68
+     Crema  #EDE2C9 · Texto #EFE6D4
+     Tipografía   EB Garamond (títulos) + Jost (texto)
    ============================================================ */
 
 /* Las fuentes se cargan desde index.html con <link rel="preconnect"> + display=swap.
@@ -14,7 +14,6 @@
 /* ── Design Tokens ────────────────────────────────────────── */
 :root {
   /* Paleta de marca Guriche — Tinta nocturno (oscuro cálido) */
-  --nogal:         #874B35;  /* nogal rojizo */
   --arena:         #E4D6BC;
   --arena-clara:   #EDE2C9;
   --tinta:         #2B2620;  /* fondo principal oscuro */
@@ -48,7 +47,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -57,7 +56,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
 }
 
 h1 {
@@ -298,7 +297,7 @@ a {
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text);
@@ -367,7 +366,7 @@ a {
 }
 
 .section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   margin-bottom: 0.5rem;
 }
 
@@ -393,7 +392,7 @@ a {
 }
 
 .catalog-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.6rem;
   color: var(--primary);
   margin-bottom: 2rem;
@@ -417,7 +416,7 @@ a {
 }
 
 .brand-header {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
@@ -476,7 +475,7 @@ a {
   gap: 10px;
   background: linear-gradient(135deg, #2f261c, #241d16);
   border-bottom: 1px solid rgba(164, 92, 64, 0.12);
-  color: var(--muted, #9aa0a6);
+  color: var(--muted);
 }
 
 .perfume-card .no-photo svg {
@@ -498,7 +497,7 @@ a {
 }
 
 .perfume-body h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.05rem;
   margin-bottom: 0.4rem;
 }
@@ -521,7 +520,7 @@ a {
 
 .perfume-price strong {
   color: var(--primary-light);
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.35rem;
   line-height: 1.2;
 }
@@ -614,7 +613,7 @@ a {
 }
 
 .brand-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
@@ -627,7 +626,7 @@ a {
 }
 
 .brand-cta {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--primary);
@@ -751,7 +750,7 @@ a {
   border: 1px solid rgba(237, 226, 201, 0.12);
   background: transparent;
   color: var(--muted);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
@@ -830,7 +829,7 @@ a {
 }
 
 .brand-entry-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
@@ -843,7 +842,7 @@ a {
 }
 
 .brand-entry-count {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 0.78rem;
   color: var(--muted);
   transition: color 0.3s ease;
@@ -876,7 +875,7 @@ a {
   border: 1px solid rgba(237, 226, 201, 0.12);
   background: transparent;
   color: var(--muted);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
@@ -891,7 +890,7 @@ a {
 }
 
 .brand-detail-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text);
@@ -1045,7 +1044,7 @@ a {
 }
 
 .card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
@@ -1113,7 +1112,7 @@ a {
 }
 
 .about-quote {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 8rem;
   color: rgba(164, 92, 64, 0.12);
   line-height: 1;
@@ -1192,7 +1191,7 @@ textarea:focus {
 }
 
 .footer-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.5rem;
   color: var(--text);
   margin-bottom: 0.4rem;
@@ -1494,7 +1493,7 @@ select:focus-visible,
 .quiz { padding: 4vh 0; background: transparent; color: var(--quiz-carbon); }
 .quiz * { box-sizing: border-box; }
 .quiz .kicker { font-size: 13px; letter-spacing: .5em; color: var(--quiz-acero); font-weight: 500; text-transform: uppercase; }
-.quiz h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); margin: 18px 0 8px; letter-spacing: -.01em; color: var(--quiz-carbon); }
+.quiz h2 { font-family: 'EB Garamond', serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); margin: 18px 0 8px; letter-spacing: -.01em; color: var(--quiz-carbon); }
 .quiz .progress { display: flex; gap: 8px; margin: 42px 0 30px; max-width: 520px; }
 .quiz .progress span { flex: 1; height: 3px; background: var(--quiz-superficie); transition: background .4s ease, transform .4s ease; border-radius: 2px; }
 .quiz .progress span.on { background: var(--quiz-acero); transform: scaleY(1.6); }
@@ -1502,7 +1501,7 @@ select:focus-visible,
 .qstep { max-width: 760px; }
 .qstep.swap { animation: stepIn .45s cubic-bezier(.2, .7, .2, 1); }
 @keyframes stepIn { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }
-.qstep h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 500; margin-bottom: 30px; color: var(--quiz-carbon); font-family: 'Playfair Display', serif; }
+.qstep h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 500; margin-bottom: 30px; color: var(--quiz-carbon); font-family: 'EB Garamond', serif; }
 
 .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
 .opt { 
@@ -1532,7 +1531,7 @@ select:focus-visible,
 .match:nth-child(3) { animation-delay: .24s; }
 .match:hover { border-color: rgba(164, 92, 64, 0.3); box-shadow: 0 15px 30px rgba(0,0,0,0.4); transform: translateY(-5px); }
 .match .tag { position: absolute; top: -12px; left: 24px; background: linear-gradient(135deg, #b0623f, #7c4430); color: #F1E9D9; font-size: 11px; letter-spacing: .25em; padding: 5px 12px; font-weight: 700; border-radius: var(--radius-pill); }
-.match h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; margin-top: 6px; color: var(--quiz-carbon); font-family: 'Playfair Display', serif; }
+.match h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; margin-top: 6px; color: var(--quiz-carbon); font-family: 'EB Garamond', serif; }
 .match .meta { color: var(--quiz-gris); font-size: .9rem; margin-bottom: 18px; }
 .match .price { font-size: 1.7rem; font-weight: 600; letter-spacing: -.02em; color: var(--quiz-acero); }
 .match .price small { font-size: .75rem; color: var(--quiz-gris); display: block; font-weight: 400; letter-spacing: 0; margin-top: 4px; }
@@ -1630,7 +1629,7 @@ select:focus-visible,
 }
 .cart-header h3 {
   margin: 0;
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-weight: 500;
   color: var(--text);
   font-size: 1.4rem;
@@ -1690,7 +1689,7 @@ select:focus-visible,
   flex-direction: column;
   gap: 0.1rem;
 }
-.cart-total strong { color: var(--primary-light); font-size: 1.15rem; font-family: 'Playfair Display', serif; }
+.cart-total strong { color: var(--primary-light); font-size: 1.15rem; font-family: 'EB Garamond', serif; }
 .cart-total small { font-size: 0.68rem; font-style: italic; opacity: 0.85; }
 
 .cart-whatsapp {
@@ -1753,7 +1752,7 @@ select:focus-visible,
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.3rem;
   color: var(--primary-light);
   background: rgba(164, 92, 64, 0.12);
