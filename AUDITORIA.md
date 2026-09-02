@@ -167,4 +167,29 @@ La ficha hoy: imagen + marca + nombre + descripción libre + precio + botón. Fa
   - Estado vacío del buscador reescrito con ángulo "lo traemos a pedido".
 - ⏳ **Pendiente de datos tuyos** (no los invento): familia olfativa, género estructurado, duración, estela, ocasión → habilitan también los **filtros** y el **ordenamiento**. Medios de pago, zona de envío y política de cambios para la sección de confianza.
 
-## Fase 4 — Coherencia de marca _(pendiente)_
+## Fase 4 — Coherencia de marca
+
+### ✅ Aplicado
+- **Tipografía alineada al brief:** Playfair Display → **EB Garamond** (títulos/marca), Inter → **Jost** (texto). Se mantiene el tema oscuro cálido actual. Verificado en navegador: se ve más sobrio y clásico, sin romper layout (0 overflow en mobile/desktop).
+- **Limpieza de tokens:** eliminado `--nogal` (sin uso); fallback frío `#9aa0a6` → `--muted`; comentario de cabecera del CSS actualizado a la paleta real (estaba con `#08090d`/"violet" de un template).
+
+### Paleta — estado
+- La paleta oficial (crema `#EDE2C9` + terracota `#8A4C38`) está presente: el terracota real usado es `#874B35` (≈ el oficial) más una escala (`#a45c40` → `#c98a68`) y la crema `#EDE2C9`/`#EFE6D4`. Es una expansión coherente para un tema oscuro.
+- Contraste AA verificado (ver Fase 2). No hay colores fríos "vivos" que choquen (los que quedaban eran comentario/fallback muertos, ya limpiados).
+
+### Pendiente / decisión tuya
+- **Tema oscuro vs. crema:** el brief describe una estética "crema y terracota"; el sitio la implementa como **tema oscuro cálido** (fondo tinta `#2B2620`). Es una decisión de diseño válida y está bien ejecutada — **no la cambié**. Si querés una versión clara (crema de fondo), es un rediseño aparte que puedo encarar si lo pedís.
+- Logo/favicon: el logo es tipográfico ("Guriche" en EB Garamond). Favicons presentes (32/180/512). Coherentes.
+
+---
+
+## Resumen ejecutivo
+
+**Estado del sitio (5 líneas):** catálogo de 371 perfumes limpio (0 duplicados, 0 imágenes rotas, cada perfume con su foto correcta), 366/371 con precio en vivo del Sheet. Performance muy mejorada (imágenes 73 MB → 9 MB en WebP, fuentes sin doble carga). UX reforzada para la objeción "no puedo olerlo" (sello de autenticidad, "cómo funciona", CTA doble a WhatsApp). Marca alineada a EB Garamond + Jost. Responsive verificado en 360/375/768/1440. Todo en la rama `auditoria/optimizacion-completa`, sin desplegar aún.
+
+**Pendiente de tu lado (Google Sheet):**
+1. Cargar **precio** a 5 productos con la celda vacía: Polo Blue 125ml (WEB-0001), CK One 200ml (WEB-0031), Le Maxi Male 200ml (WEB-0196), Amouage Opus VII Reckless (WEB-0300) y Reflection (WEB-0302).
+2. (Opcional, ya no bloquea precios) sincronizar los typos de nombre y borrar los 14 duplicados en el Sheet para mantenerlo prolijo.
+3. Pasar foto de mejor resolución para **Divine Couture** (la actual es 160px).
+
+**Para cerrar:** desplegar a `guriche.com.ar` (push de la rama / merge a main).
