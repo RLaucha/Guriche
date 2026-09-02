@@ -1354,6 +1354,23 @@ function deriveFamilies(desc) {
   return fams;
 }
 
+// Género derivado del nombre (fem / masc / unisex).
+function deriveGender(name) {
+  const t = " " + qnorm(name) + " ";
+  if (/\b(fem|femme|women|woman|for her|pour femme|donna|her)\b/.test(t)) return "f";
+  if (/\b(masc|homme|men|man|for him|pour homme|uomo|him)\b/.test(t)) return "m";
+  return "u"; // sin marca de género → unisex/indistinto
+}
+
+// Etiquetas lindas para mostrar el perfil olfativo.
+const FAMILY_LABEL = { fresco: "Fresco", dulce: "Dulce", especiado: "Especiado", amaderado: "Amaderado", frutal: "Frutal", floral: "Floral" };
+const INTENSITY_LABEL = { sutil: "Estela sutil", presente: "Estela presente", huella: "Deja huella" };
+function intensityTag(inten) {
+  if (inten.includes("huella")) return INTENSITY_LABEL.huella;
+  if (inten.includes("sutil") && !inten.includes("presente")) return INTENSITY_LABEL.sutil;
+  return INTENSITY_LABEL.presente;
+}
+
 function deriveIntensity(name, desc) {
   const t = qnorm(name + " " + desc);
   const fuerte = /(extrait|elixir|absolu|intens|profund|opulent|potente|estela|nocturn|oud|extreme)/.test(t) || (/\bparfum\b/.test(t) && !/eau de parfum/.test(t));
@@ -1395,7 +1412,9 @@ function buildQuizPool() {
             n: `${marca.nombre} ${p.nombre}`,
             marca: marca.nombre,
             nombre: p.nombre,
+            d: desc,
             f: fams,
+            g: deriveGender(p.nombre),
             o: deriveOccasions(fams, inten),
             i: inten,
             p: typeof p.precio === "number" && p.precio > 0 ? p.precio : null,
@@ -1417,6 +1436,11 @@ const QUIZ_REL = {
 };
 
 const QUESTIONS = [
+  {k:"g", t:"¿Para quién lo buscás?", opts:[
+    ["m","Para él","Masculino"],
+    ["f","Para ella","Femenino"],
+    ["u","Unisex","Va con cualquiera"],
+    ["x","Indistinto","Mostrame de todo"]]},
   {k:"o", t:"¿Para qué momento lo querés?", opts:[
     ["diario","Todos los días","Versátil, va con todo"],
     ["oficina","Trabajo / facu","Elegante sin invadir"],
@@ -1443,7 +1467,7 @@ const qbox = document.getElementById('qbox'), prog = document.getElementById('pr
 function renderStep(){
   if(!qbox || !prog) return;
   const q = QUESTIONS[quizStep];
-  [...prog.children].forEach((s,idx)=>s.classList.toggle('on', idx<=quizStep));
+  prog.innerHTML = QUESTIONS.map((_,i)=>`<span class="${i<=quizStep?'on':''}"></span>`).join('');
   qbox.innerHTML = `<h3>${q.t}</h3><div class="opts">` +
     q.opts.map(o=>`<button class="opt" onclick="pickQuiz('${q.k}','${o[0]}')">${o[1]}<small>${o[2]}</small></button>`).join('') + `</div>`;
   qbox.classList.remove('swap'); void qbox.offsetWidth; qbox.classList.add('swap');
@@ -1457,6 +1481,15 @@ function pickQuiz(k,v){
 
 function scorePerfume(pf){
   let s = 0;
+  // Género: si pidió masc/fem, se excluye el género opuesto y se premia el correcto.
+  const g = quizAnswers.g;
+  if(g==="m" || g==="f"){
+    if(pf.g===g) s+=5;
+    else if(pf.g==="u") s+=1;
+    else s-=8; // género opuesto: casi descartado
+  } else if(g==="u"){
+    if(pf.g==="u") s+=3;
+  } // "x" (indistinto): sin efecto
   // Aroma (lo que más pesa) con crédito parcial para familias relacionadas.
   if(pf.f.includes(quizAnswers.f)) s+=5;
   else if((QUIZ_REL[quizAnswers.f]||[]).some(r=>pf.f.includes(r))) s+=2;
@@ -1473,12 +1506,42 @@ function scorePerfume(pf){
   return s;
 }
 
+// Motivos legibles por los que un perfume matchea las respuestas del test.
+function matchReasons(pf){
+  const r = [];
+  if(pf.f.includes(quizAnswers.f)) r.push("aroma " + (FAMILY_LABEL[quizAnswers.f]||quizAnswers.f).toLowerCase());
+  else if((QUIZ_REL[quizAnswers.f]||[]).some(x=>pf.f.includes(x))) r.push("aroma afín al que buscás");
+  const occLabel = {diario:"para todos los días", oficina:"para la oficina", noche:"para la noche", cita:"para citas"};
+  if(pf.o.includes(quizAnswers.o) && occLabel[quizAnswers.o]) r.push(occLabel[quizAnswers.o]);
+  if(pf.i.includes(quizAnswers.i)) r.push(intensityTag(pf.i).toLowerCase());
+  if((quizAnswers.g==="m"||quizAnswers.g==="f") && pf.g===quizAnswers.g) r.push(quizAnswers.g==="m"?"masculino":"femenino");
+  const budget=Number(quizAnswers.p);
+  if(pf.p!=null && pf.p<=budget && budget!==999999) r.push("dentro de tu presupuesto");
+  return r.slice(0,3);
+}
+
+// Nombre base para no repetir la misma fragancia en los resultados.
+function quizBase(nombre){
+  return qnorm(nombre)
+    .replace(/\b(eau de parfum|eau de toilette|eau de cologne|extrait|le parfum|parfum|cologne|edp|edt|edc|intense|intenso|elixir|absolu|extreme|refillable)\b/g," ")
+    .replace(/\b\d+\s*ml\b/g," ")
+    .replace(/\b(fem|femme|masc|homme|men|women|pour|for|her|him|uomo|donna)\b/g," ")
+    .replace(/[^a-z0-9]+/g," ").trim();
+}
+
 function showResults(){
   qbox.style.display='none';
   const pool = buildQuizPool();
-  const top = pool.map(p=>({...p,s:scorePerfume(p)}))
-                  .sort((a,b)=>b.s-a.s || (b.p!=null)-(a.p!=null))
-                  .slice(0,3);
+  const ranked = pool.map(p=>({...p,s:scorePerfume(p)}))
+                  .sort((a,b)=>b.s-a.s || (b.p!=null)-(a.p!=null));
+  // Tomar los 3 mejores pero de fragancias DISTINTAS (no 3 variantes del mismo).
+  const top=[], seen=new Set();
+  for(const p of ranked){
+    const base=p.marca+"|"+quizBase(p.nombre);
+    if(seen.has(base)) continue;
+    seen.add(base); top.push(p);
+    if(top.length===3) break;
+  }
   document.getElementById('matches').innerHTML = top.map((p,idx)=>{
     const precio = p.p!=null
       ? `USD ${Math.round(p.p).toLocaleString('es-AR')}<small>pago en pesos al cambio del día de la entrega</small>`
@@ -1486,6 +1549,13 @@ function showResults(){
     const img = p.img
       ? `<img src="${p.img}" alt="${escapeHtml(p.marca + ' ' + p.nombre)} — perfume original importado" loading="lazy" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
       : '';
+    // Perfil olfativo: familias (priorizando la que elegiste) + intensidad.
+    const famsOrdered = [...p.f].sort((a,b)=>(b===quizAnswers.f?1:0)-(a===quizAnswers.f?1:0));
+    const chips = [...famsOrdered.map(f=>FAMILY_LABEL[f]).filter(Boolean).slice(0,2), intensityTag(p.i)]
+      .map(c=>`<span class="chip">${escapeHtml(c)}</span>`).join('');
+    const reasons = matchReasons(p);
+    const why = reasons.length ? `<div class="match-why"><strong>Por qué:</strong> ${escapeHtml(reasons.join(' · '))}</div>` : '';
+    const desc = p.d ? `<p class="match-desc">${escapeHtml(p.d)}</p>` : '';
     const msg = `Hola! Hice el test olfativo en la web y me dio: ${p.n}. ¿Tenés stock?`;
     return `
     <div class="match">
@@ -1493,6 +1563,9 @@ function showResults(){
       ${img}
       <h4>${escapeHtml(p.nombre)}</h4>
       <div class="meta">${p.nicho?'Nicho · ':''}${escapeHtml(p.marca)}</div>
+      ${chips?`<div class="chips">${chips}</div>`:''}
+      ${desc}
+      ${why}
       <div class="price">${precio}</div>
       <a href="https://wa.me/${WHATSAPP_QUIZ}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Lo quiero → WhatsApp</a>
     </div>`;

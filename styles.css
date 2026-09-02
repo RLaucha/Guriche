@@ -1532,7 +1532,12 @@ select:focus-visible,
 .match:hover { border-color: rgba(164, 92, 64, 0.3); box-shadow: 0 15px 30px rgba(0,0,0,0.4); transform: translateY(-5px); }
 .match .tag { position: absolute; top: -12px; left: 24px; background: linear-gradient(135deg, #b0623f, #7c4430); color: #F1E9D9; font-size: 11px; letter-spacing: .25em; padding: 5px 12px; font-weight: 700; border-radius: var(--radius-pill); }
 .match h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; margin-top: 6px; color: var(--quiz-carbon); font-family: 'EB Garamond', serif; }
-.match .meta { color: var(--quiz-gris); font-size: .9rem; margin-bottom: 18px; }
+.match .meta { color: var(--quiz-gris); font-size: .9rem; margin-bottom: 12px; }
+.match .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.match .chip { font-size: .72rem; letter-spacing: .03em; padding: 3px 10px; border-radius: var(--radius-pill); background: rgba(164, 92, 64, 0.1); color: var(--quiz-acero); border: 1px solid rgba(164, 92, 64, 0.25); }
+.match-desc { color: var(--quiz-gris); font-size: .9rem; line-height: 1.5; margin-bottom: 12px; }
+.match-why { font-size: .82rem; color: var(--quiz-carbon); background: rgba(164, 92, 64, 0.06); border-left: 2px solid var(--quiz-acero); padding: 8px 12px; border-radius: 6px; margin-bottom: 16px; }
+.match-why strong { color: var(--quiz-acero); }
 .match .price { font-size: 1.7rem; font-weight: 600; letter-spacing: -.02em; color: var(--quiz-acero); }
 .match .price small { font-size: .75rem; color: var(--quiz-gris); display: block; font-weight: 400; letter-spacing: 0; margin-top: 4px; }
 .match a { 
