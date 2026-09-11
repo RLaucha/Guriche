@@ -965,7 +965,7 @@ function renderCatalogMain(scrollToTop = false) {
     const countText = count > 0 ? `${count} fragancia${count > 1 ? "s" : ""}` : "Consultanos";
 
     card.innerHTML = `
-      <span class="brand-entry-name">${marca.nombre}</span>
+      <span class="brand-entry-name">${escapeHtml(marca.nombre)}</span>
       <span class="brand-entry-count">${countText}</span>
       <span class="brand-entry-arrow">→</span>
     `;
@@ -1055,11 +1055,11 @@ function renderBrandDetail(brandName) {
     emptyMsg.style.cssText = "text-align: center; padding: 3rem 1rem;";
     emptyMsg.innerHTML = `
       <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 1rem;">
-        Estamos sumando fragancias de ${marca.nombre} al catálogo.<br>
+        Estamos sumando fragancias de ${escapeHtml(marca.nombre)} al catálogo.<br>
         Consultanos por disponibilidad.
       </p>
       <a class="btn-consulta-general" href="${igLink}" target="_blank" rel="noopener">
-        Consultar por ${marca.nombre}
+        Consultar por ${escapeHtml(marca.nombre)}
       </a>
     `;
     detailView.appendChild(emptyMsg);
@@ -1546,7 +1546,7 @@ function showResults(){
       ? `USD ${Math.round(p.p).toLocaleString('es-AR')}<small>pago en pesos al cambio del día de la entrega</small>`
       : `Consultar disponibilidad<small>sujeto a disponibilidad</small>`;
     const img = p.img
-      ? `<img src="${p.img}" alt="${escapeHtml(p.marca + ' ' + p.nombre)} — perfume original importado" loading="lazy" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
+      ? `<img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.marca + ' ' + p.nombre)} — perfume original importado" loading="lazy" onerror="window.__photoFallback&&window.__photoFallback(this)" style="width:100%; height:200px; object-fit:contain; margin-bottom:15px; border-radius:8px;">`
       : '';
     // Perfil olfativo: familias (priorizando la que elegiste) + intensidad.
     const famsOrdered = [...p.f].sort((a,b)=>(b===quizAnswers.f?1:0)-(a===quizAnswers.f?1:0));
