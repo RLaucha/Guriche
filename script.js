@@ -686,12 +686,11 @@ function formatCatalogPrice(value) {
 }
 
 function productContactLink(perfume, brandName) {
-  const priceText = perfume.precio
-    ? ` Vi el precio de referencia de ${formatCatalogPrice(perfume.precio)} (si pago en pesos, al cambio del día de la entrega).`
-    : "";
+  const priceText = perfume.precio ? ` — ${formatCatalogPrice(perfume.precio)}` : "";
   const message =
-    `Hola Guriche, quiero consultar disponibilidad de ${brandName} ${perfume.nombre}.` +
-    priceText;
+    `¡Hola, Guriche! Quiero consultar por ${brandName} ${msgName(brandName, perfume.nombre)}${priceText}.` +
+    `\n\n¿Me confirman el precio final y la fecha estimada de entrega?` +
+    `\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
@@ -1627,17 +1626,40 @@ function cartClear() {
 function cartTotal(items) {
   return items.reduce((a, i) => a + (i.precio ? Math.round(i.precio) : 0), 0);
 }
+// "100ML" → "100 ml" para que el nombre se lea más prolijo en el mensaje.
+function prettyName(nombre) {
+  return String(nombre || "").replace(/(\d+)\s*ML\b/gi, "$1 ml");
+}
+// Saca de "nombre" el prefijo de marca redundante (ej. marca "PACO RABANNE" +
+// nombre "RABANNE INVICTUS…" → "INVICTUS…"), para no repetir la marca en el mensaje.
+function stripBrandPrefix(marca, nombre) {
+  const nm = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+  const bWords = nm(marca).split(" ").filter((w) => w.length > 2);
+  let words = String(nombre || "").trim().split(/\s+/);
+  while (words.length > 1) {
+    const w = nm(words[0]);
+    if (!w || bWords.includes(w)) { words.shift(); continue; } // palabra de marca o puntuación suelta (&)
+    break;
+  }
+  return words.join(" ");
+}
+// Nombre listo para el mensaje: sin marca repetida y con "ml" en minúscula.
+function msgName(marca, nombre) {
+  return prettyName(stripBrandPrefix(marca, nombre));
+}
 function cartWhatsappUrl() {
   const items = cartLoad();
   if (!items.length) return "#";
   const lines = items.map(
-    (i, idx) => `${idx + 1}. ${i.marca} ${i.nombre}${i.precio ? ` — USD ${Math.round(i.precio)}` : ""}`,
+    (i, idx) => `${idx + 1}. ${i.marca} ${msgName(i.marca, i.nombre)}${i.precio ? ` — USD ${Math.round(i.precio)}` : ""}`,
   );
-  let msg = `Hola Guriche! Quiero consultar disponibilidad de estos perfumes:\n${lines.join("\n")}`;
+  let msg = `¡Hola, Guriche! Quiero consultar por estos perfumes:\n\n${lines.join("\n")}`;
   const total = cartTotal(items);
   if (total > 0) {
-    msg += `\n\nReferencia: USD ${total.toLocaleString("es-AR")} (si pago en pesos, al cambio del día de la entrega).`;
+    msg += `\n\nTotal de referencia: USD ${total.toLocaleString("es-AR")}.`;
   }
+  msg += `\n\n¿Me confirman el precio final y la fecha estimada de entrega?`;
+  msg += `\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 function cartRender() {
