@@ -131,7 +131,7 @@ const catalogo = [
           { webId: "WEB-0076", nombre: "Y LE PARFUM 100ML", descripcion: "Amaderado intenso con geranio, incienso y fondo de ámbar gris profundo.", imagen: "img/YSL/05 - Yves Saint Laurent - Y Le Parfum.webp" },
           { webId: "WEB-0077", nombre: "MYSLF L'ABSOLU PARFUM 100ML", descripcion: "Oriental intenso con azahar, café y ámbar oscuro magnético.", imagen: "img/YSL/02 - Yves Saint Laurent - Libre L'Absolu Platine.webp" },
           { webId: "WEB-0078", nombre: "YVES SAINT LAURENT BLACK OPIUM EDP 90ML", descripcion: "Gourmand adictivo con café, vainilla negra y jazmín nocturno.", imagen: "img/YSL/13 - Yves Saint Laurent - Black Opium Eau de Parfum.webp" },
-          { webId: "WEB-0079", nombre: "YVES SAINT LAURENT LIBRE EDP INTENSE EDP 90ML", descripcion: "Floral intenso con lavanda, azahar y vainilla de Madagascar profunda.", imagen: "img/YSL/01 - Yves Saint Laurent - Libre Le Parfum.webp" },
+          { webId: "WEB-0079", nombre: "YVES SAINT LAURENT LIBRE EDP INTENSE EDP 90ML", descripcion: "Floral intenso con lavanda, azahar y vainilla de Madagascar profunda.", imagen: "img/YSL/Yves Saint Laurent - Libre Intense.webp" },
           { webId: "WEB-0080", nombre: "YVES SAINT LAURENT LIBRE L'EAU NUE PARFUM DE PEAU 90ML", descripcion: "Floral almizclado con neroli, lavanda y almizcle blanco translúcido.", imagen: "img/YSL/Yves Saint Laurent - Libre L'Eau Nue.webp" },
         ]
       },
@@ -302,13 +302,13 @@ const catalogo = [
         nombre: "VALENTINO",
         perfumes: [
           { webId: "WEB-0204", nombre: "UOMO CLASICO EDT 100ML", descripcion: "Cuero suave con iris, café y notas amaderadas elegantes y masculinas.", imagen: "img/Valentino/Valentino - Uomo Clasico.webp" },
-          { webId: "WEB-0205", nombre: "UOMO BORN IN ROMA EXTRADOSE PARFUM 100ML", descripcion: "Gourmand especiado con salvia, vetiver y vainilla concentrada intensa.", imagen: "img/Valentino/02 - Valentino - Uomo Born In Roma Intense.webp" },
+          { webId: "WEB-0205", nombre: "UOMO BORN IN ROMA EXTRADOSE PARFUM 100ML", descripcion: "Gourmand especiado con salvia, vetiver y vainilla concentrada intensa.", imagen: "img/Valentino/Valentino - Uomo Born In Roma Extradose.webp" },
           { webId: "WEB-0206", nombre: "UOMO BORN IN ROMA EDT 100ML", descripcion: "Aromático especiado con salvia, vetiver y vainilla amaderada moderna.", imagen: "img/Valentino/04 - Valentino - Uomo Born In Roma.webp" },
           { webId: "WEB-0207", nombre: "UOMO BORN IN ROMA INTENSE EDP 100ML", descripcion: "Especiado intenso con salvia, jengibre ahumado y vainilla profunda.", imagen: "img/Valentino/02 - Valentino - Uomo Born In Roma Intense.webp" },
           { webId: "WEB-0208", nombre: "DONNA BORN IN ROMA EDP 100ML", descripcion: "Floral gourmand con jazmín, vainilla bourbon y madera de cedro.", imagen: "img/Valentino/07 - Valentino - Donna Born In Roma.webp" },
           { webId: "WEB-0209", nombre: "DONNA BORN IN ROMA THE GOLD EDP 100ML", descripcion: "Floral dorado con jazmín, osmanthus y vainilla suntuosa y radiante.", imagen: "img/Valentino/Valentino - Donna Born In Roma The Gold.webp" },
           { webId: "WEB-0210", nombre: "DONNA BORN IN ROMA CORAL FANTASY EDP 100ML", descripcion: "Frutal floral con mandarina, magnolia y vainilla coral vibrante.", imagen: "img/Valentino/06 - Valentino - Donna Born In Roma Coral Fantasy.webp" },
-          { webId: "WEB-0211", nombre: "DONNA BORN IN ROMA EXTRADOSE PARFUM 100ML", descripcion: "Floral intenso con jazmín concentrado, vainilla y notas cremosas.", imagen: "img/Valentino/07 - Valentino - Donna Born In Roma.webp" },
+          { webId: "WEB-0211", nombre: "DONNA BORN IN ROMA EXTRADOSE PARFUM 100ML", descripcion: "Floral intenso con jazmín concentrado, vainilla y notas cremosas.", imagen: "img/Valentino/Valentino - Donna Born In Roma Extradose.webp" },
           { webId: "WEB-0212", nombre: "DONNA BORN IN ROMA GREEN STRAVAGANZA EDP 100ML", descripcion: "Verde floral con hojas de higo, jazmín y almizcle verde fresco.", imagen: "img/Valentino/Valentino - Donna Born In Roma Green Stravaganza.webp" },
           { webId: "WEB-0213", nombre: "VALENTINO DONNA BORN IN ROMA INTENSE EDP 100ML", descripcion: "Floral oriental con jazmín, tuberosa y vainilla oscura envolvente.", imagen: "img/Valentino/08 - Valentino - Donna Born In Roma Intense.webp" },
         ]
@@ -329,9 +329,9 @@ const catalogo = [
           { webId: "WEB-0219", nombre: "BLEU DE CHANEL EDT 100ML", descripcion: "Cítrico amaderado con menta, pomelo y vetiver limpio y sofisticado.", imagen: "img/Chanel/Chanel_Bleu_de_Chanel_EDT.webp" },
           { webId: "WEB-0220", nombre: "BLEU DE CHANEL PARFUM 100ML", descripcion: "Amaderado aromático con sándalo, cedro y almizcle noble y profundo.", imagen: "img/Chanel/Chanel_Bleu_de_Chanel_Parfum.webp" },
           { webId: "WEB-0221", nombre: "CHANEL ALLURE HOMME SPORT EDT 100ML", descripcion: "Fresco deportivo con mandarina, pimienta y cedro blanco vibrante.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport.webp" },
-          { webId: "WEB-0222", nombre: "CHANEL ALLURE HOMME SPORT EAU EXTREME 100ML", descripcion: "Aromático intenso con menta, pimienta y sándalo potente y envolvente.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport.webp" },
+          { webId: "WEB-0222", nombre: "CHANEL ALLURE HOMME SPORT EAU EXTREME 100ML", descripcion: "Aromático intenso con menta, pimienta y sándalo potente y envolvente.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport_Eau_Extreme.webp" },
           { webId: "WEB-0223", nombre: "BLEU DE CHANEL EDT 150ML", descripcion: "Cítrico amaderado con menta, pomelo y vetiver limpio y sofisticado.", imagen: "img/Chanel/Chanel_Bleu_de_Chanel_EDT.webp" },
-          { webId: "WEB-0224", nombre: "CHANEL ALLURE HOMME SPORT COLOGNE 150ML", descripcion: "Cítrico chispeante con mandarina, neroli y almizcle blanco refrescante.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport.webp" },
+          { webId: "WEB-0224", nombre: "CHANEL ALLURE HOMME SPORT COLOGNE 150ML", descripcion: "Cítrico chispeante con mandarina, neroli y almizcle blanco refrescante.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport_Cologne.webp" },
           { webId: "WEB-0225", nombre: "BLEU DE CHANEL EDP 100ML", descripcion: "Amaderado aromático con menta, incienso y cedro profundo y elegante.", imagen: "img/Chanel/Chanel_Bleu_de_Chanel.webp" },
           { webId: "WEB-0226", nombre: "CHANEL ALLURE HOMME SPORT SUPERLEGGERA EDP 100ML", descripcion: "Aromático intenso con notas cítricas, especiadas y amaderadas refinadas.", imagen: "img/Chanel/Chanel_Allure_Homme_Sport_Superleggera.webp" },
         ]
