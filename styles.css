@@ -1,10 +1,9 @@
 /* ============================================================
    GURICHE — Premium Luxury Perfume Website
    ============================================================
-   Sistema de diseño (marca Guriche):
-     Fondo (tinta cálida)  #2B2620 · Surface #362A20
-     Terracota  #874B35 / #a45c40 → #c98a68
-     Crema  #EDE2C9 · Texto #EFE6D4
+   Sistema de diseño (marca Guriche · Atelier):
+     Fondo crema  #EDE2C9 · Surface #FBF7EE · Texto tinta #2B2620
+     Terracota  #8A4C38 (acentos, precios, botones)
      Tipografía   EB Garamond (títulos) + Jost (texto)
    ============================================================ */
 
@@ -13,22 +12,24 @@
 
 /* ── Design Tokens ────────────────────────────────────────── */
 :root {
-  /* Paleta de marca Guriche — Tinta nocturno (oscuro cálido) */
+  /* Paleta de marca Guriche — Atelier (crema cálido / terracota) */
   --arena:         #E4D6BC;
   --arena-clara:   #EDE2C9;
-  --tinta:         #2B2620;  /* fondo principal oscuro */
+  --tinta:         #2B2620;  /* tinta = texto principal */
   --cacao:         #5F3D32;
 
-  --bg:            #2B2620;
-  --surface:       #362A20;
-  --surface-glass:  rgba(60, 46, 36, 0.55);
-  --text:          #EFE6D4;
-  --muted:         #b0a088;
-  --border:        rgba(237, 226, 201, 0.12);
-  --primary:       #a45c40;
-  --primary-light: #c98a68;
-  --primary-glow:  rgba(164, 92, 64, 0.2);
-  --accent:        #5F3D32;
+  --bg:            #EDE2C9;               /* fondo crema */
+  --bg-2:          #F3EBD8;               /* crema más claro para secciones */
+  --surface:       #FBF7EE;               /* tarjetas / superficies casi blancas */
+  --surface-glass:  rgba(251, 247, 238, 0.72);
+  --text:          #2B2620;               /* texto tinta */
+  --muted:         #6B6050;               /* apoyo cálido (AA sobre crema) */
+  --border:        rgba(43, 38, 32, 0.14);
+  --primary:       #8A4C38;               /* terracota oficial */
+  --primary-light: #A4553A;               /* terracota para acentos (contrasta en crema) */
+  --primary-glow:  rgba(138, 76, 56, 0.16);
+  --accent:        #8A4C38;
+  --btn-text:      #F6EFDF;               /* texto claro sobre botón terracota */
   --radius:        16px;
   --radius-pill:   999px;
 }
@@ -212,7 +213,7 @@ a {
 }
 
 .hero h1 {
-  background: linear-gradient(135deg, #c98a68, #a45c40, #e6c9a0);
+  background: linear-gradient(135deg, #A4553A, #8A4C38, #6E3B2B);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -290,9 +291,10 @@ a {
 }
 
 .navbar.scrolled {
-  background: rgba(29, 25, 20, 0.9);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* Sin backdrop-filter a propósito: crea un containing block que rompe el
+     menú móvil (position:fixed) y lo deja tapando la página al scrollear.
+     Usamos un fondo crema casi sólido en su lugar. */
+  background: rgba(240, 231, 213, 0.96);
   border-bottom: 1px solid var(--border);
 }
 
@@ -473,8 +475,8 @@ a {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, #2f261c, #241d16);
-  border-bottom: 1px solid rgba(164, 92, 64, 0.12);
+  background: linear-gradient(135deg, #F3EBD8, #E4D6BC);
+  border-bottom: 1px solid rgba(138, 76, 56, 0.14);
   color: var(--muted);
 }
 
@@ -1242,7 +1244,7 @@ textarea:focus {
 }
 
 .social-links a:hover {
-  color: #fff;
+  color: var(--tinta);
   transform: scale(1.15);
   filter: drop-shadow(0 0 8px rgba(164, 92, 64, 0.5));
 }
@@ -1402,7 +1404,7 @@ select:focus-visible,
   .nav-links {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(237, 226, 201, 0.97);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     display: flex;
@@ -1426,7 +1428,7 @@ select:focus-visible,
   .nav-links a {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--text);
   }
 
   .nav-links a::after {
