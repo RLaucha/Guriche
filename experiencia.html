@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#EDE2C9" />
+<title>Guriche · Atelier</title>
+<meta name="description" content="Explorá la colección de perfumes originales de Guriche. Fotografías reales, notas y consulta directa." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --crema:#EDE2C9; --crema-2:#E4D6BC; --tinta:#2B2620; --terra:#8A4C38;
+    --terra-2:#a45c40; --muted:#8a7d68; --line:rgba(43,38,32,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif; color:var(--tinta);
+    background:var(--crema);   /* plano: el recorte del frasco (background-blend) queda perfecto */
+    min-height:100svh; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .shell{min-height:100svh;display:flex;flex-direction:column}
+
+  /* Header */
+  .top{display:flex;align-items:center;justify-content:space-between;padding:clamp(18px,3vw,34px) clamp(20px,5vw,60px)}
+  .wordmark{font-family:'EB Garamond',serif;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:600;letter-spacing:.16em;color:var(--tinta)}
+  .top .coleccion{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:500}
+  .top .coleccion:hover{opacity:.7}
+
+  /* Stage */
+  .stage{flex:1;display:grid;place-items:center;position:relative;padding:clamp(10px,3vw,20px) clamp(64px,8vw,110px) clamp(30px,5vw,60px)}
+  /* Mobile (default): marca → nombre → frasco → detalles, en columna */
+  .perfume{display:grid;width:min(1120px,100%);gap:clamp(6px,1.6vw,14px);
+    grid-template-columns:1fr;grid-template-areas:"brand" "name" "bottle" "details";
+    text-align:center;justify-items:center;align-content:center}
+  .brand{grid-area:brand}.name{grid-area:name}.bottle{grid-area:bottle}.details{grid-area:details}
+  /* Desktop: texto a la izquierda, frasco a la derecha */
+  @media(min-width:841px){
+    .perfume{grid-template-columns:1.05fr .95fr;column-gap:clamp(20px,4vw,60px);
+      grid-template-areas:"brand bottle" "name bottle" "details bottle";
+      text-align:left;justify-items:start;align-content:center}
+    .bottle{align-self:center}
+  }
+
+  .brand{font-size:clamp(.72rem,1.4vw,.9rem);letter-spacing:.34em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:clamp(4px,1.4vw,14px)}
+  .name{font-family:'EB Garamond',serif;font-weight:700;line-height:.94;font-size:clamp(2.5rem,8vw,6rem);letter-spacing:-.01em;color:var(--tinta)}
+  .name span{display:block}
+  .details{position:relative;z-index:2}
+  .conc{margin-top:clamp(12px,2.4vw,24px);font-size:.9rem;letter-spacing:.08em;color:var(--muted)}
+
+  .notes{margin-top:clamp(14px,2.4vw,26px);max-width:34ch}
+  @media(max-width:840px){.notes{margin-inline:auto}}
+  .notes summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta);padding:9px 0;border-bottom:1px solid var(--line);user-select:none}
+  .notes summary::-webkit-details-marker{display:none}
+  .notes summary .pm{font-family:'EB Garamond',serif;font-size:1.3rem;color:var(--terra);transition:transform .3s}
+  .notes[open] summary .pm{transform:rotate(45deg)}
+  .notes .desc{font-family:'EB Garamond',serif;font-style:italic;font-size:1.12rem;line-height:1.55;color:var(--tinta);padding:16px 0 4px;animation:fade .5s ease}
+
+  .buy{margin-top:clamp(20px,3vw,32px);display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  @media(max-width:840px){.buy{justify-content:center}}
+  .price{font-family:'EB Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:600;color:var(--tinta)}
+  .price small{display:block;font-family:'Jost';font-size:.62rem;letter-spacing:.05em;color:var(--muted);font-weight:400;margin-top:2px}
+  .consultar{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--crema);padding:14px 26px;border-radius:100px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:transform .25s,background .25s;box-shadow:0 12px 30px rgba(138,76,56,.22)}
+  .consultar:hover{transform:translateY(-2px);background:var(--terra-2)}
+
+  /* Bottle — la foto viene sobre fondo blanco; se pinta como background y con
+     background-blend-mode:multiply se funde el blanco con el crema → frasco "recortado"
+     flotando, sin editar ninguna imagen. Funciona en todos los perfiles de color. */
+  .bottle{position:relative;display:grid;place-items:center;z-index:1;width:100%;justify-self:stretch;min-height:clamp(240px,40vh,420px)}
+  @media(min-width:841px){.bottle{min-height:clamp(360px,56vh,620px)}}
+  .bottle::after{content:"";position:absolute;bottom:7%;left:50%;transform:translateX(-50%);width:52%;height:30px;background:radial-gradient(ellipse at center, rgba(43,38,32,.20), transparent 70%);filter:blur(7px)}
+  .photo{
+    position:relative;top:0;width:100%;height:clamp(240px,40vh,420px);
+    background-color:var(--crema);
+    background-repeat:no-repeat;background-position:center;background-size:contain;
+    background-blend-mode:multiply;
+    animation:fadeIn .8s ease both, floatY 7s ease-in-out 1s infinite;
+    transition:background-size .5s cubic-bezier(.2,.7,.2,1);
+    cursor:zoom-in;
+  }
+  @media(min-width:841px){.photo{height:clamp(360px,56vh,620px)}}
+  .bottle.zoom .photo{background-size:auto min(86vh,760px);cursor:zoom-out}
+
+  @keyframes floatY{0%,100%{top:0}50%{top:-14px}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .perfume.enter .brand{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .perfume.enter .name{animation:rise .7s cubic-bezier(.2,.7,.2,1) .06s both}
+  .perfume.enter .details{animation:rise .7s cubic-bezier(.2,.7,.2,1) .18s both}
+
+  /* Arrows */
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border:1px solid var(--line);border-radius:50%;background:rgba(237,226,201,.5);backdrop-filter:blur(4px);display:grid;place-items:center;cursor:pointer;color:var(--tinta);transition:all .25s;z-index:5}
+  .arrow:hover{background:var(--terra);color:var(--crema);border-color:var(--terra)}
+  .arrow svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .arrow.prev{left:clamp(10px,2vw,28px)}
+  .arrow.next{right:clamp(10px,2vw,28px)}
+  @media(max-width:560px){.arrow{width:46px;height:46px;top:auto;bottom:58px;transform:none;background:rgba(237,226,201,.85)}.arrow.prev{left:16px}.arrow.next{right:16px}}
+
+  /* Footer */
+  .foot{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px;font-size:.78rem;letter-spacing:.24em;color:var(--muted)}
+  .foot .now{color:var(--tinta);font-weight:600}
+  .loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--crema);z-index:20;font-family:'EB Garamond',serif;letter-spacing:.3em;color:var(--terra);text-transform:uppercase;font-size:.9rem;transition:opacity .5s}
+  .loading.hide{opacity:0;pointer-events:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="loading" id="loading">guriche</div>
+<div class="shell">
+  <header class="top">
+    <a class="wordmark" href="index.html">guriche</a>
+    <a class="coleccion" href="index.html#catalogo">Ver colección ↗</a>
+  </header>
+
+  <main class="stage" id="stage" aria-label="Explorador de perfumes">
+    <button class="arrow prev" id="prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"/></svg></button>
+
+    <article class="perfume" id="perfume">
+      <p class="brand" id="brand"></p>
+      <h1 class="name" id="name"></h1>
+      <div class="bottle" id="bottle">
+        <div class="photo" id="photo" role="img"></div>
+      </div>
+      <div class="details">
+        <p class="conc" id="conc"></p>
+        <details class="notes" id="notes">
+          <summary>Notas <span class="pm">+</span></summary>
+          <p class="desc" id="desc"></p>
+        </details>
+        <div class="buy">
+          <div class="price" id="price"></div>
+          <a class="consultar" id="consultar" target="_blank" rel="noopener">Consultar <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </article>
+
+    <button class="arrow next" id="next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="m10 5 7 7-7 7"/></svg></button>
+  </main>
+
+  <footer class="foot">
+    <span class="now" id="counter">01</span>
+    <span aria-hidden="true">—</span>
+    <span id="total">00</span>
+    <span style="margin-left:14px">Colección Guriche</span>
+  </footer>
+</div>
+
+<script>
+const WHATSAPP="5491139007985";
+const $=id=>document.getElementById(id);
+let list=[], i=0;
+
+function parseConc(n){
+  const t=n.toUpperCase();
+  let c="Eau de parfum";
+  if(/\bEDT\b|EAU DE TOILETTE/.test(t))c="Eau de toilette";
+  else if(/PARFUM INTENSE/.test(t))c="Parfum intense";
+  else if(/\bELIXIR\b/.test(t))c="Elixir";
+  else if(/\bCOLOGNE\b|\bEDC\b/.test(t))c="Cologne";
+  else if(/\bEXTRAIT\b/.test(t))c="Extrait";
+  else if(/\bPARFUM\b/.test(t))c="Parfum";
+  const ml=(t.match(/(\d+)\s*ML/)||[])[1];
+  return c+(ml?" · "+ml+" ml":"");
+}
+function displayName(n){
+  return n.replace(/\s*\d+\s*ML/i,"").replace(/\b(EDP|EDT|EDC)\b/gi,"").replace(/EAU DE (PARFUM|TOILETTE|COLOGNE)/gi,"")
+          .replace(/\bPARFUM\b|\bINTENSE\b|\bELIXIR\b|\bCOLOGNE\b|\bEXTRAIT\b/gi,"").replace(/\s+/g," ").trim();
+}
+function stripBrand(marca,nombre){
+  const nm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim();
+  const bw=nm(marca).split(" ").filter(w=>w.length>2);
+  let w=nombre.trim().split(/\s+/);
+  while(w.length>1){const x=nm(w[0]);if(!x||bw.includes(x)){w.shift();continue}break}
+  return w.join(" ");
+}
+function splitName(n){
+  const words=n.split(" ");
+  if(words.length<=1)return n;
+  const mid=Math.ceil(words.length/2);
+  return `<span>${words.slice(0,mid).join(" ")}</span><span>${words.slice(mid).join(" ")}</span>`;
+}
+
+function render(dir){
+  const p=list[i];
+  const per=$("perfume");
+  $("brand").textContent=p.marca;
+  const clean=displayName(stripBrand(p.marca,p.prod));
+  $("name").innerHTML=splitName(clean||p.prod);
+  $("conc").textContent=parseConc(p.prod);
+  $("desc").textContent=p.desc||"Fragancia original, importada a pedido.";
+  $("photo").style.backgroundImage=`url("${p.img}")`;
+  $("photo").setAttribute("aria-label",p.marca+" "+p.prod+" — perfume original importado");
+  if(p.precio){$("price").innerHTML=`USD ${Math.round(p.precio)}<small>PAGO EN PESOS AL CAMBIO DEL DÍA</small>`}
+  else{$("price").innerHTML=`Consultar<small>SUJETO A DISPONIBILIDAD</small>`}
+  const msg=`¡Hola, Guriche! Quiero consultar por ${p.marca} ${stripBrand(p.marca,p.prod).replace(/(\d+)\s*ML/i,'$1 ml')}${p.precio?` — USD ${Math.round(p.precio)}`:''}.\n\n¿Me confirman el precio final y la fecha estimada de entrega?\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
+  $("consultar").href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  $("counter").textContent=String(i+1).padStart(2,"0");
+  $("notes").open=false;
+  per.classList.remove("enter");void per.offsetWidth;per.classList.add("enter");
+  history.replaceState(null,"","?id="+p.id);
+}
+function go(d){i=(i+d+list.length)%list.length;render(d)}
+
+async function loadPrices(map){
+  try{
+    const src=window.GURICHE_CATALOG_SOURCE;if(!src||!src.csvUrl)return;
+    const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),8000);
+    const txt=await fetch(src.csvUrl,{signal:ctl.signal,cache:"no-store"}).then(r=>r.text());clearTimeout(t);
+    const rows=parseCSV(txt);const hi=rows.findIndex(r=>r.includes("Web ID"));if(hi<0)return;
+    const H=rows[hi],iId=H.indexOf("Web ID"),iP=H.indexOf("Precio USD");
+    for(let r=hi+1;r<rows.length;r++){const id=rows[r][iId];const v=parsePrice(rows[r][iP]);if(map[id]&&v)map[id].precio=v}
+    render(0);
+  }catch(e){}
+}
+function parsePrice(value){
+  const cleaned=String(value||"").replace(/\$/g,"").replace(/\s/g,"").replace(/\.(?=\d{3}(?:\D|$))/g,"").replace(/,(?=\d{1,2}$)/,".");
+  const n=Number(cleaned);return Number.isFinite(n)&&n>0?n:null;
+}
+function parseCSV(t){const R=[];let r=[],c="",q=false;for(let k=0;k<t.length;k++){const ch=t[k];if(q){if(ch==='"'){if(t[k+1]==='"'){c+='"';k++}else q=false}else c+=ch}else{if(ch==='"')q=true;else if(ch===","){r.push(c);c=""}else if(ch==="\n"||ch==="\r"){if(ch==="\r"&&t[k+1]==="\n")k++;r.push(c);R.push(r);r=[];c=""}else c+=ch}}if(c||r.length){r.push(c);R.push(r)}return R}
+
+async function init(){
+  const data=await fetch("data/catalogo-web.json").then(r=>r.json());
+  const map={};
+  list=data.filter(p=>p["Publicar"]!=="No").map(p=>{
+    const o={id:p["Web ID"],marca:p["Marca"],prod:p["Producto"],desc:p["Descripción"],img:p["Imagen"],precio:null};
+    map[o.id]=o;return o;
+  });
+  $("total").textContent=String(list.length).padStart(2,"0");
+  const qid=new URLSearchParams(location.search).get("id");
+  const idx=qid?list.findIndex(p=>p.id===qid):-1;
+  i=idx>=0?idx:0;
+  render(0);
+  $("loading").classList.add("hide");
+  // interacciones
+  $("next").onclick=()=>go(1);$("prev").onclick=()=>go(-1);
+  document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
+  const b=$("bottle");b.addEventListener("click",()=>b.classList.toggle("zoom"));
+  let sx=null;const st=$("stage");
+  st.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
+  st.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(dx<0?1:-1);sx=null});
+  // precios en vivo
+  const s=document.createElement("script");s.src="catalog-source.js";s.onload=()=>loadPrices(map);document.head.appendChild(s);
+}
+init();
+</script>
+</body>
+</html>
