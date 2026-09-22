@@ -1242,18 +1242,25 @@ loadExternalCatalog().then((updated) => {
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("open");
-  menuToggle.classList.toggle("active");
+function setMenu(open) {
+  navLinks.classList.toggle("open", open);
+  menuToggle.classList.toggle("active", open);
   menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+  menuToggle.textContent = open ? "✕" : "☰";
+}
+
+menuToggle.addEventListener("click", () => {
+  setMenu(!navLinks.classList.contains("open"));
 });
 
 document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuToggle.classList.remove("active");
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
+  link.addEventListener("click", () => setMenu(false));
+});
+
+// Cerrar con Escape
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks.classList.contains("open")) setMenu(false);
 });
 
 // ── Efecto Scroll en Navbar ─────────────────

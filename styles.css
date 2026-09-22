@@ -348,16 +348,19 @@ a {
 
 .menu-toggle {
   display: none;
+  position: relative;
+  z-index: 110;            /* por encima del overlay del menú (z-99) para poder cerrarlo */
   border: none;
   background: transparent;
   color: var(--text);
   font-size: 1.6rem;
+  line-height: 1;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: color 0.2s;
 }
 
 .menu-toggle.active {
-  transform: rotate(90deg);
+  color: var(--primary);
 }
 
 /* ============================================================

@@ -28,8 +28,15 @@
   /* Header */
   .top{display:flex;align-items:center;justify-content:space-between;padding:clamp(18px,3vw,34px) clamp(20px,5vw,60px)}
   .wordmark{font-family:'EB Garamond',serif;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:600;letter-spacing:.16em;color:var(--tinta)}
-  .top .coleccion{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:500}
-  .top .coleccion:hover{opacity:.7}
+  .back{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+    color:var(--terra);background:rgba(138,76,56,.06);border:1px solid rgba(138,76,56,.28);
+    padding:9px 18px;border-radius:100px;transition:background .2s,transform .2s;
+  }
+  .back span{font-size:1.2rem;line-height:0;transition:transform .2s}
+  .back:hover{background:var(--terra);color:var(--crema)}
+  .back:hover span{transform:translateX(-3px)}
 
   /* Stage */
   .stage{flex:1;display:grid;place-items:center;position:relative;padding:clamp(10px,3vw,20px) clamp(64px,8vw,110px) clamp(30px,5vw,60px)}
@@ -112,8 +119,10 @@
 <div class="loading" id="loading">guriche</div>
 <div class="shell">
   <header class="top">
+    <button class="back" id="back" type="button" aria-label="Volver al catálogo">
+      <span aria-hidden="true">‹</span> Volver
+    </button>
     <a class="wordmark" href="index.html">guriche</a>
-    <a class="coleccion" href="index.html#catalogo">Ver colección ↗</a>
   </header>
 
   <main class="stage" id="stage" aria-label="Explorador de perfumes">
@@ -237,6 +246,10 @@ async function init(){
   $("loading").classList.add("hide");
   // interacciones
   $("next").onclick=()=>go(1);$("prev").onclick=()=>go(-1);
+  $("back").onclick=function(){
+    if(document.referrer && document.referrer.indexOf(location.host)>=0) history.back();
+    else location.href="index.html#catalogo";
+  };
   document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
   const b=$("bottle");b.addEventListener("click",()=>b.classList.toggle("zoom"));
   let sx=null;const st=$("stage");
