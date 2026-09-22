@@ -720,15 +720,26 @@ function productCardHtml(perfume, brandName, showBrand = false) {
   const cartKey = perfume.webId || `${brandName}|${perfume.nombre}`;
   const precioAttr = perfume.precio ? ` data-precio="${perfume.precio}"` : "";
   const contactLink = productContactLink(perfume, brandName);
+  const expUrl = perfume.webId ? `experiencia.html?id=${encodeURIComponent(perfume.webId)}` : "";
+  const photoHtml = expUrl
+    ? `<a class="perfume-photo" href="${expUrl}" aria-label="Explorar ${escapeHtml(perfume.nombre)}">${imgHtml}<span class="explore-hint">Explorar ✦</span></a>`
+    : imgHtml;
+  const nameHtml = expUrl
+    ? `<a class="name-link" href="${expUrl}">${escapeHtml(perfume.nombre)}</a>`
+    : escapeHtml(perfume.nombre);
+  const exploreLink = expUrl
+    ? `<a class="card-explore" href="${expUrl}">Explorar la fragancia <span aria-hidden="true">✦</span></a>`
+    : "";
 
   return `
-    ${imgHtml}
+    ${photoHtml}
     <div class="perfume-body">
       ${brandHtml}
-      <h3>${escapeHtml(perfume.nombre)}</h3>
+      <h3>${nameHtml}</h3>
       <span class="card-authentic" title="Original importado, traído a pedido">✓ Original importado · a pedido</span>
       ${descHtml}
       ${productPriceHtml(perfume)}
+      ${exploreLink}
       <div class="perfume-actions">
         <button type="button" class="btn-quote btn-add-cart"
           data-key="${escapeHtml(cartKey)}"

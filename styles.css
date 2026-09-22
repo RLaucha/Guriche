@@ -1799,3 +1799,29 @@ select:focus-visible,
   background: rgba(164, 92, 64, 0.12);
   border-color: var(--primary-light);
 }
+
+/* ============================================================
+   Ficha → Experiencia "atelier" (link Explorar)
+   ============================================================ */
+.perfume-photo{position:relative;display:block;overflow:hidden;cursor:pointer}
+.perfume-photo img{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.perfume-photo:hover img{transform:scale(1.05)}
+.explore-hint{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%) translateY(8px);
+  background:rgba(43,38,32,.82);color:var(--text);
+  padding:7px 16px;border-radius:var(--radius-pill);
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+}
+.perfume-photo:hover .explore-hint{opacity:1;transform:translateX(-50%) translateY(0)}
+.name-link{color:inherit;text-decoration:none;transition:color .2s}
+.name-link:hover{color:var(--primary-light)}
+.card-explore{
+  display:inline-flex;align-items:center;gap:7px;margin:2px 0 14px;
+  color:var(--primary-light);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  transition:gap .2s,opacity .2s;
+}
+.card-explore span{transition:transform .3s}
+.card-explore:hover{opacity:.85}
+.card-explore:hover span{transform:rotate(90deg) scale(1.1)}
