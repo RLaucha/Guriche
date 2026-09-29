@@ -713,7 +713,7 @@ a {
   transition: background 0.2s, color 0.2s;
 }
 
-.search-clear:hover { background: rgba(164, 92, 64, 0.22); color: #fff; }
+.search-clear:hover { background: rgba(138, 76, 56, 0.16); color: var(--text); }
 
 .search-clear[hidden] { display: none; }
 
@@ -791,13 +791,15 @@ a {
   gap: 0.5rem;
   padding: 2rem 1.2rem;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
   user-select: none;
 
   background: var(--surface-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(237, 226, 201, 0.08);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
 
   transition: all 0.35s ease;
@@ -1775,8 +1777,7 @@ select:focus-visible,
   margin: 0.1rem 0 0.6rem;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
-  color: var(--primary-light);
-  opacity: 0.9;
+  color: var(--primary);   /* AA en texto chico (5.15:1) */
 }
 
 /* CTA doble en la ficha */
@@ -1830,3 +1831,25 @@ select:focus-visible,
 .card-explore span{transition:transform .3s}
 .card-explore:hover{opacity:.85}
 .card-explore:hover span{transform:rotate(90deg) scale(1.1)}
+
+/* ============================================================
+   Accesibilidad — skip link y reduced motion
+   ============================================================ */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--primary); color: var(--btn-text);
+  padding: 10px 18px; border-radius: 0 0 10px 0;
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .particle { display: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

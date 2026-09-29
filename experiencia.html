@@ -24,6 +24,7 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:6px}
   .shell{min-height:100svh;display:flex;flex-direction:column}
 
   /* Header */
@@ -132,7 +133,7 @@
     <article class="perfume" id="perfume">
       <p class="brand" id="brand"></p>
       <h1 class="name" id="name"></h1>
-      <div class="bottle" id="bottle">
+      <div class="bottle" id="bottle" tabindex="0" role="button" aria-label="Ampliar el frasco">
         <div class="photo" id="photo" role="img"></div>
       </div>
       <div class="details">
@@ -252,7 +253,10 @@ async function init(){
     else location.href="index.html#catalogo";
   };
   document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
-  const b=$("bottle");b.addEventListener("click",()=>b.classList.toggle("zoom"));
+  const b=$("bottle");
+  const toggleZoom=()=>{const z=b.classList.toggle("zoom");b.setAttribute("aria-label",z?"Reducir el frasco":"Ampliar el frasco");};
+  b.addEventListener("click",toggleZoom);
+  b.addEventListener("keydown",(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggleZoom();}});
   let sx=null;const st=$("stage");
   st.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
   st.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(dx<0?1:-1);sx=null});

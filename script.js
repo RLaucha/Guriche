@@ -966,20 +966,19 @@ function renderCatalogMain(scrollToTop = false) {
     ).length;
     if (count === 0) return;
 
-    const card = document.createElement("div");
-    card.className = "brand-entry-card";
-
     const countText = count > 0 ? `${count} fragancia${count > 1 ? "s" : ""}` : "Consultanos";
+
+    // <a> nativo: accesible por teclado y con semántica de link (el hash dispara el render)
+    const card = document.createElement("a");
+    card.className = "brand-entry-card";
+    card.href = "#marca/" + encodeURIComponent(marca.nombre);
+    card.setAttribute("aria-label", `${marca.nombre} — ${countText}`);
 
     card.innerHTML = `
       <span class="brand-entry-name">${escapeHtml(marca.nombre)}</span>
       <span class="brand-entry-count">${countText}</span>
-      <span class="brand-entry-arrow">→</span>
+      <span class="brand-entry-arrow" aria-hidden="true">→</span>
     `;
-
-    card.addEventListener("click", () => {
-      window.location.hash = "marca/" + encodeURIComponent(marca.nombre);
-    });
 
     brandsContainer.appendChild(card);
   });
@@ -1244,6 +1243,10 @@ function setMenu(open) {
   menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
   menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
   menuToggle.textContent = open ? "✕" : "☰";
+  if (open) {
+    const first = navLinks.querySelector("a");
+    if (first) setTimeout(() => first.focus(), 60);
+  }
 }
 
 menuToggle.addEventListener("click", () => {
@@ -1254,9 +1257,12 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => setMenu(false));
 });
 
-// Cerrar con Escape
+// Cerrar con Escape (menú y carrito)
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && navLinks.classList.contains("open")) setMenu(false);
+  if (e.key !== "Escape") return;
+  if (navLinks.classList.contains("open")) setMenu(false);
+  const d = document.getElementById("cartDrawer");
+  if (d && d.classList.contains("open")) cartCloseDrawer();
 });
 
 // ── Efecto Scroll en Navbar ─────────────────
@@ -1715,13 +1721,22 @@ function cartRender() {
     wa.classList.toggle("disabled", items.length === 0);
   }
 }
+let cartLastFocus = null;
 function cartOpen() {
   const d = document.getElementById("cartDrawer");
-  if (d) { d.classList.add("open"); d.setAttribute("aria-hidden", "false"); }
+  if (d) {
+    cartLastFocus = document.activeElement;
+    d.classList.add("open"); d.setAttribute("aria-hidden", "false");
+    const close = document.getElementById("cartClose");
+    if (close) close.focus();
+  }
 }
 function cartCloseDrawer() {
   const d = document.getElementById("cartDrawer");
-  if (d) { d.classList.remove("open"); d.setAttribute("aria-hidden", "true"); }
+  if (d) {
+    d.classList.remove("open"); d.setAttribute("aria-hidden", "true");
+    if (cartLastFocus && typeof cartLastFocus.focus === "function") cartLastFocus.focus();
+  }
 }
 
 document.addEventListener("click", (e) => {
