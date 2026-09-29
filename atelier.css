@@ -1,0 +1,99 @@
+/* Guriche · Atelier — estilos de la experiencia por perfume (compartidos por
+   experiencia.html y las páginas estáticas /p/<slug>.html) */
+:root{
+  --crema:#EDE2C9; --crema-2:#E4D6BC; --tinta:#2B2620; --terra:#8A4C38;
+  --terra-2:#a45c40; --muted:#6B6050; --line:rgba(43,38,32,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif; color:var(--tinta);
+  background:var(--crema);
+  min-height:100svh; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:6px}
+.shell{min-height:100svh;display:flex;flex-direction:column}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:clamp(18px,3vw,34px) clamp(20px,5vw,60px)}
+.wordmark{font-family:'EB Garamond',serif;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:600;letter-spacing:.16em;color:var(--tinta)}
+.back{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  color:var(--terra);background:rgba(138,76,56,.06);border:1px solid rgba(138,76,56,.28);
+  padding:9px 18px;border-radius:100px;transition:background .2s,transform .2s;
+}
+.back span{font-size:1.2rem;line-height:0;transition:transform .2s}
+.back:hover{background:var(--terra);color:var(--crema)}
+.back:hover span{transform:translateX(-3px)}
+
+/* Stage */
+.stage{flex:1;display:grid;place-items:center;position:relative;padding:clamp(10px,3vw,20px) clamp(64px,8vw,110px) clamp(30px,5vw,60px)}
+.perfume{display:grid;width:min(1120px,100%);gap:clamp(6px,1.6vw,14px);
+  grid-template-columns:1fr;grid-template-areas:"brand" "name" "bottle" "details";
+  text-align:center;justify-items:center;align-content:center}
+.brand{grid-area:brand}.name{grid-area:name}.bottle{grid-area:bottle}.details{grid-area:details}
+@media(min-width:841px){
+  .perfume{grid-template-columns:1.05fr .95fr;column-gap:clamp(20px,4vw,60px);
+    grid-template-areas:"brand bottle" "name bottle" "details bottle";
+    text-align:left;justify-items:start;align-content:center}
+  .bottle{align-self:center}
+}
+
+.brand{font-size:clamp(.72rem,1.4vw,.9rem);letter-spacing:.34em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:clamp(4px,1.4vw,14px)}
+.name{font-family:'EB Garamond',serif;font-weight:700;line-height:.94;font-size:clamp(2.5rem,8vw,6rem);letter-spacing:-.01em;color:var(--tinta)}
+.name span{display:block}
+.details{position:relative;z-index:2}
+.conc{margin-top:clamp(12px,2.4vw,24px);font-size:.9rem;letter-spacing:.08em;color:var(--muted)}
+
+.notes{margin-top:clamp(14px,2.4vw,26px);max-width:34ch}
+@media(max-width:840px){.notes{margin-inline:auto}}
+.notes summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta);padding:9px 0;border-bottom:1px solid var(--line);user-select:none}
+.notes summary::-webkit-details-marker{display:none}
+.notes summary .pm{font-family:'EB Garamond',serif;font-size:1.3rem;color:var(--terra);transition:transform .3s}
+.notes[open] summary .pm{transform:rotate(45deg)}
+.notes .desc{font-family:'EB Garamond',serif;font-style:italic;font-size:1.12rem;line-height:1.55;color:var(--tinta);padding:16px 0 4px}
+
+.buy{margin-top:clamp(20px,3vw,32px);display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+@media(max-width:840px){.buy{justify-content:center}}
+.price{font-family:'EB Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:600;color:var(--tinta)}
+.price small{display:block;font-family:'Jost';font-size:.62rem;letter-spacing:.05em;color:var(--muted);font-weight:400;margin-top:2px}
+.consultar{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--crema);padding:14px 26px;border-radius:100px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:transform .25s,background .25s;box-shadow:0 12px 30px rgba(138,76,56,.22)}
+.consultar:hover{transform:translateY(-2px);background:var(--terra-2)}
+
+/* Bottle: la foto (fondo blanco) se pinta como background y background-blend-mode:multiply
+   la funde con el crema → frasco "recortado" flotando, sin editar imágenes. */
+.bottle{position:relative;display:grid;place-items:center;z-index:1;width:100%;justify-self:stretch;min-height:clamp(240px,40vh,420px)}
+@media(min-width:841px){.bottle{min-height:clamp(360px,56vh,620px)}}
+.bottle::after{content:"";position:absolute;bottom:7%;left:50%;transform:translateX(-50%);width:52%;height:30px;background:radial-gradient(ellipse at center, rgba(43,38,32,.20), transparent 70%);filter:blur(7px)}
+.photo{
+  position:relative;top:0;width:100%;height:clamp(240px,40vh,420px);
+  background-color:var(--crema);
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+  background-blend-mode:multiply;
+  animation:floatY 7s ease-in-out infinite;
+  transition:background-size .5s cubic-bezier(.2,.7,.2,1);
+  cursor:zoom-in;
+}
+@media(min-width:841px){.photo{height:clamp(360px,56vh,620px)}}
+.bottle.zoom .photo{background-size:auto min(86vh,760px);cursor:zoom-out}
+
+@keyframes floatY{0%,100%{top:0}50%{top:-14px}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Arrows */
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border:1px solid var(--line);border-radius:50%;background:rgba(237,226,201,.5);backdrop-filter:blur(4px);display:grid;place-items:center;cursor:pointer;color:var(--tinta);transition:all .25s;z-index:5}
+.arrow:hover{background:var(--terra);color:var(--crema);border-color:var(--terra)}
+.arrow svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.arrow.prev{left:clamp(10px,2vw,28px)}
+.arrow.next{right:clamp(10px,2vw,28px)}
+@media(max-width:560px){.arrow{width:46px;height:46px;top:auto;bottom:58px;transform:none;background:rgba(237,226,201,.85)}.arrow.prev{left:16px}.arrow.next{right:16px}}
+
+/* Footer */
+.foot{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px;font-size:.78rem;letter-spacing:.24em;color:var(--muted)}
+.foot .now{color:var(--tinta);font-weight:600}
+.loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--crema);z-index:20;font-family:'EB Garamond',serif;letter-spacing:.3em;color:var(--terra);text-transform:uppercase;font-size:.9rem;transition:opacity .5s}
+.loading.hide{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
