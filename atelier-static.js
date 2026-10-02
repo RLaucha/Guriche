@@ -4,11 +4,8 @@
    planilha, zoom del frasco y navegación por teclado / swipe. */
 (function(){
   "use strict";
-  var WHATSAPP = "5491139007985";
   var body = document.body;
   var id = body.getAttribute("data-id");
-  var marca = body.getAttribute("data-marca") || "";
-  var prod = body.getAttribute("data-prod") || "";
   var $ = function(s){ return document.querySelector(s); };
 
   /* ---- Zoom del frasco ---- */
@@ -71,20 +68,12 @@
     if(c||r.length){ r.push(c); R.push(r); }
     return R;
   }
-  function waMessage(price){
-    var name = prod.replace(/(\d+)\s*ML/i,"$1 ml");
-    return "¡Hola, Guriche! Quiero consultar por " + marca + " " + name +
-      (price ? " — USD " + Math.round(price) : "") +
-      ".\n\n¿Me confirman el precio final y la fecha estimada de entrega?\n\n" +
-      "Si pago en pesos, se calcula al tipo de cambio del día de la entrega.";
-  }
   function applyPrice(price){
     var el = $("#price");
     if(el && price){
       el.innerHTML = "USD " + Math.round(price) + "<small>PAGO EN PESOS AL CAMBIO DEL DÍA</small>";
     }
-    var c = $("#consultar");
-    if(c) c.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(waMessage(price));
+    // El contacto es por Instagram (DM); el enlace ya está en el HTML, no se reescribe.
   }
   (function loadPrice(){
     var src = window.GURICHE_CATALOG_SOURCE;

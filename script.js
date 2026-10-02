@@ -600,7 +600,6 @@ const catalogo = [
 // ── Renderizado del Catálogo — Sistema de Navegación por Marca ──
 const catalogContainer = document.getElementById("catalogContainer");
 const igLink = "https://ig.me/m/gurichearg";
-const WHATSAPP_NUMBER = "5491139007985";
 const catalogSource = window.GURICHE_CATALOG_SOURCE || {
   csvUrl: "",
   fallbackUrl: "data/catalogo-web.json",
@@ -685,13 +684,10 @@ function formatCatalogPrice(value) {
   return `USD ${Math.round(value).toLocaleString("es-AR")}`;
 }
 
-function productContactLink(perfume, brandName) {
-  const priceText = perfume.precio ? ` — ${formatCatalogPrice(perfume.precio)}` : "";
-  const message =
-    `¡Hola, Guriche! Quiero consultar por ${brandName} ${msgName(brandName, perfume.nombre)}${priceText}.` +
-    `\n\n¿Me confirman el precio final y la fecha estimada de entrega?` +
-    `\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+function productContactLink() {
+  // La consulta se hace por Instagram (DM). Instagram no admite texto
+  // prellenado, así que el enlace abre el chat directo de Guriche.
+  return igLink;
 }
 
 function productPriceHtml(perfume) {
@@ -1343,7 +1339,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 // QUIZ LOGIC
 // ============================================
-const WHATSAPP_QUIZ = WHATSAPP_NUMBER;
 
 // El test recomienda perfumes REALES del catálogo (con precio en vivo de la
 // planilla). El perfil olfativo de cada uno se deriva automáticamente de su
@@ -1588,7 +1583,7 @@ function showResults(){
       ${desc}
       ${why}
       <div class="price">${precio}</div>
-      <a href="https://wa.me/${WHATSAPP_QUIZ}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Lo quiero → WhatsApp</a>
+      <a href="${igLink}" target="_blank" rel="noopener">Lo quiero → Instagram</a>
     </div>`;
   }).join('');
   document.getElementById('results').classList.add('visible');
@@ -1669,20 +1664,12 @@ function stripBrandPrefix(marca, nombre) {
 function msgName(marca, nombre) {
   return prettyName(stripBrandPrefix(marca, nombre));
 }
-function cartWhatsappUrl() {
+function cartContactUrl() {
   const items = cartLoad();
   if (!items.length) return "#";
-  const lines = items.map(
-    (i, idx) => `${idx + 1}. ${i.marca} ${msgName(i.marca, i.nombre)}${i.precio ? ` — USD ${Math.round(i.precio)}` : ""}`,
-  );
-  let msg = `¡Hola, Guriche! Quiero consultar por estos perfumes:\n\n${lines.join("\n")}`;
-  const total = cartTotal(items);
-  if (total > 0) {
-    msg += `\n\nTotal de referencia: USD ${total.toLocaleString("es-AR")}.`;
-  }
-  msg += `\n\n¿Me confirman el precio final y la fecha estimada de entrega?`;
-  msg += `\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  // La consulta se coordina por Instagram (DM). Instagram no admite texto
+  // prellenado; el enlace abre el chat directo de Guriche.
+  return igLink;
 }
 function cartRender() {
   const items = cartLoad();
@@ -1719,7 +1706,7 @@ function cartRender() {
 
   const wa = document.getElementById("cartWhatsapp");
   if (wa) {
-    wa.href = cartWhatsappUrl();
+    wa.href = cartContactUrl();
     wa.classList.toggle("disabled", items.length === 0);
   }
 }

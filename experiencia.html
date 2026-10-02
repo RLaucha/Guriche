@@ -162,7 +162,7 @@
 </div>
 
 <script>
-const WHATSAPP="5491139007985";
+const IG="https://ig.me/m/gurichearg";
 const $=id=>document.getElementById(id);
 let list=[], i=0;
 
@@ -208,8 +208,7 @@ function render(dir){
   $("photo").setAttribute("aria-label",p.marca+" "+p.prod+" — perfume original importado");
   if(p.precio){$("price").innerHTML=`USD ${Math.round(p.precio)}<small>PAGO EN PESOS AL CAMBIO DEL DÍA</small>`}
   else{$("price").innerHTML=`Consultar<small>SUJETO A DISPONIBILIDAD</small>`}
-  const msg=`¡Hola, Guriche! Quiero consultar por ${p.marca} ${stripBrand(p.marca,p.prod).replace(/(\d+)\s*ML/i,'$1 ml')}${p.precio?` — USD ${Math.round(p.precio)}`:''}.\n\n¿Me confirman el precio final y la fecha estimada de entrega?\n\nSi pago en pesos, se calcula al tipo de cambio del día de la entrega.`;
-  $("consultar").href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  $("consultar").href=IG;
   $("counter").textContent=String(i+1).padStart(2,"0");
   $("notes").open=false;
   per.classList.remove("enter");void per.offsetWidth;per.classList.add("enter");
